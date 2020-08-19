@@ -8,29 +8,33 @@ namespace Bali.IO
     public class ConstantPoolReader
     {
         private readonly Stream _inputStream;
-        private readonly ushort _count;
         
         private static readonly Dictionary<ConstantKind, Func<Stream, Constant>> ConstantFactories;
 
-        public ConstantPoolReader(Stream inputStream, ClassFileHeader classFileHeader)
-        {
-            _inputStream = inputStream;
-            _count = (ushort) (classFileHeader.ConstantPoolCount - 1);
-        }
+        public ConstantPoolReader(Stream inputStream) => _inputStream = inputStream;
 
         static ConstantPoolReader()
         {
             ConstantFactories = new Dictionary<ConstantKind, Func<Stream, Constant>>
             {
-                [ConstantKind.String] = StringConstant.Create
+                [ConstantKind.String] = StringConstant.Create,
+                [ConstantKind.Utf8] = Utf8Constant.Create,
+                [ConstantKind.Class] = ClassConstant.Create,
+                [ConstantKind.Fieldref] = FieldrefConstant.Create,
+                [ConstantKind.Integer] = IntegerConstant.Create,
+                [ConstantKind.Methodref] = MethodrefConstant.Create,
+                [ConstantKind.Long] = LongConstant.Create,
+                [ConstantKind.NameAndType] = NameAndTypeConstant.Create,
+                [ConstantKind.InterfaceMethodref] = InterfaceMethodrefConstant.Create
             };
         }
 
-        public IList<Constant> ReadConstantPool()
+        public ConstantPool ReadConstantPool()
         {
             var constants = new List<Constant>();
+            ushort count = (ushort) (_inputStream.ReadU2() - 1);
 
-            for (int i = 0; i < _count;)
+            for (int i = 0; i < count;)
             {
                 var tag = (ConstantKind) _inputStream.ReadU1();
                 constants.Add(ConstantFactories[tag](_inputStream));
@@ -43,7 +47,7 @@ namespace Bali.IO
                 };
             }
 
-            return constants;
+            return new ConstantPool(constants);
         }
     }
 }
