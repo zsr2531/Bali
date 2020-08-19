@@ -1,3 +1,5 @@
+using Bali.IO;
+
 namespace Bali
 {
     /// <summary>
@@ -6,9 +8,9 @@ namespace Bali
     public class ClassFile
     {
         /// <summary>
-        /// The magic value.
+        /// Gets or sets the magic value.
         /// </summary>
-        /// <remarks>This should always have the value <c>0xCAFEBABE</c>.</remarks>
+        /// <remarks>This should always have the value <b>0xCAFEBABE</b>.</remarks>
         public uint Magic
         {
             get;
@@ -16,7 +18,7 @@ namespace Bali
         }
 
         /// <summary>
-        /// The minor version of this <see cref="ClassFile"/>.
+        /// Gets or sets the minor version of this <see cref="ClassFile"/>.
         /// </summary>
         public ushort MinorVersion
         {
@@ -25,9 +27,18 @@ namespace Bali
         }
 
         /// <summary>
-        /// The major version of this <see cref="ClassFile"/>.
+        /// Gets or sets the major version of this <see cref="ClassFile"/>.
         /// </summary>
         public ushort MajorVersion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="ConstantPool"/>.
+        /// </summary>
+        public ConstantPool Constants
         {
             get;
             set;
