@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class Utf8Constant : Constant
@@ -8,6 +10,12 @@ namespace Bali.IO.Constants
         public string Value
         {
             get;
+        }
+
+        public static Utf8Constant Create(Stream stream)
+        {
+            ushort length = stream.ReadU2();
+            return new Utf8Constant(JavaUtf8.Decode(stream, length));
         }
     }
 }

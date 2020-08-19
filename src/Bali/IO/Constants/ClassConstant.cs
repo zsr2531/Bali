@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class ClassConstant : Constant
@@ -9,5 +11,7 @@ namespace Bali.IO.Constants
         {
             get;
         }
+        
+        public static ClassConstant Create(Stream stream) => new ClassConstant(stream.ReadU2());
     }
 }

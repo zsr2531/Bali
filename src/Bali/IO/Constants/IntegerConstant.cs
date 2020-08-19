@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class IntegerConstant : Constant
@@ -9,5 +11,7 @@ namespace Bali.IO.Constants
         {
             get;
         }
+        
+        public static IntegerConstant Create(Stream stream) => new IntegerConstant((int) stream.ReadU4());
     }
 }

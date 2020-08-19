@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class MethodrefConstant : Constant
@@ -18,5 +20,7 @@ namespace Bali.IO.Constants
         {
             get;
         }
+        
+        public static MethodrefConstant Create(Stream stream) => new MethodrefConstant(stream.ReadU2(), stream.ReadU2());
     }
 }

@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class InterfaceMethodrefConstant : Constant
@@ -18,5 +20,8 @@ namespace Bali.IO.Constants
         {
             get;
         }
+        
+        public static InterfaceMethodrefConstant Create(Stream stream) =>
+            new InterfaceMethodrefConstant(stream.ReadU2(), stream.ReadU2());
     }
 }

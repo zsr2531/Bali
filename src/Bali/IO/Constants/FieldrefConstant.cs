@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class FieldrefConstant : Constant
@@ -18,5 +20,7 @@ namespace Bali.IO.Constants
         {
             get;
         }
+        
+        public static FieldrefConstant Create(Stream stream) => new FieldrefConstant(stream.ReadU2(), stream.ReadU2());
     }
 }

@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace Bali.IO.Constants
 {
     public class DoubleConstant : Constant
@@ -8,6 +10,12 @@ namespace Bali.IO.Constants
         public double Value
         {
             get;
+        }
+
+        public static unsafe DoubleConstant Create(Stream stream)
+        {
+            ulong bits = stream.ReadU8();
+            return new DoubleConstant(*(double*)&bits);
         }
     }
 }
