@@ -3,7 +3,7 @@ namespace Bali.IO.Descriptors
     /// <summary>
     /// The types of tokens that can occur in a Java field/method descriptor.
     /// </summary>
-    public enum TokenKind
+    public enum DescriptorTokenKind
     {
         /// <summary>
         /// The character <c>(</c>.
