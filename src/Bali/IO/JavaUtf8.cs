@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace Bali.IO
 {
@@ -9,6 +10,8 @@ namespace Bali.IO
     /// </summary>
     public static class JavaUtf8
     {
+        private static readonly ThreadLocal<StringBuilder> Builder = new ThreadLocal<StringBuilder>(() => new StringBuilder());
+        
         /// <summary>
         /// Decodes <paramref name="length"/> amount of bytes from the <paramref name="stream"/> into a <see cref="string"/>.
         /// </summary>
@@ -16,15 +19,17 @@ namespace Bali.IO
         /// <param name="length">The amount of <b><i><see cref="byte"/>s</i></b> to decode.</param>
         /// <returns>The decoded <see cref="string"/>.</returns>
         /// <exception cref="InvalidDataException">When the data read from the input stream isn't valid JavaUtf8.</exception>
+        /// <exception cref="InvalidOperationException">When more <see cref="byte"/>s get consumed than the <paramref name="length"/>.</exception>
         public static string Decode(Stream stream, int length)
         {
-            // TODO: Maybe pool StringBuilder objects?
-            var builder = new StringBuilder(length);
-            
-            for (int i = 0; i < length; i++)
+            var builder = Builder.Value;
+            builder.Clear();
+
+            int i = 0;
+            for (; i < length; i++)
             {
                 byte first = ReadByte(stream);
-                if (first >= 0x01 && first <= 0x0F)
+                if (first >= 0x01 && first <= 0x7F)
                 {
                     builder.Append((char) first);
                     continue;
@@ -62,6 +67,9 @@ namespace Bali.IO
                 int sixByte = 0x1000 + ((second & 0x0F) << 16) + ((third & 0x3F) << 10) + ((fifth & 0x0F) << 6) + (sixth & 0x3F);
                 builder.Append((char) sixByte);
             }
+            
+            if (i > length)
+                throw new InvalidOperationException("Consumed more bytes than the specified length.");
 
             return builder.ToString();
         }
