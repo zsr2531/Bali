@@ -10,7 +10,7 @@ namespace Bali.IO
     /// </summary>
     public static class JavaUtf8
     {
-        private static readonly ThreadLocal<StringBuilder> Builder = new ThreadLocal<StringBuilder>(() => new StringBuilder());
+        private static readonly ThreadLocal<StringBuilder> Builder = new ThreadLocal<StringBuilder>();
         
         /// <summary>
         /// Decodes <paramref name="length"/> amount of bytes from the <paramref name="stream"/> into a <see cref="string"/>.
