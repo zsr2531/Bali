@@ -7,15 +7,15 @@ namespace Bali.IO.Descriptors
     /// Represents a token in a Java field/method descriptor string.
     /// </summary>
     [DebuggerDisplay("{" + nameof(Debug) + ",nq}")]
-    public readonly struct Token
+    public readonly struct DescriptorToken
     {
         /// <summary>
-        /// Creates a new <see cref="Token"/>.
+        /// Creates a new <see cref="DescriptorToken"/>.
         /// </summary>
         /// <param name="span">The <see cref="TextSpan"/> indicating the start and the end positions.</param>
         /// <param name="kind">The type of the token.</param>
         /// <param name="value">The raw text.</param>
-        public Token(TextSpan span, TokenKind kind, ReadOnlyMemory<char> value)
+        public DescriptorToken(TextSpan span, DescriptorTokenKind kind, ReadOnlyMemory<char> value)
         {
             Span = span;
             Kind = kind;
@@ -23,7 +23,7 @@ namespace Bali.IO.Descriptors
         }
 
         /// <summary>
-        /// The start and end positions of the <see cref="Token"/>.
+        /// The start and end positions of the <see cref="DescriptorToken"/>.
         /// </summary>
         public TextSpan Span
         {
@@ -31,15 +31,15 @@ namespace Bali.IO.Descriptors
         }
 
         /// <summary>
-        /// The type of the <see cref="Token"/>.
+        /// The type of the <see cref="DescriptorToken"/>.
         /// </summary>
-        public TokenKind Kind
+        public DescriptorTokenKind Kind
         {
             get;
         }
         
         /// <summary>
-        /// The text that the <see cref="Token"/> was lexed from.
+        /// The text that the <see cref="DescriptorToken"/> was lexed from.
         /// </summary>
         public ReadOnlyMemory<char> Value
         {

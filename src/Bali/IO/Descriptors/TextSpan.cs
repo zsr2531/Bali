@@ -1,7 +1,7 @@
 namespace Bali.IO.Descriptors
 {
     /// <summary>
-    /// A simple data structure to represent the point at which a particular <see cref="Token"/> starts and ends.
+    /// A simple data structure to represent the point at which a particular <see cref="DescriptorToken"/> starts and ends.
     /// </summary>
     public readonly struct TextSpan
     {
