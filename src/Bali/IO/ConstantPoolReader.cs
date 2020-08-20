@@ -5,13 +5,18 @@ using Bali.IO.Constants;
 
 namespace Bali.IO
 {
-    public class ConstantPoolReader
+    public readonly struct ConstantPoolReader
     {
         private readonly Stream _inputStream;
+        private readonly ushort _count;
         
         private static readonly Dictionary<ConstantKind, Func<Stream, Constant>> ConstantFactories;
 
-        public ConstantPoolReader(Stream inputStream) => _inputStream = inputStream;
+        public ConstantPoolReader(Stream inputStream, ushort count)
+        {
+            _inputStream = inputStream;
+            _count = count;
+        }
 
         static ConstantPoolReader()
         {
@@ -25,16 +30,18 @@ namespace Bali.IO
                 [ConstantKind.Methodref] = MethodrefConstant.Create,
                 [ConstantKind.Long] = LongConstant.Create,
                 [ConstantKind.NameAndType] = NameAndTypeConstant.Create,
-                [ConstantKind.InterfaceMethodref] = InterfaceMethodrefConstant.Create
+                [ConstantKind.InterfaceMethodref] = InterfaceMethodrefConstant.Create,
+                [ConstantKind.InvokeDynamic] = InvokeDynamicConstant.Create,
+                [ConstantKind.MethodType] = MethodTypeConstant.Create,
+                [ConstantKind.MethodHandle] = MethodHandleConstant.Create
             };
         }
 
         public ConstantPool ReadConstantPool()
         {
             var constants = new List<Constant>();
-            ushort count = (ushort) (_inputStream.ReadU2() - 1);
 
-            for (int i = 0; i < count;)
+            for (int i = 0; i < _count;)
             {
                 var tag = (ConstantKind) _inputStream.ReadU1();
                 constants.Add(ConstantFactories[tag](_inputStream));
