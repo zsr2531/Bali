@@ -1,27 +1,51 @@
+using System;
+using System.Diagnostics;
+
 namespace Bali.IO.Descriptors
 {
-    public sealed class Token
+    /// <summary>
+    /// Represents a token in a Java field/method descriptor string.
+    /// </summary>
+    [DebuggerDisplay("{" + nameof(Debug) + ",nq}")]
+    public readonly struct Token
     {
-        public Token(TextSpan span, TokenKind kind, string value)
+        /// <summary>
+        /// Creates a new <see cref="Token"/>.
+        /// </summary>
+        /// <param name="span">The <see cref="TextSpan"/> indicating the start and the end positions.</param>
+        /// <param name="kind">The type of the token.</param>
+        /// <param name="value">The raw text.</param>
+        public Token(TextSpan span, TokenKind kind, ReadOnlyMemory<char> value)
         {
             Span = span;
             Kind = kind;
             Value = value;
         }
 
+        /// <summary>
+        /// The start and end positions of the <see cref="Token"/>.
+        /// </summary>
         public TextSpan Span
         {
             get;
         }
 
+        /// <summary>
+        /// The type of the <see cref="Token"/>.
+        /// </summary>
         public TokenKind Kind
         {
             get;
         }
         
-        public string Value
+        /// <summary>
+        /// The text that the <see cref="Token"/> was lexed from.
+        /// </summary>
+        public ReadOnlyMemory<char> Value
         {
             get;
         }
+
+        private string Debug => $"({Span.Start},{Span.End})<{Kind}>:{string.Join("", Value.ToArray())}";
     }
 }
