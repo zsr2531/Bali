@@ -46,6 +46,6 @@ namespace Bali.IO.Descriptors
             get;
         }
 
-        private string Debug => $"({Span.Start},{Span.End})<{Kind}>:{string.Join("", Value.ToArray())}";
+        private string Debug => $"({Span.Start},{Span.End})<{Kind}>:{Value}";
     }
 }
