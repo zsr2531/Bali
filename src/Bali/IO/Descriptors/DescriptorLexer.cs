@@ -6,7 +6,7 @@ namespace Bali.IO.Descriptors
     /// <summary>
     /// A simple lexer that turns Java descriptor strings into a token stream.
     /// </summary>
-    public class DescriptorLexer
+    public sealed class DescriptorLexer
     {
         private readonly ReadOnlyMemory<char> _text;
 
@@ -16,8 +16,7 @@ namespace Bali.IO.Descriptors
         /// Creates a new <see cref="DescriptorLexer"/> with the given input <paramref name="text"/>
         /// </summary>
         /// <param name="text">The input to lex.</param>
-        public DescriptorLexer(ReadOnlyMemory<char> text) =>
-            _text = text;
+        public DescriptorLexer(ReadOnlyMemory<char> text) => _text = text;
 
         private char Current => _text.Span[_position];
 
