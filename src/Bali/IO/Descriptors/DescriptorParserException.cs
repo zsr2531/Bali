@@ -27,5 +27,13 @@ namespace Bali.IO.Descriptors
         /// <param name="token">The <see cref="DescriptorToken"/> that wasn't expected.</param>
         public static void ThrowUnexpectedToken(DescriptorToken token) =>
             throw new DescriptorParserException($"Unexpected token <{token.Kind}>.");
+        
+        /// <summary>
+        /// Throws a <see cref="DescriptorParserException"/> with an unexpected token message.
+        /// </summary>
+        /// <param name="token">The <see cref="DescriptorToken"/> that wasn't expected.</param>
+        /// <param name="expected">The token that was expected.</param>
+        public static void ThrowUnexpectedToken(DescriptorToken token, DescriptorTokenKind expected) =>
+            throw new DescriptorParserException($"Unexpected token <{token.Kind}>, expected <{expected}>.");
     }
 }

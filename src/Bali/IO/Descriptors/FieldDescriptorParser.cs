@@ -69,7 +69,7 @@ namespace Bali.IO.Descriptors
                     default:
                     {
                         if (descriptor is {})
-                            DescriptorParserException.ThrowUnexpectedToken(token);
+                            DescriptorParserException.ThrowUnexpectedToken(token, DescriptorTokenKind.EndOfFile);
 
                         if (type == DescriptorTokenKind.ClassName)
                         {
