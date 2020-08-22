@@ -38,6 +38,6 @@ namespace Bali.IO.Descriptors
         /// <summary>
         /// A double-precision floating point number.
         /// </summary>
-        Double,
+        Double
     }
 }
