@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Bali.IO.Descriptors
 {
     /// <summary>
@@ -21,5 +23,7 @@ namespace Bali.IO.Descriptors
         {
             get;
         }
+
+        public override string ToString() => $"{string.Join("", Enumerable.Repeat("[", ArrayRank))}L{ClassName};";
     }
 }
