@@ -75,7 +75,7 @@ namespace Bali.IO.Descriptors
         private DescriptorToken SingleCharacter()
         {
             var span = new TextSpan(_position, _position + 1);
-            var text = _text.Value.Slice(_position, 1);
+            var text = _text!.Value.Slice(_position, 1);
             var token = Next() switch
             {
                 '(' => DescriptorTokenKind.LeftParenthesis,
@@ -98,7 +98,7 @@ namespace Bali.IO.Descriptors
 
         private char Next()
         {
-            if (_position >= _text.Value.Length)
+            if (_position >= _text!.Value.Length)
                 return '\0';
             
             char temp = Current;
