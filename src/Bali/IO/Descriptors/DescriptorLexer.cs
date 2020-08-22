@@ -38,7 +38,17 @@ namespace Bali.IO.Descriptors
         {
             if (_text is null)
                 throw new ArgumentException("No input text was provided.");
-            
+
+            // Special case where we only have a class name, and nothing else.
+            var value = _text.Value.Span;
+            if (value.IndexOf(';') == -1 && value.IndexOf('[') == -1)
+            {
+                var fullSpan = new TextSpan(0, value.Length - 1);
+                var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text.Value);
+                yield return token;
+                yield break;
+            }
+
             switch (Current)
             {
                 case '\0':

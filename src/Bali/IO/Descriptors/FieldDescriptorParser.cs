@@ -73,8 +73,9 @@ namespace Bali.IO.Descriptors
 
                         if (type == DescriptorTokenKind.ClassName)
                         {
-                            // Skip 'L' from the beginning and ';' from the end.
-                            var className = token.Value.Slice(1, token.Value.Length - 2);
+                            var className = token.Value.Span[token.Value.Length - 2] == ';'
+                                ? token.Value.Slice(1, token.Value.Length - 2) // Skip 'L' from the beginning and ';' from the end.
+                                : token.Value;
                             descriptor = new NonPrimitiveFieldDescriptor(arrayRank, className.ToString());
                         }
                         else
