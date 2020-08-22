@@ -34,19 +34,23 @@ namespace Bali.IO.Descriptors
         /// <exception cref="DescriptorLexerException">
         /// When during the lexical analysis of a reference token, the input unexpectedly ends.
         /// </exception>
-        public IEnumerable<DescriptorToken> Lex()
+        public DescriptorTokenStream Lex()
         {
             if (_text.IsEmpty)
                 throw new ArgumentException("No input text was provided.");
-            
+
+            return new DescriptorTokenStream(Supply);
+        }
+
+        private DescriptorToken Supply()
+        {
             // Special case where we only have a class name, and nothing else.
             var value = _text.Span;
-            if (value.IndexOf(';') == -1 && value.IndexOf('[') == -1)
+            if (value.IndexOf(';') == -1 && value.IndexOf('[') == -1 && value.IndexOf('(') == -1)
             {
                 var fullSpan = new TextSpan(0, value.Length - 1);
                 var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text);
-                yield return token;
-                yield break;
+                return token;
             }
 
             switch (Current)
@@ -55,9 +59,8 @@ namespace Bali.IO.Descriptors
                 {
                     var span = new TextSpan(_position, _position);
                     var token = new DescriptorToken(span, DescriptorTokenKind.EndOfFile, ReadOnlyMemory<char>.Empty);
-                    
-                    yield return token;
-                    yield break;
+
+                    return token;
                 }
 
                 case 'L':
@@ -68,17 +71,15 @@ namespace Bali.IO.Descriptors
                         if (Current == '\0')
                             throw new DescriptorLexerException("Unexpected end of input.");
                     }
-                
-                    var span = new TextSpan(start, _position);
-                    var text = _text.Slice(start, _position);
-                    
-                    yield return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
-                    break;
+
+                    var span = new TextSpan(start, _position - 1);
+                    var text = _text.Slice(start, _position - 1);
+
+                    return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
                 }
 
                 default:
-                    yield return SingleCharacter();
-                    break;
+                    return SingleCharacter();
             }
         }
 

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Bali.IO.Descriptors
 {
@@ -9,13 +8,13 @@ namespace Bali.IO.Descriptors
     /// </summary>
     public readonly struct FieldDescriptorParser
     {
-        private readonly IEnumerable<DescriptorToken>? _tokenStream;
+        private readonly DescriptorTokenStream _tokenStream;
 
         /// <summary>
-        /// Creates a new <see cref="FieldDescriptorParser"/> with the given <paramref name="tokenStream"/>.
+        /// Creates a new <see cref="FieldDescriptorParser"/>.
         /// </summary>
         /// <param name="tokenStream">The stream of <see cref="DescriptorToken"/>s to parse.</param>
-        public FieldDescriptorParser(IEnumerable<DescriptorToken> tokenStream) => _tokenStream = tokenStream;
+        public FieldDescriptorParser(DescriptorTokenStream tokenStream) => _tokenStream = tokenStream;
 
         /// <summary>
         /// Parse the token stream into a <see cref="FieldDescriptor"/>.
@@ -32,14 +31,11 @@ namespace Bali.IO.Descriptors
         /// </exception>
         public FieldDescriptor Parse()
         {
-            if (_tokenStream is null)
-                throw new ArgumentException("No token stream was provided.");
-
             int arrayRank = 0;
-            FieldDescriptor? descriptor = null;
 
-            foreach (var token in _tokenStream)
+            while (true)
             {
+                var token = _tokenStream.Next();
                 var type = token.Kind;
                 if (type == DescriptorTokenKind.EndOfFile)
                     break;
@@ -60,7 +56,7 @@ namespace Bali.IO.Descriptors
                         break;
                     }
 
-                    case DescriptorTokenKind.LeftBracket when descriptor is null:
+                    case DescriptorTokenKind.LeftBracket:
                     {
                         arrayRank++;
                         break;
@@ -68,42 +64,33 @@ namespace Bali.IO.Descriptors
 
                     default:
                     {
-                        if (descriptor is {})
-                            DescriptorParserException.ThrowUnexpectedToken(token, DescriptorTokenKind.EndOfFile);
-
                         if (type == DescriptorTokenKind.ClassName)
                         {
-                            var className = token.Value.Span[token.Value.Length - 2] == ';'
+                            var className = token.Value.Span[token.Value.Length - 1] == ';'
                                 ? token.Value.Slice(1, token.Value.Length - 2) // Skip 'L' from the beginning and ';' from the end.
                                 : token.Value;
-                            descriptor = new NonPrimitiveFieldDescriptor(arrayRank, className.ToString());
+                            
+                            return new NonPrimitiveFieldDescriptor(arrayRank, className.ToString());
                         }
-                        else
+
+                        var primitive = type switch
                         {
-                            var primitive = type switch
-                            {
-                                DescriptorTokenKind.Byte => PrimitiveKind.Byte,
-                                DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
-                                DescriptorTokenKind.Char => PrimitiveKind.Char,
-                                DescriptorTokenKind.Int => PrimitiveKind.Int,
-                                DescriptorTokenKind.Long => PrimitiveKind.Long,
-                                DescriptorTokenKind.Float => PrimitiveKind.Float,
-                                DescriptorTokenKind.Double => PrimitiveKind.Double,
-                                _ => default // Unreachable.
-                            };
+                            DescriptorTokenKind.Byte => PrimitiveKind.Byte,
+                            DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
+                            DescriptorTokenKind.Char => PrimitiveKind.Char,
+                            DescriptorTokenKind.Int => PrimitiveKind.Int,
+                            DescriptorTokenKind.Long => PrimitiveKind.Long,
+                            DescriptorTokenKind.Float => PrimitiveKind.Float,
+                            DescriptorTokenKind.Double => PrimitiveKind.Double,
+                            _ => default // Unreachable.
+                        };
 
-                            descriptor = new PrimitiveFieldDescriptor(arrayRank, primitive);
-                        }
-
-                        break;
+                        return new PrimitiveFieldDescriptor(arrayRank, primitive);
                     }
                 }
             }
             
-            if (descriptor is null)
-                throw new DescriptorParserException("Invalid field descriptor.");
-
-            return descriptor;
+            throw new DescriptorParserException("Invalid field descriptor.");
         }
     }
 }
