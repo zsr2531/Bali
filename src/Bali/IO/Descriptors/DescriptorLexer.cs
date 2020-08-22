@@ -8,7 +8,7 @@ namespace Bali.IO.Descriptors
     /// </summary>
     public struct DescriptorLexer
     {
-        private readonly ReadOnlyMemory<char>? _text;
+        private readonly ReadOnlyMemory<char> _text;
 
         private int _position;
 
@@ -22,7 +22,7 @@ namespace Bali.IO.Descriptors
             _position = 0;
         }
 
-        private char Current => _text!.Value.Span[_position];
+        private char Current => _text.Span[_position];
 
         /// <summary>
         /// Turns the input text into a stream of <see cref="DescriptorToken"/>s.
@@ -36,15 +36,15 @@ namespace Bali.IO.Descriptors
         /// </exception>
         public IEnumerable<DescriptorToken> Lex()
         {
-            if (_text is null)
+            if (_text.IsEmpty)
                 throw new ArgumentException("No input text was provided.");
-
+            
             // Special case where we only have a class name, and nothing else.
-            var value = _text.Value.Span;
+            var value = _text.Span;
             if (value.IndexOf(';') == -1 && value.IndexOf('[') == -1)
             {
                 var fullSpan = new TextSpan(0, value.Length - 1);
-                var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text.Value);
+                var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text);
                 yield return token;
                 yield break;
             }
@@ -70,7 +70,7 @@ namespace Bali.IO.Descriptors
                     }
                 
                     var span = new TextSpan(start, _position);
-                    var text = _text.Value.Slice(start, _position);
+                    var text = _text.Slice(start, _position);
                     
                     yield return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
                     break;
@@ -85,7 +85,7 @@ namespace Bali.IO.Descriptors
         private DescriptorToken SingleCharacter()
         {
             var span = new TextSpan(_position, _position + 1);
-            var text = _text!.Value.Slice(_position, 1);
+            var text = _text.Slice(_position, 1);
             var token = Next() switch
             {
                 '(' => DescriptorTokenKind.LeftParenthesis,
@@ -108,7 +108,7 @@ namespace Bali.IO.Descriptors
 
         private char Next()
         {
-            if (_position >= _text!.Value.Length)
+            if (_position >= _text.Length)
                 return '\0';
             
             char temp = Current;
