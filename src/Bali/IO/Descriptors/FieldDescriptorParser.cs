@@ -3,22 +3,40 @@ using System.Collections.Generic;
 
 namespace Bali.IO.Descriptors
 {
+    /// <summary>
+    /// Parses a stream of <see cref="DescriptorToken"/>s into
+    /// a <see cref="NonPrimitiveFieldDescriptor"/> or a <see cref="PrimitiveFieldDescriptor"/>.
+    /// </summary>
     public readonly struct FieldDescriptorParser
     {
         private readonly IEnumerable<DescriptorToken>? _tokenStream;
 
+        /// <summary>
+        /// Creates a new <see cref="FieldDescriptorParser"/> with the given <paramref name="tokenStream"/>.
+        /// </summary>
+        /// <param name="tokenStream">The stream of <see cref="DescriptorToken"/>s to parse.</param>
         public FieldDescriptorParser(IEnumerable<DescriptorToken> tokenStream) => _tokenStream = tokenStream;
 
+        /// <summary>
+        /// Parse the token stream into a <see cref="FieldDescriptor"/>.
+        /// </summary>
+        /// <returns>
+        /// Either a <see cref="PrimitiveFieldDescriptor"/> or a <see cref="NonPrimitiveFieldDescriptor"/>
+        /// depending on the input.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// When no stream of <see cref="DescriptorToken"/>s was provided.
+        /// </exception>
+        /// <exception cref="DescriptorParserException">
+        /// When the input contains a bad token or the input is invalid.
+        /// </exception>
         public FieldDescriptor Parse()
         {
             if (_tokenStream is null)
-            {
-                // ReSharper disable once NotResolvedInText
-                throw new ArgumentException("No token stream was provided.", "tokenStream");
-            }
+                throw new ArgumentException("No token stream was provided.");
 
             int arrayRank = 0;
-            FieldDescriptor descriptor = null;
+            FieldDescriptor? descriptor = null;
 
             foreach (var token in _tokenStream)
             {
@@ -29,12 +47,18 @@ namespace Bali.IO.Descriptors
                 switch (type)
                 {
                     case DescriptorTokenKind.Bad:
-                        throw new Exception($"Bad token: '{token.Value}'.");
+                    {
+                        DescriptorParserException.ThrowBadToken(token);
+                        break;
+                    }
 
                     case DescriptorTokenKind.LeftParenthesis:
                     case DescriptorTokenKind.RightParenthesis:
                     case DescriptorTokenKind.Void:
-                        throw new Exception($"Unexpected token: <{type}>.");
+                    {
+                        DescriptorParserException.ThrowUnexpectedToken(token);
+                        break;
+                    }
 
                     case DescriptorTokenKind.LeftBracket when descriptor is null:
                     {
@@ -45,7 +69,7 @@ namespace Bali.IO.Descriptors
                     default:
                     {
                         if (descriptor is {})
-                            throw new Exception($"Unexpected token: <{type}>.");
+                            DescriptorParserException.ThrowUnexpectedToken(token);
 
                         if (type == DescriptorTokenKind.ClassName)
                         {
@@ -64,7 +88,7 @@ namespace Bali.IO.Descriptors
                                 DescriptorTokenKind.Long => PrimitiveKind.Long,
                                 DescriptorTokenKind.Float => PrimitiveKind.Float,
                                 DescriptorTokenKind.Double => PrimitiveKind.Double,
-                                _ => throw new Exception($"Unexpected token: <{type}>.")
+                                _ => default // Unreachable.
                             };
 
                             descriptor = new PrimitiveFieldDescriptor(arrayRank, primitive);
@@ -76,7 +100,7 @@ namespace Bali.IO.Descriptors
             }
             
             if (descriptor is null)
-                throw new Exception("Invalid field descriptor.");
+                throw new DescriptorParserException("Invalid field descriptor.");
 
             return descriptor;
         }
