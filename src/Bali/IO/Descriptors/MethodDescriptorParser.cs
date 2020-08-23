@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 namespace Bali.IO.Descriptors
 {
+    /// <summary>
+    /// Parses a stream of <see cref="DescriptorToken"/>s into a <see cref="MethodDescriptor"/>.
+    /// </summary>
     public readonly struct MethodDescriptorParser
     {
         private readonly DescriptorTokenStream? _tokenStream;
 
+        /// <summary>
+        /// Creates a new <see cref="MethodDescriptorParser"/>.
+        /// </summary>
+        /// <param name="tokenStream">The stream of <see cref="DescriptorToken"/>s to parse.</param>
         public MethodDescriptorParser(DescriptorTokenStream tokenStream) => _tokenStream = tokenStream;
 
         public MethodDescriptor Parse()

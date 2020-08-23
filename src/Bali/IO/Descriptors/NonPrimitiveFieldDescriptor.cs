@@ -24,6 +24,7 @@ namespace Bali.IO.Descriptors
             get;
         }
 
+        /// <inheritdoc />
         public override string ToString() => $"{string.Join("", Enumerable.Repeat("[", ArrayRank))}L{ClassName};";
     }
 }
