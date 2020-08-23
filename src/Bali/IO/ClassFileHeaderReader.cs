@@ -19,7 +19,7 @@ namespace Bali.IO
         /// <summary>
         /// Parses the <see cref="ClassFileHeader"/> from the input <see cref="Stream"/>.
         /// </summary>
-        /// <param name="allowMagicMismatch">Allow that magic value is'nt <b>0xCAFEBABE</b>.</param>
+        /// <param name="allowMagicMismatch">Allow that magic value isn't <b>0xCAFEBABE</b>.</param>
         /// <returns>The <see cref="ClassFileHeader"/> holding the magic value, the major- and minor versions.</returns>
         /// <exception cref="ArgumentException">When the input <see cref="Stream"/> is <i>null</i>.</exception>
         /// <exception cref="InvalidMagicException">When the magic value isn't <b>0xCAFEBABE</b>.</exception>
