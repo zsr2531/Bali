@@ -22,7 +22,7 @@ namespace Bali.IO.Descriptors
             _position = 0;
         }
 
-        private char Current => _text.Span[_position];
+        private char Current => _position >= _text.Length ? '\0' : _text.Span[_position];
 
         /// <summary>
         /// Turns the input text into a stream of <see cref="DescriptorToken"/>s.
@@ -46,8 +46,16 @@ namespace Bali.IO.Descriptors
         {
             // Special case where we only have a class name, and nothing else.
             var value = _text.Span;
-            if (value.IndexOf(';') == -1 && value.IndexOf('[') == -1 && value.IndexOf('(') == -1)
+            if (_position == 0 &&
+                value.IndexOf('.') == -1 &&
+                value.IndexOf(';') == -1 &&
+                value.IndexOf('[') == -1 &&
+                value.IndexOf('/') == -1 &&
+                value.IndexOf('<') == -1 &&
+                value.IndexOf('>') == -1 &&
+                value.IndexOf('(') == -1)
             {
+                _position = _text.Length;
                 var fullSpan = new TextSpan(0, value.Length - 1);
                 var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text);
                 return token;
