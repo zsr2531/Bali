@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Bali.IO.Descriptors
@@ -23,6 +24,29 @@ namespace Bali.IO.Descriptors
         {
             get;
         }
+
+        /// <inheritdoc />
+        public override bool Equals(FieldDescriptor? other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return GetHashCode() == other.GetHashCode();
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj)
+        {
+            if (!(obj is FieldDescriptor other))
+                return false;
+
+            return Equals(other);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(ArrayRank, ClassName);
 
         /// <inheritdoc />
         public override string ToString() => $"{string.Join("", Enumerable.Repeat("[", ArrayRank))}L{ClassName};";
