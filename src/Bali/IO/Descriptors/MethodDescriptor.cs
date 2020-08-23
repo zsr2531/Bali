@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bali.IO.Descriptors
 {
     /// <summary>
     /// Represents a Java method descriptor.
     /// </summary>
-    public readonly struct MethodDescriptor
+    public readonly struct MethodDescriptor : IEquatable<MethodDescriptor>
     {
         /// <summary>
         /// Creates a new <see cref="MethodDescriptor"/>.
@@ -19,7 +21,7 @@ namespace Bali.IO.Descriptors
         }
 
         /// <summary>
-        /// The return type for the method.
+        /// The return type of the method.
         /// </summary>
         public FieldDescriptor ReturnType
         {
@@ -27,7 +29,7 @@ namespace Bali.IO.Descriptors
         }
         
         /// <summary>
-        /// The parameters to the method.
+        /// The parameters of the method.
         /// </summary>
         public IList<FieldDescriptor> Parameters
         {
@@ -35,6 +37,33 @@ namespace Bali.IO.Descriptors
         }
 
         /// <inheritdoc />
+        public bool Equals(MethodDescriptor other) =>
+            ReturnType.Equals(other.ReturnType) && Parameters.SequenceEqual(other.Parameters);
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) => obj is MethodDescriptor other && Equals(other);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(ReturnType, Parameters);
+        
+
+        /// <inheritdoc />
         public override string ToString() => $"({string.Join("", Parameters)}){ReturnType}";
+
+        /// <summary>
+        /// Determines whether <paramref name="left"/> and <paramref name="right"/> are equal.
+        /// </summary>
+        /// <param name="left">The left side of the comparison.</param>
+        /// <param name="right">The right side of the comparison.</param>
+        /// <returns>Whether <paramref name="left"/> and <paramref name="right"/> are equal.</returns>
+        public static bool operator ==(MethodDescriptor left, MethodDescriptor right) => left.Equals(right);
+
+        /// <summary>
+        /// Determines whether <paramref name="left"/> and <paramref name="right"/> are not equal.
+        /// </summary>
+        /// <param name="left">The left side of the comparison.</param>
+        /// <param name="right">The right side of the comparison.</param>
+        /// <returns>Whether <paramref name="left"/> and <paramref name="right"/> are not equal.</returns>
+        public static bool operator !=(MethodDescriptor left, MethodDescriptor right) => !left.Equals(right);
     }
 }
