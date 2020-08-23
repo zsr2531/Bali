@@ -44,7 +44,7 @@ namespace Bali.IO.Descriptors
         public override bool Equals(object? obj) => obj is MethodDescriptor other && Equals(other);
 
         /// <inheritdoc />
-        public override int GetHashCode() => HashCode.Combine(ReturnType, Parameters);
+        public override int GetHashCode() => Parameters.Aggregate(ReturnType.GetHashCode(), HashCode.Combine);
         
 
         /// <inheritdoc />
