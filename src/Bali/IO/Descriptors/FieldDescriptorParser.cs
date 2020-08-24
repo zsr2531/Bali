@@ -31,66 +31,49 @@ namespace Bali.IO.Descriptors
         /// </exception>
         public FieldDescriptor Parse()
         {
-            int arrayRank = 0;
-
-            while (true)
-            {
-                var token = _tokenStream.Next();
-                var type = token.Kind;
-                if (type == DescriptorTokenKind.EndOfFile)
-                    break;
-
-                switch (type)
-                {
-                    case DescriptorTokenKind.Bad:
-                    {
-                        DescriptorParserException.ThrowBadToken(token);
-                        break;
-                    }
-
-                    case DescriptorTokenKind.LeftParenthesis:
-                    case DescriptorTokenKind.RightParenthesis:
-                    case DescriptorTokenKind.Void:
-                    {
-                        DescriptorParserException.ThrowUnexpectedToken(token);
-                        break;
-                    }
-
-                    case DescriptorTokenKind.LeftBracket:
-                    {
-                        arrayRank++;
-                        break;
-                    }
-
-                    default:
-                    {
-                        if (type == DescriptorTokenKind.ClassName)
-                        {
-                            var className = token.Value.Span[token.Value.Length - 1] == ';'
-                                ? token.Value.Slice(1, token.Value.Length - 2) // Skip 'L' from the beginning and ';' from the end.
-                                : token.Value;
-                            
-                            return new NonPrimitiveFieldDescriptor(arrayRank, className.ToString());
-                        }
-
-                        var primitive = type switch
-                        {
-                            DescriptorTokenKind.Byte => PrimitiveKind.Byte,
-                            DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
-                            DescriptorTokenKind.Char => PrimitiveKind.Char,
-                            DescriptorTokenKind.Int => PrimitiveKind.Int,
-                            DescriptorTokenKind.Long => PrimitiveKind.Long,
-                            DescriptorTokenKind.Float => PrimitiveKind.Float,
-                            DescriptorTokenKind.Double => PrimitiveKind.Double,
-                            _ => default // Unreachable.
-                        };
-
-                        return new PrimitiveFieldDescriptor(arrayRank, primitive);
-                    }
-                }
-            }
+            int arrayRank = ArrayRank();
+            var typeToken = _tokenStream.Next();
+            if (typeToken.Kind == DescriptorTokenKind.ClassName)
+                return new NonPrimitiveFieldDescriptor(arrayRank, NonPrimitive(typeToken));
             
-            throw new DescriptorParserException("Invalid field descriptor.");
+            return new PrimitiveFieldDescriptor(arrayRank, Primitive(typeToken));
+        }
+
+        private int ArrayRank()
+        {
+            int bracketCount = 0;
+            while (_tokenStream.Lookahead().Kind == DescriptorTokenKind.LeftBracket)
+            {
+                _tokenStream.Next();
+                bracketCount++;
+            }
+
+            return bracketCount;
+        }
+
+        private static string NonPrimitive(DescriptorToken token)
+        {
+            var value = token.Value;
+
+            return value.Slice(1, value.Length - 2).ToString();
+        }
+
+        private static PrimitiveKind Primitive(DescriptorToken token)
+        {
+            // ReSharper disable once SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
+            return token.Kind switch
+            {
+                DescriptorTokenKind.Byte => PrimitiveKind.Byte,
+                DescriptorTokenKind.Char => PrimitiveKind.Char,
+                DescriptorTokenKind.Double => PrimitiveKind.Double,
+                DescriptorTokenKind.Float => PrimitiveKind.Float,
+                DescriptorTokenKind.Int => PrimitiveKind.Int,
+                DescriptorTokenKind.Long => PrimitiveKind.Long,
+                DescriptorTokenKind.Short => PrimitiveKind.Short,
+                DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
+                DescriptorTokenKind.Void => PrimitiveKind.Void,
+                _ => throw new DescriptorParserException($"Unexpected token {token}")
+            };
         }
     }
 }
