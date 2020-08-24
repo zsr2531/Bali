@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bali", "src\Bali\Bali.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bali.Tests", "test\Bali.Tests\Bali.Tests.csproj", "{FA53FEE2-36F6-4B59-8B0F-05389EB99C8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bali.Descriptors.Tests", "test\Bali.Descriptors.Tests\Bali.Descriptors.Tests.csproj", "{BAFF5E73-E22C-42E8-ADF8-0740356CAA29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{FA53FEE2-36F6-4B59-8B0F-05389EB99C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA53FEE2-36F6-4B59-8B0F-05389EB99C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA53FEE2-36F6-4B59-8B0F-05389EB99C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFF5E73-E22C-42E8-ADF8-0740356CAA29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFF5E73-E22C-42E8-ADF8-0740356CAA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFF5E73-E22C-42E8-ADF8-0740356CAA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFF5E73-E22C-42E8-ADF8-0740356CAA29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{825343F1-80A3-4FEA-8BDA-663778EEBA28} = {899F4ECA-846E-4D6C-B013-7B45741D29D1}
 		{FA53FEE2-36F6-4B59-8B0F-05389EB99C8C} = {EEF8278A-41E4-499D-96E3-8EE3FB3DED9B}
+		{BAFF5E73-E22C-42E8-ADF8-0740356CAA29} = {EEF8278A-41E4-499D-96E3-8EE3FB3DED9B}
 	EndGlobalSection
 EndGlobal
