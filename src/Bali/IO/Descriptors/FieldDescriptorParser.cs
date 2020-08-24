@@ -8,7 +8,7 @@ namespace Bali.IO.Descriptors
     /// </summary>
     public readonly struct FieldDescriptorParser
     {
-        private readonly DescriptorTokenStream _tokenStream;
+        private readonly DescriptorTokenStream? _tokenStream;
 
         /// <summary>
         /// Creates a new <see cref="FieldDescriptorParser"/>.
@@ -31,6 +31,9 @@ namespace Bali.IO.Descriptors
         /// </exception>
         public FieldDescriptor Parse()
         {
+            if (_tokenStream is null)
+                throw new ArgumentException("No input stream was provided.");
+            
             int arrayRank = ArrayRank();
             var typeToken = _tokenStream.Next();
             if (typeToken.Kind == DescriptorTokenKind.ClassName)
@@ -42,7 +45,7 @@ namespace Bali.IO.Descriptors
         private int ArrayRank()
         {
             int bracketCount = 0;
-            while (_tokenStream.Lookahead().Kind == DescriptorTokenKind.LeftBracket)
+            while (_tokenStream!.Lookahead().Kind == DescriptorTokenKind.LeftBracket)
             {
                 _tokenStream.Next();
                 bracketCount++;
