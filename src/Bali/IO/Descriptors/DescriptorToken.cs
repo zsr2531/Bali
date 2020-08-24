@@ -47,5 +47,8 @@ namespace Bali.IO.Descriptors
         }
 
         private string Debug => $"({Span.Start},{Span.End})<{Kind}>:{Value}";
+
+        /// <inheritdoc />
+        public override string ToString() => Debug;
     }
 }
