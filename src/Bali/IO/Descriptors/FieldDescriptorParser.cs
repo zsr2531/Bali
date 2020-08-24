@@ -75,7 +75,7 @@ namespace Bali.IO.Descriptors
                 DescriptorTokenKind.Short => PrimitiveKind.Short,
                 DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
                 DescriptorTokenKind.Void => PrimitiveKind.Void,
-                _ => throw new DescriptorParserException($"Unexpected token {token}")
+                _ => throw new DescriptorParserException($"Unexpected token <{token.Kind}>.")
             };
         }
     }
