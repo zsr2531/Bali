@@ -16,41 +16,43 @@ namespace Bali.IO.Descriptors
         /// <param name="tokenStream">The stream of <see cref="DescriptorToken"/>s to parse.</param>
         public MethodDescriptorParser(DescriptorTokenStream tokenStream) => _tokenStream = tokenStream;
 
+        /// <summary>
+        /// Parses the token stream into a <see cref="MethodDescriptor"/>.
+        /// </summary>
+        /// <returns>The <see cref="MethodDescriptor"/> parsed from the input token stream.</returns>
+        /// <exception cref="ArgumentException">
+        /// When no stream of <see cref="DescriptorToken"/>s was provided.
+        /// </exception>
+        /// <exception cref="DescriptorParserException">
+        /// When the input contains a bad token or the input is invalid.
+        /// </exception>
         public MethodDescriptor Parse()
         {
             if (_tokenStream is null)
                 throw new ArgumentException("No input stream was provided.");
 
-            var fieldDescriptorParser = new FieldDescriptorParser(_tokenStream);
-            var parameters = new List<FieldDescriptor>();
-            
-            while (true)
-            {
-                var token = _tokenStream.Lookahead();
-                if (token.Kind == DescriptorTokenKind.EndOfFile)
-                    DescriptorParserException.ThrowUnexpectedToken(token);
+            var parameters = Parameters();
+            var returnType = ReturnType();
 
-                switch (token.Kind)
-                {
-                    case DescriptorTokenKind.LeftParenthesis:
-                    {
-                        _tokenStream.Next();
-                        break;
-                    }
-
-                    case DescriptorTokenKind.RightParenthesis:
-                    {
-                        _tokenStream.Next();
-                        return new MethodDescriptor(fieldDescriptorParser.Parse(), parameters);
-                    }
-
-                    default:
-                    {
-                        parameters.Add(fieldDescriptorParser.Parse());
-                        break;
-                    }
-                }
-            }
+            return new MethodDescriptor(returnType, parameters);
         }
+
+        private IList<FieldDescriptor> Parameters()
+        {
+            var leftParens = _tokenStream!.Next();
+            if (leftParens.Kind != DescriptorTokenKind.LeftParenthesis)
+                DescriptorParserException.ThrowUnexpectedToken(leftParens, DescriptorTokenKind.LeftParenthesis);
+            
+            var parser = new FieldDescriptorParser(_tokenStream);
+            var parameters = new List<FieldDescriptor>();
+
+            while (_tokenStream.Lookahead().Kind != DescriptorTokenKind.RightParenthesis)
+                parameters.Add(parser.Parse());
+
+            _tokenStream.Next(); // Consume right parenthesis token.
+            return parameters;
+        }
+
+        private FieldDescriptor ReturnType() => new FieldDescriptorParser(_tokenStream!).Parse();
     }
 }
