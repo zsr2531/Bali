@@ -44,23 +44,6 @@ namespace Bali.IO.Descriptors
 
         private DescriptorToken Supply()
         {
-            // Special case where we only have a class name, and nothing else.
-            var value = _text.Span;
-            if (_position == 0 &&
-                value.IndexOf('.') == -1 &&
-                value.IndexOf(';') == -1 &&
-                value.IndexOf('[') == -1 &&
-                value.IndexOf('/') == -1 &&
-                value.IndexOf('<') == -1 &&
-                value.IndexOf('>') == -1 &&
-                value.IndexOf('(') == -1)
-            {
-                _position = _text.Length;
-                var fullSpan = new TextSpan(0, value.Length - 1);
-                var token = new DescriptorToken(fullSpan, DescriptorTokenKind.ClassName, _text);
-                return token;
-            }
-
             switch (Current)
             {
                 case '\0':
@@ -81,7 +64,7 @@ namespace Bali.IO.Descriptors
                     }
 
                     var span = new TextSpan(start, _position - 1);
-                    var text = _text.Slice(start, _position - 1);
+                    var text = _text.Slice(start, _position);
 
                     return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
                 }
