@@ -21,6 +21,11 @@ namespace Bali.IO.Descriptors
         Char,
         
         /// <summary>
+        /// A 16 bit signed integer.
+        /// </summary>
+        Short,
+        
+        /// <summary>
         /// A 32 bit signed integer.
         /// </summary>
         Int,
@@ -38,6 +43,12 @@ namespace Bali.IO.Descriptors
         /// <summary>
         /// A double-precision floating point number.
         /// </summary>
-        Double
+        Double,
+        
+        /// <summary>
+        /// Indicates that the method has no return value.
+        /// </summary>
+        /// <remarks>This is not valid for a field's type.</remarks>
+        Void
     }
 }
