@@ -30,19 +30,12 @@ namespace Bali.IO.Descriptors
             _lookahead = null;
                 
             return temp.Value;
-
         }
 
         /// <summary>
         /// Previews what the next token will be.
         /// </summary>
         /// <returns>The next token that will be returned by <see cref="Next"/>.</returns>
-        public DescriptorToken Lookahead()
-        {
-            if (_lookahead is {})
-                return _lookahead.Value;
-
-            return (_lookahead = _supply()).Value;
-        }
+        public DescriptorToken Lookahead() => _lookahead ?? (_lookahead = _supply()).Value;
     }
 }

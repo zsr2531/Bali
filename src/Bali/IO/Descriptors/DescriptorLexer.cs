@@ -60,11 +60,16 @@ namespace Bali.IO.Descriptors
                     while (Next() != ';')
                     {
                         if (Current == '\0')
-                            throw new DescriptorLexerException("Unexpected end of input.");
+                        {
+                            return new DescriptorToken(
+                                new TextSpan(start, _position - 1),
+                                DescriptorTokenKind.Bad,
+                                _text.Slice(start, _position - start));
+                        }
                     }
 
                     var span = new TextSpan(start, _position - 1);
-                    var text = _text.Slice(start, _position);
+                    var text = _text.Slice(start, _position - start);
 
                     return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
                 }
