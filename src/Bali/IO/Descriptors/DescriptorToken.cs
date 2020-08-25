@@ -1,12 +1,10 @@
 using System;
-using System.Diagnostics;
 
 namespace Bali.IO.Descriptors
 {
     /// <summary>
     /// Represents a token in a Java field/method descriptor string.
     /// </summary>
-    [DebuggerDisplay("{" + nameof(Debug) + ",nq}")]
     public readonly struct DescriptorToken
     {
         /// <summary>
@@ -46,7 +44,7 @@ namespace Bali.IO.Descriptors
             get;
         }
 
-        private string Debug => $"({Span.Start},{Span.End})<{Kind}>:{Value}";
+        private string Debug => $"({Span.Start},{Span.End}) <{Kind}>: \"{Value}\"";
 
         /// <inheritdoc />
         public override string ToString() => Debug;
