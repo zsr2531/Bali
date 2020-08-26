@@ -7,31 +7,41 @@ namespace Bali.Descriptors.Tests.Lexer
     public class PrimitiveTypeTests
     {
         [Fact]
-        public void Byte() => Commence("B", DescriptorTokenKind.Byte);
+        public void Byte() => Commence("B", DescriptorTokenKind.B);
 
         [Fact]
-        public void Char() => Commence("C", DescriptorTokenKind.Char);
+        public void Char() => Commence("C", DescriptorTokenKind.C);
 
         [Fact]
-        public void Double() => Commence("D", DescriptorTokenKind.Double);
+        public void Double() => Commence("D", DescriptorTokenKind.D);
 
         [Fact]
-        public void Float() => Commence("F", DescriptorTokenKind.Float);
+        public void Float() => Commence("F", DescriptorTokenKind.F);
 
         [Fact]
-        public void Int() => Commence("I", DescriptorTokenKind.Int);
+        public void Int() => Commence("I", DescriptorTokenKind.I);
 
         [Fact]
-        public void Long() => Commence("J", DescriptorTokenKind.Long);
+        public void Long() => Commence("J", DescriptorTokenKind.J);
 
         [Fact]
-        public void Short() => Commence("S", DescriptorTokenKind.Short);
+        public void Short() => Commence("S", DescriptorTokenKind.S);
 
         [Fact]
-        public void Boolean() => Commence("Z", DescriptorTokenKind.Boolean);
+        public void Boolean() => Commence("Z", DescriptorTokenKind.Z);
 
         [Fact]
-        public void Void() => Commence("V", DescriptorTokenKind.Void);
+        public void Void() => Commence("V", DescriptorTokenKind.V);
+
+        [Theory]
+        [InlineData("[I", 1, DescriptorTokenKind.I)]
+        public void Array(string input, int arrayDimension, DescriptorTokenKind tokenKind)
+        {
+            var lexer = new DescriptorLexer(input.AsMemory());
+            var tokens = Utils.GetAllTokens(lexer.Lex());
+            
+            Assert.Equal(2 + arrayDimension, tokens.Count);
+        }
 
         private static void Commence(string input, DescriptorTokenKind tokenKind)
         {
