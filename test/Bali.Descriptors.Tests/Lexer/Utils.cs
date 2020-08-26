@@ -5,7 +5,7 @@ namespace Bali.Descriptors.Tests.Lexer
 {
     public static class Utils
     {
-        public static IReadOnlyList<DescriptorToken> GetAllTokens(DescriptorTokenStream stream)
+        public static List<DescriptorToken> GetAllTokens(DescriptorTokenStream stream)
         {
             var tokens = new List<DescriptorToken>();
 
@@ -19,7 +19,7 @@ namespace Bali.Descriptors.Tests.Lexer
                     break;
             }
 
-            return tokens.AsReadOnly();
+            return tokens;
         }
     }
 }
