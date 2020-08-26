@@ -11,6 +11,12 @@ namespace Bali.IO.Descriptors
         private readonly ReadOnlyMemory<char> _text;
 
         private int _position;
+        
+        private static readonly IList<char> Special = new []
+        {
+            '.', ';', '[', '/', '<', '>', '(', ')',
+            'B', 'C', 'D', 'F', 'I', 'J', 'S', 'Z', 'V', 'L'
+        };
 
         /// <summary>
         /// Creates a new <see cref="DescriptorLexer"/> with the given input <paramref name="text"/>
@@ -31,9 +37,6 @@ namespace Bali.IO.Descriptors
         /// <exception cref="ArgumentException">
         /// When no input text is provided.
         /// </exception>
-        /// <exception cref="DescriptorLexerException">
-        /// When during the lexical analysis of a reference token, the input unexpectedly ends.
-        /// </exception>
         public DescriptorTokenStream Lex()
         {
             if (_text.IsEmpty)
@@ -44,39 +47,29 @@ namespace Bali.IO.Descriptors
 
         private DescriptorToken Supply()
         {
-            switch (Current)
+            if (Current == '\0')
             {
-                case '\0':
-                {
-                    var span = new TextSpan(_position, _position);
-                    var token = new DescriptorToken(span, DescriptorTokenKind.EndOfFile, ReadOnlyMemory<char>.Empty);
+                var span = new TextSpan(_position, _position);
+                var token = new DescriptorToken(span, DescriptorTokenKind.EndOfFile, ReadOnlyMemory<char>.Empty);
 
-                    return token;
-                }
-
-                case 'L':
-                {
-                    int start = _position;
-                    while (Next() != ';')
-                    {
-                        if (Current == '\0')
-                            return CreateToken(start, DescriptorTokenKind.Bad);
-                    }
-
-                    return CreateToken(start, DescriptorTokenKind.ClassName);
-                }
-
-                default:
-                    return SingleCharacter();
+                return token;
             }
+
+            if (Special.Contains(Current))
+                return SingleCharacter();
+
+            int start = _position;
+            while (!Special.Contains(Next())) { }
+
+            return CreateIdentifierToken(start);
         }
 
-        private DescriptorToken CreateToken(int start, DescriptorTokenKind tokenKind)
+        private DescriptorToken CreateIdentifierToken(int start)
         {
             var span = new TextSpan(start, _position - 1);
             var text = _text.Slice(start, _position - start);
             
-            return new DescriptorToken(span, tokenKind, text);
+            return new DescriptorToken(span, DescriptorTokenKind.Identifier, text);
         }
 
         private DescriptorToken SingleCharacter()
@@ -85,18 +78,23 @@ namespace Bali.IO.Descriptors
             var text = _text.Slice(_position, 1);
             var token = Next() switch
             {
+                '<' => DescriptorTokenKind.LeftAngledBracket,
+                '>' => DescriptorTokenKind.RightAngledBracket,
                 '(' => DescriptorTokenKind.LeftParenthesis,
                 ')' => DescriptorTokenKind.RightParenthesis,
                 '[' => DescriptorTokenKind.LeftBracket,
-                'B' => DescriptorTokenKind.Byte,
-                'C' => DescriptorTokenKind.Char,
-                'D' => DescriptorTokenKind.Double,
-                'F' => DescriptorTokenKind.Float,
-                'I' => DescriptorTokenKind.Int,
-                'J' => DescriptorTokenKind.Long,
-                'S' => DescriptorTokenKind.Short,
-                'Z' => DescriptorTokenKind.Boolean,
-                'V' => DescriptorTokenKind.Void,
+                'B' => DescriptorTokenKind.B,
+                'C' => DescriptorTokenKind.C,
+                'D' => DescriptorTokenKind.D,
+                'F' => DescriptorTokenKind.F,
+                'I' => DescriptorTokenKind.I,
+                'J' => DescriptorTokenKind.J,
+                'S' => DescriptorTokenKind.S,
+                'Z' => DescriptorTokenKind.Z,
+                'V' => DescriptorTokenKind.V,
+                'L' => DescriptorTokenKind.L,
+                ';' => DescriptorTokenKind.Semicolon,
+                '/' => DescriptorTokenKind.Slash,
                 _ => DescriptorTokenKind.Bad
             };
             

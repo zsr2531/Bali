@@ -6,6 +6,16 @@ namespace Bali.IO.Descriptors
     public enum DescriptorTokenKind
     {
         /// <summary>
+        /// The character <c>&lt;</c>.
+        /// </summary>
+        LeftAngledBracket,
+        
+        /// <summary>
+        /// The character <c>></c>.
+        /// </summary>
+        RightAngledBracket,
+        
+        /// <summary>
         /// The character <c>(</c>.
         /// </summary>
         LeftParenthesis,
@@ -23,52 +33,73 @@ namespace Bali.IO.Descriptors
         /// <summary>
         /// The character <c>B</c>.
         /// </summary>
-        Byte,
+        B,
         
         /// <summary>
         /// The character <c>C</c>.
         /// </summary>
-        Char,
+        C,
         
         /// <summary>
         /// The character <c>D</c>.
         /// </summary>
-        Double,
+        D,
         
         /// <summary>
         /// The character <c>F</c>.
         /// </summary>
-        Float,
+        F,
         
         /// <summary>
         /// The character <c>I</c>.
         /// </summary>
-        Int,
+        I,
         
         /// <summary>
         /// The character <c>J</c>.
         /// </summary>
-        Long,
+        J,
         
         /// <summary>
         /// The character <c>S</c>.
         /// </summary>
-        Short,
+        S,
         
         /// <summary>
         /// The character <c>Z</c>.
         /// </summary>
-        Boolean,
+        Z,
         
         /// <summary>
         /// The character <c>V</c>.
         /// </summary>
-        Void,
+        V,
         
         /// <summary>
-        /// The sequence <c>Lclassname;</c>, where <c>classname</c> is the internal form of a class name.
+        /// The character <c>L</c>.
         /// </summary>
-        ClassName,
+        L,
+        
+        /// <summary>
+        /// The character <c>;</c>.
+        /// </summary>
+        Semicolon,
+        
+        /// <summary>
+        /// The character <c>/</c>.
+        /// </summary>
+        Slash,
+        
+        /// <summary>
+        /// A valid unqualified name.
+        /// An unqualified name must not contain any of the ASCII characters <c>. ; [ /</c>.
+        /// </summary>
+        /// <remarks>
+        /// Method names are further constrained so that, with the exception of the special method names
+        /// <c>&lt;init></c> and <c>&lt;clinit></c> (§2.9), they must not contain the ASCII characters
+        /// <c>&lt;</c> or <c>></c>.
+        /// </remarks>
+        Identifier,
         
         /// <summary>
         /// Indicates a bad token.
