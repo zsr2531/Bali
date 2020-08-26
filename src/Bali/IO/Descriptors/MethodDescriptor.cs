@@ -45,7 +45,6 @@ namespace Bali.IO.Descriptors
 
         /// <inheritdoc />
         public override int GetHashCode() => Parameters.Aggregate(ReturnType.GetHashCode(), HashCode.Combine);
-        
 
         /// <inheritdoc />
         public override string ToString() => $"({string.Join("", Parameters)}){ReturnType}";
