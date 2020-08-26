@@ -60,23 +60,23 @@ namespace Bali.IO.Descriptors
                     while (Next() != ';')
                     {
                         if (Current == '\0')
-                        {
-                            return new DescriptorToken(
-                                new TextSpan(start, _position - 1),
-                                DescriptorTokenKind.Bad,
-                                _text.Slice(start, _position - start));
-                        }
+                            return CreateToken(start, DescriptorTokenKind.Bad);
                     }
 
-                    var span = new TextSpan(start, _position - 1);
-                    var text = _text.Slice(start, _position - start);
-
-                    return new DescriptorToken(span, DescriptorTokenKind.ClassName, text);
+                    return CreateToken(start, DescriptorTokenKind.ClassName);
                 }
 
                 default:
                     return SingleCharacter();
             }
+        }
+
+        private DescriptorToken CreateToken(int start, DescriptorTokenKind tokenKind)
+        {
+            var span = new TextSpan(start, _position - 1);
+            var text = _text.Slice(start, _position - start);
+            
+            return new DescriptorToken(span, tokenKind, text);
         }
 
         private DescriptorToken SingleCharacter()
