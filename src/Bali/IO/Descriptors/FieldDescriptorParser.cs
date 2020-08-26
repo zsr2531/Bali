@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bali.IO.Descriptors
 {
@@ -61,9 +62,9 @@ namespace Bali.IO.Descriptors
             return value.Slice(1, value.Length - 2).ToString();
         }
 
+        [SuppressMessage("ReSharper", "SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault")]
         private static PrimitiveKind Primitive(DescriptorToken token)
         {
-            // ReSharper disable once SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
             return token.Kind switch
             {
                 DescriptorTokenKind.Byte => PrimitiveKind.Byte,
