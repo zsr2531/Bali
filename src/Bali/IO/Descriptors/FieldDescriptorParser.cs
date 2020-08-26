@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 
 namespace Bali.IO.Descriptors
 {
@@ -37,10 +39,15 @@ namespace Bali.IO.Descriptors
             
             int arrayRank = ArrayRank();
             var typeToken = _tokenStream.Next();
-            if (typeToken.Kind == DescriptorTokenKind.ClassName)
-                return new NonPrimitiveFieldDescriptor(arrayRank, NonPrimitive(typeToken));
-            
-            return new PrimitiveFieldDescriptor(arrayRank, Primitive(typeToken));
+            if (typeToken.Kind != DescriptorTokenKind.L)
+                return new PrimitiveFieldDescriptor(arrayRank, Primitive(typeToken));
+
+            var className = NonPrimitive();
+            if (_tokenStream.Lookahead().Kind != DescriptorTokenKind.LeftAngledBracket)
+                return new NonPrimitiveFieldDescriptor(arrayRank, className, Array.Empty<FieldDescriptor>());
+
+            var genericParameters = GenericParameters();
+            return new NonPrimitiveFieldDescriptor(arrayRank, className, genericParameters);
         }
 
         private int ArrayRank()
@@ -55,11 +62,32 @@ namespace Bali.IO.Descriptors
             return bracketCount;
         }
 
-        private static string NonPrimitive(DescriptorToken token)
+        private string NonPrimitive()
         {
-            var value = token.Value;
+            var sb = new StringBuilder();
+            DescriptorToken token;
 
-            return value.Slice(1, value.Length - 2).ToString();
+            while ((token = _tokenStream!.Next()).Kind != DescriptorTokenKind.Semicolon && token.Kind != DescriptorTokenKind.LeftAngledBracket)
+            {
+                if (token.Kind == DescriptorTokenKind.EndOfFile)
+                    throw new DescriptorParserException("Unexpected end of input.");
+
+                sb.Append(token.Value.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        private IReadOnlyList<FieldDescriptor> GenericParameters()
+        {
+            var parameters = new List<FieldDescriptor>();
+            _tokenStream!.Next(); // Consume left angled bracket token.
+            
+            while (_tokenStream.Lookahead().Kind != DescriptorTokenKind.RightAngledBracket)
+                parameters.Add(Parse());
+
+            _tokenStream.Next(); // Consume right angled bracket token.
+            return parameters.AsReadOnly();
         }
 
         [SuppressMessage("ReSharper", "SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault")]
@@ -67,15 +95,15 @@ namespace Bali.IO.Descriptors
         {
             return token.Kind switch
             {
-                DescriptorTokenKind.Byte => PrimitiveKind.Byte,
-                DescriptorTokenKind.Char => PrimitiveKind.Char,
-                DescriptorTokenKind.Double => PrimitiveKind.Double,
-                DescriptorTokenKind.Float => PrimitiveKind.Float,
-                DescriptorTokenKind.Int => PrimitiveKind.Int,
-                DescriptorTokenKind.Long => PrimitiveKind.Long,
-                DescriptorTokenKind.Short => PrimitiveKind.Short,
-                DescriptorTokenKind.Boolean => PrimitiveKind.Boolean,
-                DescriptorTokenKind.Void => PrimitiveKind.Void,
+                DescriptorTokenKind.B => PrimitiveKind.Byte,
+                DescriptorTokenKind.C => PrimitiveKind.Char,
+                DescriptorTokenKind.D => PrimitiveKind.Double,
+                DescriptorTokenKind.F => PrimitiveKind.Float,
+                DescriptorTokenKind.I => PrimitiveKind.Int,
+                DescriptorTokenKind.J => PrimitiveKind.Long,
+                DescriptorTokenKind.S => PrimitiveKind.Short,
+                DescriptorTokenKind.Z => PrimitiveKind.Boolean,
+                DescriptorTokenKind.V => PrimitiveKind.Void,
                 _ => throw new DescriptorParserException($"Unexpected token <{token.Kind}>.")
             };
         }
