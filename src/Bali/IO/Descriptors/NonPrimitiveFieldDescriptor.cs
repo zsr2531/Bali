@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Bali.IO.Descriptors
@@ -14,8 +15,13 @@ namespace Bali.IO.Descriptors
         /// </summary>
         /// <param name="arrayRank">The array rank.</param>
         /// <param name="className">The class name, which is the internal form of a type's name.</param>
-        public NonPrimitiveFieldDescriptor(int arrayRank, string className)
-            : base(arrayRank) => ClassName = className;
+        /// <param name="genericParameters">The generic type parameters.</param>
+        public NonPrimitiveFieldDescriptor(int arrayRank, string className, IReadOnlyList<FieldDescriptor> genericParameters)
+            : base(arrayRank)
+        {
+            ClassName = className;
+            GenericParameters = genericParameters;
+        }
 
         /// <summary>
         /// The internal form of the type's name.
@@ -25,6 +31,14 @@ namespace Bali.IO.Descriptors
             get;
         }
 
+        /// <summary>
+        /// The generic type parameters to the <see cref="FieldDescriptor"/>.
+        /// </summary>
+        public IReadOnlyList<FieldDescriptor> GenericParameters
+        {
+            get;
+        }
+        
         /// <inheritdoc />
         public override bool Equals(FieldDescriptor? other)
         {
