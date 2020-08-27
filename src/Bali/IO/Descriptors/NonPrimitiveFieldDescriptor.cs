@@ -63,6 +63,7 @@ namespace Bali.IO.Descriptors
         public override int GetHashCode() => HashCode.Combine(ArrayRank, ClassName);
 
         /// <inheritdoc />
-        public override string ToString() => $"{string.Join("", Enumerable.Repeat("[", ArrayRank))}L{ClassName};";
+        public override string ToString() =>
+            $"{string.Join("", Enumerable.Repeat("[", ArrayRank))}L{ClassName}{(GenericParameters.Count == 0 ? "" : $"<{string.Join("", GenericParameters)}>")};";
     }
 }

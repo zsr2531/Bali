@@ -42,11 +42,11 @@ namespace Bali.IO.Descriptors
             if (typeToken.Kind != DescriptorTokenKind.L)
                 return new PrimitiveFieldDescriptor(arrayRank, Primitive(typeToken));
 
-            var className = NonPrimitive();
-            if (_tokenStream.Lookahead().Kind != DescriptorTokenKind.LeftAngledBracket)
-                return new NonPrimitiveFieldDescriptor(arrayRank, className, Array.Empty<FieldDescriptor>());
-
-            var genericParameters = GenericParameters();
+            string className = NonPrimitive();
+            var genericParameters = _tokenStream.Lookahead().Kind == DescriptorTokenKind.LeftAngledBracket
+                ? Array.Empty<FieldDescriptor>()
+                : GenericParameters();
+            
             return new NonPrimitiveFieldDescriptor(arrayRank, className, genericParameters);
         }
 
@@ -67,13 +67,18 @@ namespace Bali.IO.Descriptors
             var sb = new StringBuilder();
             DescriptorToken token;
 
-            while ((token = _tokenStream!.Next()).Kind != DescriptorTokenKind.Semicolon && token.Kind != DescriptorTokenKind.LeftAngledBracket)
+            while ((token = _tokenStream!.Lookahead()).Kind != DescriptorTokenKind.Semicolon &&
+                token.Kind != DescriptorTokenKind.LeftAngledBracket)
             {
                 if (token.Kind == DescriptorTokenKind.EndOfFile)
                     throw new DescriptorParserException("Unexpected end of input.");
 
+                _tokenStream.Next();
                 sb.Append(token.Value.ToString());
             }
+
+            if (token.Kind == DescriptorTokenKind.Semicolon)
+                _tokenStream.Next();
 
             return sb.ToString();
         }

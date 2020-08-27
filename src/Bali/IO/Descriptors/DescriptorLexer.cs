@@ -59,7 +59,8 @@ namespace Bali.IO.Descriptors
                 return SingleCharacter();
 
             int start = _position;
-            while (!Special.Contains(Next())) { }
+            while (!Special.Contains(Current) && _position < _text.Length)
+                Next();
 
             return CreateIdentifierToken(start);
         }
