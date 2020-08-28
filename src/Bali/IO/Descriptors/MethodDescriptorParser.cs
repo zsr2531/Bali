@@ -46,8 +46,14 @@ namespace Bali.IO.Descriptors
             var parser = new FieldDescriptorParser(_tokenStream);
             var parameters = new List<FieldDescriptor>();
 
-            while (_tokenStream.Lookahead().Kind != DescriptorTokenKind.RightParenthesis)
+            DescriptorTokenKind lookaheadTokenKind;
+            while ((lookaheadTokenKind = _tokenStream.Lookahead().Kind) != DescriptorTokenKind.RightParenthesis)
+            {
+                if (lookaheadTokenKind == DescriptorTokenKind.EndOfFile)
+                    throw new DescriptorParserException("Unexpected end of input.");
+                    
                 parameters.Add(parser.Parse());
+            }
 
             _tokenStream.Next(); // Consume right parenthesis token.
             return parameters;
