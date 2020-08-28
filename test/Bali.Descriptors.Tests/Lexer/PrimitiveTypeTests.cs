@@ -35,12 +35,16 @@ namespace Bali.Descriptors.Tests.Lexer
 
         [Theory]
         [InlineData("[I", 1, DescriptorTokenKind.I)]
+        [InlineData("[[[[[D", 5, DescriptorTokenKind.D)]
+        [InlineData("[[[J", 3, DescriptorTokenKind.J)]
+        [InlineData("[Z", 1, DescriptorTokenKind.Z)]
         public void Array(string input, int arrayDimension, DescriptorTokenKind tokenKind)
         {
             var lexer = new DescriptorLexer(input.AsMemory());
             var tokens = Utils.GetAllTokens(lexer.Lex());
             
             Assert.Equal(2 + arrayDimension, tokens.Count);
+            Assert.Equal(tokenKind, tokens[arrayDimension].Kind);
         }
 
         private static void Commence(string input, DescriptorTokenKind tokenKind)
