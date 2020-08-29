@@ -44,8 +44,8 @@ namespace Bali.IO.Descriptors
 
             string className = NonPrimitive();
             var genericParameters = _tokenStream.Lookahead().Kind == DescriptorTokenKind.LeftAngledBracket
-                ? Array.Empty<FieldDescriptor>()
-                : GenericParameters();
+                ? GenericParameters()
+                : Array.Empty<FieldDescriptor>();
             
             return new NonPrimitiveFieldDescriptor(arrayRank, className, genericParameters);
         }
