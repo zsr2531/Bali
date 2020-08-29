@@ -43,11 +43,13 @@ namespace Bali.IO.Descriptors
                 return new PrimitiveFieldDescriptor(arrayRank, Primitive(typeToken));
 
             string className = NonPrimitive();
-            var genericParameters = _tokenStream.Lookahead().Kind == DescriptorTokenKind.LeftAngledBracket
-                ? GenericParameters()
-                : Array.Empty<FieldDescriptor>();
+            if (_tokenStream.Lookahead().Kind != DescriptorTokenKind.LeftAngledBracket)
+                return new NonPrimitiveFieldDescriptor(arrayRank, className, Array.Empty<FieldDescriptor>());
             
+            var genericParameters = GenericParameters();
+            _tokenStream.Next(); // Consume semicolon token
             return new NonPrimitiveFieldDescriptor(arrayRank, className, genericParameters);
+
         }
 
         private int ArrayRank()
