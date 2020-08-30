@@ -13,11 +13,16 @@ Features
 - Ability to read .jar files. *(todo)*
 
 Why `Bali`?
---------------------------
+-----------
 
 > The island of Bali lies 3.2 km (2.0 mi) east of Java.
 
 ...
+
+Want to contribute?
+-------------------
+
+If you wish to contribute, I will gladly appreciate it. You can read the contributing guidelines and a few small tips [here](CONTRIBUTING.md).
 
 Disclaimer
 ----------
