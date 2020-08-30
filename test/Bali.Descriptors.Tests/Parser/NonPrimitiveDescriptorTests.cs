@@ -6,6 +6,24 @@ namespace Bali.Descriptors.Tests.Parser
 {
     public class NonPrimitiveDescriptorTests
     {
+        [Fact]
+        public void MissingSemicolon()
+        {
+            var lexer = new DescriptorLexer("Ljava/lang/Object".AsMemory());
+            var parser = new FieldDescriptorParser(lexer.Lex());
+
+            Assert.Throws<DescriptorParserException>(() => parser.Parse());
+        }
+
+        [Fact]
+        public void NoGenericParameters()
+        {
+            var lexer = new DescriptorLexer("Ljava/util/List<>;".AsMemory());
+            var parser = new FieldDescriptorParser(lexer.Lex());
+
+            Assert.Throws<DescriptorParserException>(() => parser.Parse());
+        }
+        
         [Theory]
         [InlineData("Ljava/lang/String;", "java/lang/String")]
         [InlineData("Ljava/lang/Object;", "java/lang/Object")]
