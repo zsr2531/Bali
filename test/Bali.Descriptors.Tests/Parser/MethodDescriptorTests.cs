@@ -91,5 +91,53 @@ namespace Bali.Descriptors.Tests.Parser
             Assert.Equal(returnRank, descriptor.ReturnType.ArrayRank);
             Assert.Equal(returnType, Assert.IsType<NonPrimitiveFieldDescriptor>(descriptor.ReturnType).ClassName);
         }
+
+        [Fact]
+        public void Generic()
+        {
+            var lexer = new DescriptorLexer("(Ljava/util/Pair<Lcom/company/CustomStuff;Ljava/lang/String;>;)Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/String;>;".AsMemory());
+            var parser = new MethodDescriptorParser(lexer.Lex());
+            var descriptor = parser.Parse();
+            
+            Assert.Equal(1, descriptor.Parameters.Count);
+            Assert.IsType<NonPrimitiveFieldDescriptor>(descriptor.Parameters[0]);
+            var pair = (NonPrimitiveFieldDescriptor) descriptor.Parameters[0];
+            Assert.Equal("java/util/Pair", pair.ClassName);
+            Assert.Equal(2, pair.GenericParameters.Count);
+            Assert.Equal("com/company/CustomStuff", Assert.IsType<NonPrimitiveFieldDescriptor>(pair.GenericParameters[0]).ClassName);
+            Assert.Equal("java/lang/String", Assert.IsType<NonPrimitiveFieldDescriptor>(pair.GenericParameters[1]).ClassName);
+            Assert.IsType<NonPrimitiveFieldDescriptor>(descriptor.ReturnType);
+            var returnType = (NonPrimitiveFieldDescriptor) descriptor.ReturnType;
+            Assert.Equal("java/util/HashMap", returnType.ClassName);
+            Assert.Equal(2, returnType.GenericParameters.Count);
+            Assert.Equal("java/lang/Integer", Assert.IsType<NonPrimitiveFieldDescriptor>(returnType.GenericParameters[0]).ClassName);
+            Assert.Equal("java/lang/String", Assert.IsType<NonPrimitiveFieldDescriptor>(returnType.GenericParameters[1]).ClassName);
+        }
+
+        [Fact]
+        public void ArrayGeneric()
+        {
+            var lexer = new DescriptorLexer("([[Ljava/util/Pair<[Lcom/company/CustomStuff;[[[Ljava/lang/String;>;)[[[[Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/String;>;".AsMemory());
+            var parser = new MethodDescriptorParser(lexer.Lex());
+            var descriptor = parser.Parse();
+            
+            Assert.Equal(1, descriptor.Parameters.Count);
+            Assert.IsType<NonPrimitiveFieldDescriptor>(descriptor.Parameters[0]);
+            Assert.Equal(2, descriptor.Parameters[0].ArrayRank);
+            var pair = (NonPrimitiveFieldDescriptor) descriptor.Parameters[0];
+            Assert.Equal("java/util/Pair", pair.ClassName);
+            Assert.Equal(2, pair.GenericParameters.Count);
+            Assert.Equal(1, pair.GenericParameters[0].ArrayRank);
+            Assert.Equal("com/company/CustomStuff", Assert.IsType<NonPrimitiveFieldDescriptor>(pair.GenericParameters[0]).ClassName);
+            Assert.Equal(3, pair.GenericParameters[1].ArrayRank);
+            Assert.Equal("java/lang/String", Assert.IsType<NonPrimitiveFieldDescriptor>(pair.GenericParameters[1]).ClassName);
+            Assert.IsType<NonPrimitiveFieldDescriptor>(descriptor.ReturnType);
+            var returnType = (NonPrimitiveFieldDescriptor) descriptor.ReturnType;
+            Assert.Equal(4, returnType.ArrayRank);
+            Assert.Equal("java/util/HashMap", returnType.ClassName);
+            Assert.Equal(2, returnType.GenericParameters.Count);
+            Assert.Equal("java/lang/Integer", Assert.IsType<NonPrimitiveFieldDescriptor>(returnType.GenericParameters[0]).ClassName);
+            Assert.Equal("java/lang/String", Assert.IsType<NonPrimitiveFieldDescriptor>(returnType.GenericParameters[1]).ClassName);
+        }
     }
 }
