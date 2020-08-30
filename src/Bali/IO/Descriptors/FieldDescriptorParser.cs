@@ -94,6 +94,9 @@ namespace Bali.IO.Descriptors
                 parameters.Add(Parse());
 
             _tokenStream.Next(); // Consume right angled bracket token.
+            if (parameters.Count == 0)
+                throw new DescriptorParserException("Expected at least one generic parameter.");
+            
             return parameters.AsReadOnly();
         }
 
