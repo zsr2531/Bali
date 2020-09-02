@@ -1,6 +1,6 @@
-<div style="text-align: center">
+<p align="center">
     <img height="210px" margin="30px" src="https://raw.githubusercontent.com/zsr2531/Bali/master/assets/cava.png" title="A very nice Cava logo, don't know the source, I just really like this picture (:" />
-</div>
+</p>
 
 Bali
 ====
