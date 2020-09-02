@@ -1,5 +1,6 @@
 <p align="center">
-    <img height="210px" margin="30px" src="https://raw.githubusercontent.com/zsr2531/Bali/master/assets/cava.png" title="A very nice Cava logo, don't know the source, I just really like this picture (:" />
+    <img height="210px" margin="30px" src="https://raw.githubusercontent.com/zsr2531/Bali/master/assets/cava.png" title="Ascended Java logo by Rist
+#7448 in the C# Discord server" />
 </p>
 
 Bali
