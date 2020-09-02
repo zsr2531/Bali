@@ -1,7 +1,14 @@
+<img align="left" height="210px" margin="30px" src="https://raw.githubusercontent.com/zsr2531/Bali/master/assets/cava.png" title="A very nice Cava logo, don't know the source, I just really like this picture (:" />
+
 Bali
 ====
 
 A fast and lightweight .Net library to read and write Java .class files.
+
+<br>
+<br>
+<br>
+<br>
 
 Features
 --------
