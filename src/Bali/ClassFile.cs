@@ -45,9 +45,9 @@ namespace Bali
         }
         
         /// <summary>
-        /// Gets or sets the <see cref="ClassAccessFlags"/>.
+        /// Gets or sets the <see cref="Bali.AccessFlags"/>.
         /// </summary>
-        public ClassAccessFlags AccessFlags
+        public AccessFlags AccessFlags
         {
             get;
             set;

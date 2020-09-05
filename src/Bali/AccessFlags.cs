@@ -6,7 +6,7 @@ namespace Bali
     /// Denotes access permissions to and properties of this class or interface.
     /// </summary>
     [Flags]
-    public enum ClassAccessFlags : ushort
+    public enum AccessFlags : ushort
     {
         /// <summary>
         /// Declared public; may be accessed from outside its package. 

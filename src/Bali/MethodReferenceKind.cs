@@ -1,4 +1,4 @@
-namespace Bali.IO
+namespace Bali
 {
     public enum MethodReferenceKind : byte
     {
@@ -10,6 +10,6 @@ namespace Bali.IO
         InvokeStatic = 6,
         InvokeSpecial = 7,
         NewInvokeSpecial = 8,
-        InvokeInterface = 9,
+        InvokeInterface = 9
     }
 }

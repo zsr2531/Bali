@@ -4,7 +4,7 @@ using System.IO;
 namespace Bali.IO
 {
     /// <summary>
-    /// Reads the <see cref="ClassAccessFlags"/>, the <c>this</c> and <c>super</c> class indices.
+    /// Reads the <see cref="AccessFlags"/>, the <c>this</c> and <c>super</c> class indices.
     /// </summary>
     public readonly struct ClassFileBodyReader
     {
@@ -19,18 +19,24 @@ namespace Bali.IO
         /// <summary>
         /// Parses the <see cref="ClassFileBody"/> from the input <see cref="Stream"/>.
         /// </summary>
-        /// <returns>The <see cref="ClassFileBody"/> holding the <see cref="ClassAccessFlags"/>, the <c>this</c> and <c>super</c> class indices.</returns>
+        /// <returns>The <see cref="ClassFileBody"/> holding the <see cref="AccessFlags"/>, the <c>this</c> and <c>super</c> class indices.</returns>
         /// <exception cref="ArgumentException">When the input <see cref="Stream"/> is <i>null</i>.</exception>
         public ClassFileBody ReadBody()
         {
             if (_inputStream is null)
                 throw new ArgumentException("No input stream was provided.");
 
-            var accessFlags = (ClassAccessFlags) _inputStream.ReadU2();
+            var accessFlags = (AccessFlags) _inputStream.ReadU2();
             ushort thisClass = _inputStream.ReadU2();
             ushort superClass = _inputStream.ReadU2();
             
-            return new ClassFileBody(accessFlags, thisClass, superClass);
+            ushort interfacesCount = _inputStream.ReadU2();
+            ushort[] interfaces = new ushort[interfacesCount];
+
+            for (int i = 0; i < interfacesCount; i++)
+                interfaces[i] = _inputStream.ReadU2();
+            
+            return new ClassFileBody(accessFlags, thisClass, superClass, interfaces);
         }
     }
 }
