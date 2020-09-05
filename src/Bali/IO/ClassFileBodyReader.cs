@@ -30,13 +30,7 @@ namespace Bali.IO
             ushort thisClass = _inputStream.ReadU2();
             ushort superClass = _inputStream.ReadU2();
             
-            ushort interfacesCount = _inputStream.ReadU2();
-            ushort[] interfaces = new ushort[interfacesCount];
-
-            for (int i = 0; i < interfacesCount; i++)
-                interfaces[i] = _inputStream.ReadU2();
-            
-            return new ClassFileBody(accessFlags, thisClass, superClass, interfaces);
+            return new ClassFileBody(accessFlags, thisClass, superClass);
         }
     }
 }
