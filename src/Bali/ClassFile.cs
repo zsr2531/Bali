@@ -43,5 +43,32 @@ namespace Bali
             get;
             set;
         }
+        
+        /// <summary>
+        /// Gets or sets the <see cref="ClassAccessFlags"/>.
+        /// </summary>
+        public ClassAccessFlags AccessFlags
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// Gets or sets the index into the <see cref="ConstantPool"/> that describes this class.
+        /// </summary>
+        public ushort ThisClassIndex
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// Gets or sets the index into the <see cref="ConstantPool"/> that describes the superclass.
+        /// </summary>
+        public ushort SuperClassIndex
+        {
+            get;
+            set;
+        }
     }
 }
