@@ -7,7 +7,7 @@ namespace Bali.IO
 {
     public readonly struct ConstantPoolReader
     {
-        private readonly Stream _inputStream;
+        private readonly Stream? _inputStream;
         private readonly ushort _count;
         
         private static readonly Dictionary<ConstantKind, Func<Stream, Constant>> ConstantFactories;
@@ -39,6 +39,9 @@ namespace Bali.IO
 
         public ConstantPool ReadConstantPool()
         {
+            if (_inputStream is null)
+                throw new ArgumentException("No input stream was provided.");
+            
             var constants = new List<Constant>();
 
             for (int i = 0; i < _count;)

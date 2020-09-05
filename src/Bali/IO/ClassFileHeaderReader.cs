@@ -35,9 +35,8 @@ namespace Bali.IO
 
             ushort minor = _inputStream.ReadU2();
             ushort major = _inputStream.ReadU2();
-            ushort constantPoolCount = _inputStream.ReadU2();
 
-            return new ClassFileHeader(magic, minor, major, constantPoolCount);
+            return new ClassFileHeader(magic, minor, major);
         }
     }
 }

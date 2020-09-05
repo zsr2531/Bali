@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bali.IO.Constants;
 
-namespace Bali.IO
+namespace Bali
 {
     /// <summary>
     /// Provides a <b><i>one</i></b>-base indexed list of <see cref="Constant"/>s.
