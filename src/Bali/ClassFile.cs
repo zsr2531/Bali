@@ -1,4 +1,5 @@
-using Bali.IO;
+using System.Collections.Generic;
+using Bali.Metadata;
 
 namespace Bali
 {
@@ -66,6 +67,33 @@ namespace Bali
         /// Gets or sets the index into the <see cref="ConstantPool"/> that describes the superclass.
         /// </summary>
         public ushort SuperClassIndex
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// Gets or sets the indices into the <see cref="Constants"/> representing direct superinterfaces of this class.
+        /// </summary>
+        public IReadOnlyList<ushort>? Interfaces
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the fields of this class.
+        /// </summary>
+        public IReadOnlyList<FieldInfo>? Fields
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the methods of this class.
+        /// </summary>
+        public IReadOnlyList<MethodInfo>? Methods
         {
             get;
             set;
