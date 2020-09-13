@@ -14,7 +14,7 @@ namespace Bali.Metadata
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the field.</param>
         /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing the type of the field.</param>
         /// <param name="attributes">All of the field's attributes.</param>
-        public FieldInfo(AccessFlags flags, ushort nameIndex, ushort descriptorIndex, IReadOnlyList<AttributeInfo> attributes)
+        public FieldInfo(AccessFlags flags, ushort nameIndex, ushort descriptorIndex, IReadOnlyList<Attribute> attributes)
         {
             Flags = flags;
             NameIndex = nameIndex;
@@ -49,7 +49,7 @@ namespace Bali.Metadata
         /// <summary>
         /// Gets all of the field's attributes.
         /// </summary>
-        public IReadOnlyList<AttributeInfo> Attributes
+        public IReadOnlyList<Attribute> Attributes
         {
             get;
         }

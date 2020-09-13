@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Bali.Metadata;
+using Attribute = Bali.Metadata.Attribute;
 
 namespace Bali.IO
 {
@@ -30,7 +31,7 @@ namespace Bali.IO
             return new MetadataBody(interfaces, fields, methods, attributes);
         }
 
-        private T[] ReadInfo<T>(Func<AccessFlags, ushort, ushort, AttributeInfo[], T> factory)
+        private T[] ReadInfo<T>(Func<AccessFlags, ushort, ushort, Attribute[], T> factory)
         {
             ushort count = _inputStream!.ReadU2();
             if (count == 0)
@@ -49,26 +50,26 @@ namespace Bali.IO
             return buffer;
         }
 
-        private AttributeInfo[] ReadAttributes()
+        private Attribute[] ReadAttributes()
         {
             ushort attributesCount = _inputStream!.ReadU2();
             if (attributesCount == 0)
-                return Array.Empty<AttributeInfo>();
+                return Array.Empty<Attribute>();
             
-            AttributeInfo[] attributes = new AttributeInfo[attributesCount];
+            Attribute[] attributes = new Attribute[attributesCount];
             for (int i = 0; i < attributesCount; i++)
             {
                 ushort nameIndex = _inputStream!.ReadU2();
                 uint size = _inputStream!.ReadU4();
                 if (size == 0)
                 {
-                    attributes[i] = new AttributeInfo(nameIndex, Array.Empty<byte>());
+                    attributes[i] = new Attribute(nameIndex, Array.Empty<byte>());
                     continue;
                 }
                 
                 byte[] data = new byte[size];
                 _inputStream!.Read(data, 0, (int) size);
-                attributes[i] = new AttributeInfo(nameIndex, data);
+                attributes[i] = new Attribute(nameIndex, data);
             }
 
             return attributes;

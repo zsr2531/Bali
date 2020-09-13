@@ -1,19 +1,31 @@
+using System;
+
 namespace Bali.Metadata
 {
     /// <summary>
     /// Represents a raw attribute extracted from the class file.
     /// </summary>
-    public readonly struct AttributeInfo
+    public class Attribute
     {
         /// <summary>
-        /// Creates a new <see cref="AttributeInfo"/>.
+        /// Creates a new <see cref="Attribute"/>.
         /// </summary>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the attribute.</param>
         /// <param name="data">The raw data of the attribute.</param>
-        public AttributeInfo(ushort nameIndex, byte[] data)
+        public Attribute(ushort nameIndex, byte[] data)
+            : this(nameIndex)
+        {
+            Data = data;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Attribute"/>.
+        /// </summary>
+        /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the attribute.</param>
+        protected Attribute(ushort nameIndex)
         {
             NameIndex = nameIndex;
-            Data = data;
+            Data = Array.Empty<byte>();
         }
 
         /// <summary>
@@ -27,7 +39,7 @@ namespace Bali.Metadata
         /// <summary>
         /// Gets the raw data of the attribute.
         /// </summary>
-        public byte[] Data
+        public virtual byte[] Data
         {
             get;
         }

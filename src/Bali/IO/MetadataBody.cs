@@ -10,9 +10,9 @@ namespace Bali.IO
         
         public readonly MethodInfo[] Methods;
         
-        public readonly AttributeInfo[] Attributes;
+        public readonly Attribute[] Attributes;
 
-        public MetadataBody(ushort[] interfaces, FieldInfo[] fields, MethodInfo[] methods, AttributeInfo[] attributes)
+        public MetadataBody(ushort[] interfaces, FieldInfo[] fields, MethodInfo[] methods, Attribute[] attributes)
         {
             Interfaces = interfaces;
             Fields = fields;
