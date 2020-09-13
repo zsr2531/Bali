@@ -14,7 +14,13 @@ namespace Bali.Metadata.Attributes
         {
             get;
         }
-        
+
+        /// <inheritdoc />
+        public override byte[] Data => new[]
+        {
+            (byte) ((SignatureIndex >> 8) & 0xFF), (byte) (SignatureIndex & 0xFF)
+        };
+
         public static SignatureAttribute Create(Stream stream, ushort nameIndex) =>
             new SignatureAttribute(nameIndex, stream.ReadU2());
     }
