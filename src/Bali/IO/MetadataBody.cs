@@ -1,18 +1,19 @@
+using System.Collections.Generic;
 using Bali.Metadata;
 
 namespace Bali.IO
 {
     public readonly struct MetadataBody
     {
-        public readonly ushort[] Interfaces;
+        public readonly IList<ushort> Interfaces;
         
-        public readonly FieldInfo[] Fields;
+        public readonly IList<FieldInfo> Fields;
         
-        public readonly MethodInfo[] Methods;
+        public readonly IList<MethodInfo> Methods;
         
-        public readonly Attribute[] Attributes;
+        public readonly IList<AttributeInfo> Attributes;
 
-        public MetadataBody(ushort[] interfaces, FieldInfo[] fields, MethodInfo[] methods, Attribute[] attributes)
+        public MetadataBody(IList<ushort> interfaces, IList<FieldInfo> fields, IList<MethodInfo> methods, IList<AttributeInfo> attributes)
         {
             Interfaces = interfaces;
             Fields = fields;
