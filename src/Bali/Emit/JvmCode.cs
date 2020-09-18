@@ -3,7 +3,7 @@
     /// <summary>
     /// The raw opcode of a JVM instruction.
     /// </summary>
-    public enum JvmCode
+    public enum JvmCode : byte
     {
         /// <summary>
         /// Load onto the stack a reference from an array.
@@ -791,7 +791,7 @@
         Laload = 0x2f,
 
         /// <summary>
-        /// <a href="https://en.wikipedia.org/wiki/Bitwise_operation" title="Bitwise operation">bitwise</a> AND of two longs.
+        /// bitwise AND of two longs.
         /// </summary>
         Land = 0x7f,
 
