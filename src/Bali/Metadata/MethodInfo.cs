@@ -5,7 +5,7 @@ namespace Bali.Metadata
     /// <summary>
     /// Represents a raw method extracted from a class file.
     /// </summary>
-    public readonly struct MethodInfo
+    public struct MethodInfo
     {
         /// <summary>
         /// Creates a new <see cref="MethodInfo"/>.
@@ -14,7 +14,7 @@ namespace Bali.Metadata
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the method.</param>
         /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing the signature of the method.</param>
         /// <param name="attributes">All of the method's attributes.</param>
-        public MethodInfo(AccessFlags accessFlags, ushort nameIndex, ushort descriptorIndex, IReadOnlyList<Attribute> attributes)
+        public MethodInfo(AccessFlags accessFlags, ushort nameIndex, ushort descriptorIndex, IList<Attribute> attributes)
         {
             AccessFlags = accessFlags;
             NameIndex = nameIndex;
@@ -28,6 +28,7 @@ namespace Bali.Metadata
         public AccessFlags AccessFlags
         {
             get;
+            set;
         }
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace Bali.Metadata
         public ushort NameIndex
         {
             get;
+            set;
         }
 
         /// <summary>
@@ -44,14 +46,16 @@ namespace Bali.Metadata
         public ushort DescriptorIndex
         {
             get;
+            set;
         }
 
         /// <summary>
         /// Gets all of the method's signatures.
         /// </summary>
-        public IReadOnlyList<Attribute> Attributes
+        public IList<Attribute> Attributes
         {
             get;
+            set;
         }
     }
 }

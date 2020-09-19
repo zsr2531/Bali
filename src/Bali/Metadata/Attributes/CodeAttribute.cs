@@ -11,26 +11,31 @@ namespace Bali.Metadata.Attributes
         public ushort MaxStack
         {
             get;
+            set;
         }
 
         public ushort MaxLocals
         {
             get;
+            set;
         }
 
-        public IReadOnlyList<byte> Bytecode
+        public IList<byte> Bytecode
         {
             get;
+            set;
         }
 
-        public IReadOnlyList<ExceptionHandler> ExceptionHandlers
+        public IList<JvmExceptionHandler> ExceptionHandlers
         {
             get;
+            set;
         }
 
-        public IReadOnlyList<Attribute> Attributes
+        public IList<Attribute> Attributes
         {
             get;
+            set;
         }
     }
 }

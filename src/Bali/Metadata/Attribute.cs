@@ -1,5 +1,4 @@
 using System;
-
 namespace Bali.Metadata
 {
     /// <summary>
@@ -7,6 +6,8 @@ namespace Bali.Metadata
     /// </summary>
     public class Attribute
     {
+        private readonly byte[]? _data;
+
         /// <summary>
         /// Creates a new <see cref="Attribute"/>.
         /// </summary>
@@ -15,7 +16,7 @@ namespace Bali.Metadata
         public Attribute(ushort nameIndex, byte[] data)
             : this(nameIndex)
         {
-            Data = data;
+            _data = data;
         }
 
         /// <summary>
@@ -25,7 +26,6 @@ namespace Bali.Metadata
         protected Attribute(ushort nameIndex)
         {
             NameIndex = nameIndex;
-            Data = Array.Empty<byte>();
         }
 
         /// <summary>
@@ -34,14 +34,12 @@ namespace Bali.Metadata
         public ushort NameIndex
         {
             get;
+            set;
         }
 
         /// <summary>
         /// Gets the raw data of the attribute.
         /// </summary>
-        public virtual byte[] Data
-        {
-            get;
-        }
+        public virtual byte[] GetData() => _data ?? Array.Empty<byte>();
     }
 }

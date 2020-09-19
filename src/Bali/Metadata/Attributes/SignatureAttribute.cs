@@ -5,7 +5,8 @@ namespace Bali.Metadata.Attributes
 {
     public sealed class SignatureAttribute : Attribute
     {
-        public SignatureAttribute(ushort nameIndex, ushort signatureIndex) : base(nameIndex)
+        public SignatureAttribute(ushort nameIndex, ushort signatureIndex)
+            : base(nameIndex)
         {
             SignatureIndex = signatureIndex;
         }
@@ -13,10 +14,11 @@ namespace Bali.Metadata.Attributes
         public ushort SignatureIndex
         {
             get;
+            set;
         }
 
         /// <inheritdoc />
-        public override byte[] Data => new[]
+        public override byte[] GetData() => new[]
         {
             (byte) ((SignatureIndex >> 8) & 0xFF), (byte) (SignatureIndex & 0xFF)
         };

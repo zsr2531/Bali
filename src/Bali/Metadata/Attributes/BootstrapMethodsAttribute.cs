@@ -9,40 +9,38 @@ namespace Bali.Metadata.Attributes
 {
     public sealed class BootstrapMethodsAttribute : Attribute
     {
-        public BootstrapMethodsAttribute(ushort nameIndex, IReadOnlyList<BootstrapInfo> bootstrapMethods)
+        public BootstrapMethodsAttribute(ushort nameIndex, IList<BootstrapInfo> bootstrapMethods)
             : base(nameIndex)
         {
             BootstrapMethods = bootstrapMethods;
         }
 
-        public IReadOnlyList<BootstrapInfo> BootstrapMethods
+        public IList<BootstrapInfo> BootstrapMethods
         {
             get;
+            set;
         }
 
         /// <inheritdoc />
-        public override byte[] Data
+        public override byte[] GetData()
         {
-            get
+            var buffer = new byte[BootstrapMethods.Sum(info => info.Size)];
+            var span = buffer.AsSpan();
+
+            foreach (var info in BootstrapMethods)
             {
-                var buffer = new byte[BootstrapMethods.Sum(info => info.Size)];
-                var span = buffer.AsSpan();
+                BinaryPrimitives.WriteUInt16BigEndian(span, info.BootstrapMethodIndex);
 
-                foreach (var info in BootstrapMethods)
+                foreach (ushort index in info.BootstrapMethodArgumentIndices)
                 {
-                    BinaryPrimitives.WriteUInt16BigEndian(span, info.BootstrapMethodIndex);
-
-                    foreach (ushort index in info.BootstrapMethodArgumentIndices)
-                    {
-                        span = span.Slice(2);
-                        BinaryPrimitives.WriteUInt16BigEndian(span, index);
-                    }
-                    
-                    span = span.Slice(info.Size);
+                    span = span.Slice(2);
+                    BinaryPrimitives.WriteUInt16BigEndian(span, index);
                 }
 
-                return buffer;
+                span = span.Slice(info.Size);
             }
+
+            return buffer;
         }
 
         public static BootstrapMethodsAttribute Create(Stream stream, ushort nameIndex)
@@ -70,9 +68,9 @@ namespace Bali.Metadata.Attributes
         }
     }
 
-    public readonly struct BootstrapInfo
+    public struct BootstrapInfo
     {
-        public BootstrapInfo(ushort bootstrapMethodIndex, IReadOnlyList<ushort> bootstrapMethodArgumentIndices)
+        public BootstrapInfo(ushort bootstrapMethodIndex, IList<ushort> bootstrapMethodArgumentIndices)
         {
             BootstrapMethodIndex = bootstrapMethodIndex;
             BootstrapMethodArgumentIndices = bootstrapMethodArgumentIndices;
@@ -81,11 +79,13 @@ namespace Bali.Metadata.Attributes
         public ushort BootstrapMethodIndex
         {
             get;
+            set;
         }
 
-        public IReadOnlyList<ushort> BootstrapMethodArgumentIndices
+        public IList<ushort> BootstrapMethodArgumentIndices
         {
             get;
+            set;
         }
 
         internal int Size => (BootstrapMethodArgumentIndices.Count + 1) * 2;
