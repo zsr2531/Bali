@@ -58,7 +58,7 @@
         /// <summary>
         /// The instruction's stack usage is dynamic (ie. depends on the operand).
         /// </summary>
-        Vararg,
+        Var,
         
         /// <summary>
         /// The instruction's stack usage is not defined.
