@@ -1,9 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
 using static Bali.Emit.JvmStackBehavior;
 using static Bali.Emit.JvmFlowControl;
 using static Bali.Emit.JvmOperandType;
 
 namespace Bali.Emit
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "IdentifierTypo")]
     public static class JvmOpCodes
     {
         public static readonly JvmOpCode[] OneByteOpCodes = new JvmOpCode[255];

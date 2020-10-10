@@ -41,7 +41,7 @@ namespace Bali.Emit
         public JvmFlowControl FlowControl => (JvmFlowControl) ((_raw & FlowControlMask) >> 16);
 
         /// <summary>
-        /// Gets the opcode's operand's type.
+        /// Gets the operand's type.
         /// </summary>
         public JvmOperandType OperandType => (JvmOperandType) (_raw & OperandTypeMask);
         
@@ -52,7 +52,7 @@ namespace Bali.Emit
         public override bool Equals(object? obj) => obj is JvmOpCode other && Equals(other);
 
         /// <inheritdoc />
-        public override int GetHashCode() => (int) _raw;
+        public override int GetHashCode() => HashCode.Combine(Code, StackBehavior, FlowControl, OperandType);
 
         /// <inheritdoc />
         public override string ToString() => $"{Code}";
