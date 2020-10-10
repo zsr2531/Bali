@@ -1,6 +1,9 @@
 using System;
 using Bali.Metadata.Attributes;
 
+// GetHashCode not overriden... blah blah blah
+#pragma warning disable 660,661,659
+
 namespace Bali.Emit
 {
     /// <summary>
@@ -8,6 +11,12 @@ namespace Bali.Emit
     /// </summary>
     public sealed class JvmInstruction : IEquatable<JvmInstruction>
     {
+        internal JvmInstruction(int offset, JvmOpCode opCode, object? operand = null)
+            : this(opCode, operand)
+        {
+            Offset = offset;
+        }
+        
         /// <summary>
         /// Creates a new <see cref="JvmInstruction"/>.
         /// </summary>
@@ -16,7 +25,15 @@ namespace Bali.Emit
         public JvmInstruction(JvmOpCode opCode, object? operand = null)
         {
             OpCode = opCode;
-            Operand = null;
+            Operand = operand;
+        }
+
+        /// <summary>
+        /// Gets the offset of the instruction in the method body.
+        /// </summary>
+        public int Offset
+        {
+            get;
         }
                 
         /// <summary>
@@ -38,14 +55,11 @@ namespace Bali.Emit
         }
         
         /// <inheritdoc />
-        public bool Equals(JvmInstruction other) => OpCode == other.OpCode && object.Equals(Operand, other.Operand);
+        public bool Equals(JvmInstruction other) => OpCode == other.OpCode && Equals(Operand, other.Operand);
         
         /// <inheritdoc />
         public override bool Equals(object? obj) => obj is JvmInstruction instruction && Equals(instruction);
         
-        /// <inheritdoc />
-        public override int GetHashCode() => HashCode.Combine(OpCode, Operand);
-
         /// <inheritdoc />
         public override string ToString() => $"{OpCode}{(Operand is null ? "" : " ")}{Operand}";
         
@@ -55,7 +69,7 @@ namespace Bali.Emit
         /// <param name="left">The left hand side of the comparison.</param>
         /// <param name="right">The right hand side of the comparison.</param>
         /// <returns>Whether the left and right hand side are equal.</returns>
-        public static bool operator ==(JvmInstruction left, JvmInstruction right) => object.Equals(left, right);
+        public static bool operator ==(JvmInstruction left, JvmInstruction right) => Equals(left, right);
 
         /// <summary>
         /// Determines whether two <see cref="JvmInstruction"/>s are not equal.
