@@ -6,6 +6,12 @@
     public struct JvmExceptionHandler
     {
         /// <summary>
+        /// Gets a logical value whether this <see cref="JvmExceptionHandler"/> is a
+        /// <c>finally</c> exception handler or not.
+        /// </summary>
+        public bool IsFinally => CatchType == 0;
+        
+        /// <summary>
         /// Gets the index of the first instruction to protect.
         /// </summary>
         public ushort TryStart
@@ -42,8 +48,5 @@
             get;
             set;
         }
-
-        /// <inheritdoc />
-        public override int GetHashCode() => TryStart + TryEnd + HandlerStart + CatchType;
     }
 }
