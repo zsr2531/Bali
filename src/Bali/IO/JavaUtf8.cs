@@ -12,7 +12,7 @@ namespace Bali.IO
     {
         private static readonly ThreadLocal<StringBuilder> Builder =
             new ThreadLocal<StringBuilder>(() => new StringBuilder());
-        
+
         /// <summary>
         /// Decodes <paramref name="length"/> amount of bytes from the <paramref name="stream"/> into a <see cref="string"/>.
         /// </summary>
@@ -26,9 +26,11 @@ namespace Bali.IO
             var builder = Builder.Value;
             builder.Clear();
 
-            int i = 0;
-            for (; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
+                if (i > length)
+                    throw new InvalidOperationException("Consumed more bytes than the specified length.");
+
                 byte first = ReadByte(stream);
                 if (first >= 0x01 && first <= 0x7F)
                 {
@@ -43,7 +45,7 @@ namespace Bali.IO
                     builder.Append('\0');
                     continue;
                 }
-                
+
                 int twoByte = ((first & 0x1F) << 6) + (second & 0x3F);
                 if (twoByte <= 0x07FF)
                 {
@@ -62,15 +64,16 @@ namespace Bali.IO
 
                 byte fourth = ReadByte(stream), fifth = ReadByte(stream), sixth = ReadByte(stream);
                 if (first != 0xED || fourth != 0xED)
-                    throw new InvalidDataException($"Invalid Java Utf-8: {first:X2}{second:X2}{third:X2}{fourth:X2}{fifth:X2}{sixth:X2}.");
-                
+                {
+                    throw new InvalidDataException(
+                        $"Invalid Java Utf-8: {first:X2}{second:X2}{third:X2}{fourth:X2}{fifth:X2}{sixth:X2}.");
+                }
+
                 i += 3;
-                int sixByte = 0x1000 + ((second & 0x0F) << 16) + ((third & 0x3F) << 10) + ((fifth & 0x0F) << 6) + (sixth & 0x3F);
+                int sixByte = 0x1000 + ((second & 0x0F) << 16) + ((third & 0x3F) << 10) + ((fifth & 0x0F) << 6) +
+                    (sixth & 0x3F);
                 builder.Append((char) sixByte);
             }
-            
-            if (i > length)
-                throw new InvalidOperationException("Consumed more bytes than the specified length.");
 
             return builder.ToString();
         }
@@ -82,7 +85,51 @@ namespace Bali.IO
         /// <param name="text">The <see cref="string"/> to encode.></param>
         public static void Encode(Stream stream, string text)
         {
-            throw new NotImplementedException();
+            foreach (char character in text)
+            {
+                if (character == '\0')
+                {
+                    stream.WriteByte(0xC0);
+                    stream.WriteByte(0x80);
+                }
+                else if (character >= 0x01 && character <= 0x7F)
+                {
+                    stream.WriteByte((byte) character);
+                }
+                else if (character <= 0x07FF)
+                {
+                    byte first = (byte) ((character >> 6) & 0x1F);
+                    byte second = (byte) (character & 0x3F);
+                    
+                    stream.WriteByte(first);
+                    stream.WriteByte(second);
+                }
+                else if (character <= 0xFFFF)
+                {
+                    byte first = (byte) ((character >> 12) & 0xF);
+                    byte second = (byte) ((character >> 6) & 0x3F);
+                    byte third = (byte) (character & 0x3F);
+                    
+                    stream.WriteByte(first);
+                    stream.WriteByte(second);
+                    stream.WriteByte(third);
+                }
+                else
+                {
+                    int value = character - 0x1000;
+                    byte second = (byte) ((value >> 16) & 0x0F);
+                    byte third = (byte) ((value >> 10) & 0x3F);
+                    byte fifth = (byte) ((value >> 6) & 0x0F);
+                    byte sixth = (byte) (value & 0x3F);
+                    
+                    stream.WriteByte(0xED);
+                    stream.WriteByte(second);
+                    stream.WriteByte(third);
+                    stream.WriteByte(0xED);
+                    stream.WriteByte(fifth);
+                    stream.WriteByte(sixth);
+                }
+            }
         }
 
         private static byte ReadByte(Stream stream)
