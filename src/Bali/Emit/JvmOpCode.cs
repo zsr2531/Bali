@@ -22,7 +22,7 @@ namespace Bali.Emit
             _raw |= (uint) flowControl << 16;
             _raw |= (uint) stackBehavior << 24;
             
-            JvmOpCodes.OneByteOpCodes[(byte) code] = this;
+            JvmOpCodes.OpCodes[(byte) code] = this;
         }
 
         /// <summary>
