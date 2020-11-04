@@ -14,7 +14,7 @@ namespace Bali.Emit
         Aaload = 0x32,
         
         /// <summary>
-        /// Stores a reference to an array.
+        /// Stores a reference into an array.
         /// </summary>
         Aastore = 0x53,
         
@@ -93,179 +93,420 @@ namespace Bali.Emit
         Baload = 0x33,
         
         /// <summary>
-        /// Stores a <c>byte</c>/<c>boolean</c> to an array.
+        /// Stores a <c>byte</c>/<c>boolean</c> into an array.
         /// </summary>
         Bastore = 0x54,
         
-        bipush = 0x10,
-        
-        caload = 0x34,
-        
-        castore = 0x55,
-        
-        checkcast = 0xc0,
-        
-        d2f = 0x90,
-        
-        d2i = 0x8e,
-        
-        d2l = 0x8f,
-        
-        dadd = 0x63,
-        
-        daload = 0x31,
-        
-        dastore = 0x52,
-        
-        dcmpg = 0x98,
-        
-        dcmpl = 0x97,
-        
-        dconst_0 = 0xe,
-        
-        dconst_1 = 0xf,
-        
-        ddiv = 0x6f,
-        
-        dload = 0x18,
-        
-        dload_0 = 0x26,
-        
-        dload_1 = 0x27,
-        
-        dload_2 = 0x28,
-        
-        dload_3 = 0x29,
-        
-        dmul = 0x6b,
-        
-        dneg = 0x77,
-        
-        drem = 0x73,
-        
-        dreturn = 0xaf,
-        
-        dstore = 0x39,
-        
-        dstore_0 = 0x47,
-        
-        dstore_1 = 0x48,
-        
-        dstore_2 = 0x49,
-        
-        dstore_3 = 0x4a,
-        
-        dsub = 0x67,
-        
-        dup = 0x59,
-        
-        dup_x1 = 0x5a,
-        
-        dup_x2 = 0x5b,
-        
-        dup2 = 0x5c,
-        
-        dup2_x1 = 0x5d,
-        
-        dup2_x2 = 0x5e,
-        
-        f2d = 0x8d,
-        
-        f2i = 0x8b,
-        
-        f2l = 0x8c,
-        
-        fadd = 0x62,
-        
-        faload = 0x30,
-        
-        fastore = 0x51,
-        
-        fcmpg = 0x96,
-        
-        fcmpl = 0x95,
-        
-        fconst_0 = 0xb,
-        
-        fconst_1 = 0xc,
-        
-        fconst_2 = 0xd,
-        
-        fdiv = 0x6e,
-        
-        fload = 0x17,
-        
-        fload_0 = 0x22,
-        
-        fload_1 = 0x23,
-        
-        fload_2 = 0x24,
-        
-        fload_3 = 0x25,
-        
-        fmul = 0x6a,
-        
-        fneg = 0x76,
-        
-        frem = 0x72,
-        
-        freturn = 0xae,
-        
-        fstore = 0x38,
-        
-        fstore_0 = 0x43,
-        
-        fstore_1 = 0x44,
-        
-        fstore_2 = 0x45,
-        
-        fstore_3 = 0x46,
-        
-        fsub = 0x66,
-        
-        getfield = 0xb4,
-        
-        getstatic = 0xb2,
-        
-        @goto = 0xa7,
-        
-        goto_w = 0xc8,
-        
-        i2b = 0x91,
-        
-        i2c = 0x92,
-        
-        i2d = 0x87,
-        
-        i2f = 0x86,
-        
-        i2l = 0x85,
-        
-        i2s = 0x93,
-        
-        iadd = 0x60,
-        
-        iaload = 0x2e,
-        
-        iand = 0x7e,
-        
-        iastore = 0x4f,
-        
-        iconst_m1 = 0x2,
-        
-        iconst_0 = 0x3,
-        
-        iconst_1 = 0x4,
-        
-        iconst_2 = 0x5,
-        
-        iconst_3 = 0x6,
-        
-        iconst_4 = 0x7,
-        
-        iconst_5 = 0x8,
-        
-        idiv = 0x6c,
+        /// <summary>
+        /// Pushes a <c>byte</c> onto the stack sign-extended to an <c>int</c>.
+        /// </summary>
+        Bipush = 0x10,
+        
+        /// <summary>
+        /// Loads a <c>char</c> from an array.
+        /// </summary>
+        Caload = 0x34,
+        
+        /// <summary>
+        /// Stores a <c>char</c> into an array.
+        /// </summary>
+        Castore = 0x55,
+        
+        /// <summary>
+        /// Checks whether the object is of given type.
+        /// </summary>
+        Checkcast = 0xc0,
+        
+        /// <summary>
+        /// Converts a <c>double</c> to a <c>float</c>.
+        /// </summary>
+        D2f = 0x90,
+        
+        /// <summary>
+        /// Converts a <c>double</c> to an <c>int</c>.
+        /// </summary>
+        D2i = 0x8e,
+        
+        /// <summary>
+        /// Converts a <c>double</c> to a <c>long</c>.
+        /// </summary>
+        D2l = 0x8f,
+        
+        /// <summary>
+        /// Adds two <c>double</c>s.
+        /// </summary>
+        Dadd = 0x63,
+        
+        /// <summary>
+        /// Loads a <c>double</c> from an array.
+        /// </summary>
+        Daload = 0x31,
+        
+        /// <summary>
+        /// Stores a <c>double</c> into an array.
+        /// </summary>
+        Dastore = 0x52,
+        
+        /// <summary>
+        /// Compares two <c>double</c>s, and determines which one is greater.
+        /// </summary>
+        Dcmpg = 0x98,
+        
+        /// <summary>
+        /// Compares two <c>double</c>s, and determines which one is lesser.
+        /// </summary>
+        Dcmpl = 0x97,
+        
+        /// <summary>
+        /// Pushes the constant 0.0 as a <c>double</c> onto the stack.
+        /// </summary>
+        Dconst_0 = 0xe,
+        
+        /// <summary>
+        /// Pushes the constant 1.0 as a <c>double</c> onto the stack.
+        /// </summary>
+        Dconst_1 = 0xf,
+        
+        /// <summary>
+        /// Divides two <c>double</c>s.
+        /// </summary>
+        Ddiv = 0x6f,
+        
+        /// <summary>
+        /// Loads a <c>double</c> from a local variable.
+        /// </summary>
+        Dload = 0x18,
+        
+        /// <inheritdoc cref="Dload" />
+        Dload_0 = 0x26,
+        
+        /// <inheritdoc cref="Dload" />
+        Dload_1 = 0x27,
+        
+        /// <inheritdoc cref="Dload" />
+        Dload_2 = 0x28,
+        
+        /// <inheritdoc cref="Dload" />
+        Dload_3 = 0x29,
+        
+        /// <summary>
+        /// Multiplies two <c>double</c>s.
+        /// </summary>
+        Dmul = 0x6b,
+        
+        /// <summary>
+        /// Negates a <c>double</c>.
+        /// </summary>
+        Dneg = 0x77,
+        
+        /// <summary>
+        /// Divides two <c>double</c>s and gets the remainder.
+        /// </summary>
+        Drem = 0x73,
+        
+        /// <summary>
+        /// Returns a <c>double</c> from a method.
+        /// </summary>
+        Dreturn = 0xaf,
+        
+        /// <summary>
+        /// Stores a <c>double</c> into a local variable.
+        /// </summary>
+        Dstore = 0x39,
+        
+        /// <inheritdoc cref="Dstore" />
+        Dstore_0 = 0x47,
+        
+        /// <inheritdoc cref="Dstore" />
+        Dstore_1 = 0x48,
+        
+        /// <inheritdoc cref="Dstore" />
+        Dstore_2 = 0x49,
+        
+        /// <inheritdoc cref="Dstore" />
+        Dstore_3 = 0x4a,
+        
+        /// <summary>
+        /// Subtracts two <c>double</c>s.
+        /// </summary>
+        Dsub = 0x67,
+        
+        /// <summary>
+        /// Duplicates the value at the top of the stack.
+        /// </summary>
+        /// <remarks>Cannot be used on a <c>long</c> nor a <c>double</c>.</remarks>
+        Dup = 0x59,
+        
+        /// <summary>
+        /// Duplicates the value at the top of the stack and inserts it two values down.
+        /// </summary>
+        /// <remarks>Cannot be used on a <c>long</c> nor a <c>double</c>.</remarks>
+        Dup_X1 = 0x5a,
+        
+        /// <summary>
+        /// Duplicates the value at the top of the stack and inserts it two or three values down.
+        /// </summary>
+        /// <remarks>
+        /// If the item to duplicate is a <c>long</c> or a <c>double</c>, the instruction inserts the duplicated value two values down.
+        /// Otherwise, the duplicated item is inserted three values down.
+        /// </remarks>
+        Dup_X2 = 0x5b,
+        
+        /// <summary>
+        /// Duplicates the top one or two values on the stack.
+        /// </summary>
+        /// <remarks>
+        /// If the item to duplicate is a <c>long</c> or a <c>double</c>, the instruction duplicates only 1 value
+        /// Otherwise, the instruction duplicates two values.
+        /// </remarks>
+        Dup2 = 0x5c,
+        
+        /// <summary>
+        /// Duplicates the top one or two values and inserts them two or three values down on the stack.
+        /// </summary>
+        /// <remarks>
+        /// If the item to duplicate is a <c>long</c> or a <c>double</c>, the instruction duplicates one value and inserts it two values down.
+        /// Otherwise the instruction duplicates three values and inserts them three values down.
+        /// </remarks>
+        Dup2_X1 = 0x5d,
+        
+        /// <summary>
+        /// Duplicates the top one or two values and inserts them two, three or four values down.
+        /// </summary>
+        /// <remarks>
+        /// If the top 4 values are not <c>long</c> nor <c>double</c>: the instruction takes the top 2 values and duplicates them 4 values down.
+        /// If the top value is <c>long</c> or <c>double</c> and the next two are not: the instruction takes the top value and duplicates it three values down.
+        /// If the top 2 values are not <c>long</c> nor <c>double</c> but the third one is: the instruction takes the top two values and duplicates them three values down.
+        /// If the top 2 values are both <c>long</c> or <c>double</c>: the instruction takes the top value and inserts it two values down.
+        /// </remarks>
+        Dup2_X2 = 0x5e,
+        
+        /// <summary>
+        /// Converts a <c>float</c> to a <c>double</c>.
+        /// </summary>
+        F2d = 0x8d,
+        
+        /// <summary>
+        /// Converts a <c>float</c> to an <c>int</c>.
+        /// </summary>
+        F2i = 0x8b,
+        
+        /// <summary>
+        /// Converts a <c>float</c> to a <c>long</c>.
+        /// </summary>
+        F2l = 0x8c,
+        
+        /// <summary>
+        /// Adds two <c>float</c>s.
+        /// </summary>
+        Fadd = 0x62,
+        
+        /// <summary>
+        /// Loads a <c>float</c> from an array.
+        /// </summary>
+        Faload = 0x30,
+        
+        /// <summary>
+        /// Stores a <c>float</c> into an array.
+        /// </summary>
+        Fastore = 0x51,
+        
+        /// <summary>
+        /// Compares two <c>float</c>s, and determines which one is greater.
+        /// </summary>
+        Fcmpg = 0x96,
+        
+        /// <summary>
+        /// Compares two <c>float</c>s, and determines which one is lesser.
+        /// </summary>
+        Fcmpl = 0x95,
+        
+        /// <summary>
+        /// Pushes the constant 0.0 as a <c>float</c> onto the stack.
+        /// </summary>
+        Fconst_0 = 0xb,
+        
+        /// <summary>
+        /// Pushes the constant 1.0 as a <c>float</c> onto the stack.
+        /// </summary>
+        Fconst_1 = 0xc,
+        
+        /// <summary>
+        /// Pushes the constant 2.0 as a <c>float</c> onto the stack.
+        /// </summary>
+        Fconst_2 = 0xd,
+        
+        /// <summary>
+        /// Divides two <c>float</c>s.
+        /// </summary>
+        Fdiv = 0x6e,
+        
+        /// <summary>
+        /// Loads a <c>float</c> from a local variable.
+        /// </summary>
+        Fload = 0x17,
+        
+        /// <inheritdoc cref="Fload" />
+        Fload_0 = 0x22,
+        
+        /// <inheritdoc cref="Fload" />
+        Fload_1 = 0x23,
+        
+        /// <inheritdoc cref="Fload" />
+        Fload_2 = 0x24,
+        
+        /// <inheritdoc cref="Fload" />
+        Fload_3 = 0x25,
+        
+        /// <summary>
+        /// Multiplies two <c>float</c>s.
+        /// </summary>
+        Fmul = 0x6a,
+        
+        /// <summary>
+        /// Negates a <c>float</c>.
+        /// </summary>
+        Fneg = 0x76,
+        
+        /// <summary>
+        /// Divides two <c>float</c> and gets the remaineder.
+        /// </summary>
+        Frem = 0x72,
+        
+        /// <summary>
+        /// Returns a <c>float</c> from a method.
+        /// </summary>
+        Freturn = 0xae,
+        
+        /// <summary>
+        /// Stores a <c>float</c> into a local variable.
+        /// </summary>
+        Fstore = 0x38,
+        
+        /// <inheritdoc cref="Fstore" />
+        Fstore_0 = 0x43,
+        
+        /// <inheritdoc cref="Fstore" />
+        Fstore_1 = 0x44,
+        
+        /// <inheritdoc cref="Fstore" />
+        Fstore_2 = 0x45,
+        
+        /// <inheritdoc cref="Fstore" />
+        Fstore_3 = 0x46,
+        
+        /// <summary>
+        /// Subtracts two <c>float</c>s.
+        /// </summary>
+        Fsub = 0x66,
+        
+        /// <summary>
+        /// Gets the value of a field.
+        /// </summary>
+        Getfield = 0xb4,
+        
+        /// <summary>
+        /// Gets the value of a static field.
+        /// </summary>
+        Getstatic = 0xb2,
+        
+        /// <summary>
+        /// Unconditional jump.
+        /// </summary>
+        Goto = 0xa7,
+        
+        /// <inheritdoc cref="Goto" />
+        Goto_w = 0xc8,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>byte</c>.
+        /// </summary>
+        I2b = 0x91,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>char</c>.
+        /// </summary>
+        I2c = 0x92,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>double</c>.
+        /// </summary>
+        I2d = 0x87,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>float</c>.
+        /// </summary>
+        I2f = 0x86,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>long</c>.
+        /// </summary>
+        I2l = 0x85,
+        
+        /// <summary>
+        /// Converts an <c>int</c> to a <c>short</c>.
+        /// </summary>
+        I2s = 0x93,
+        
+        /// <summary>
+        /// Adds two <c>int</c>s.
+        /// </summary>
+        Iadd = 0x60,
+        
+        /// <summary>
+        /// Loads an <c>int</c> from an array.
+        /// </summary>
+        Iaload = 0x2e,
+        
+        /// <summary>
+        /// Performs a bitwise AND on two <c>int</c>s.
+        /// </summary>
+        Iand = 0x7e,
+        
+        /// <summary>
+        /// Stores an <c>int</c> into an array.
+        /// </summary>
+        Iastore = 0x4f,
+        
+        /// <summary>
+        /// Pushes the constant -1 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_M1 = 0x2,
+        
+        /// <summary>
+        /// Pushes the constant 0 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_0 = 0x3,
+        
+        /// <summary>
+        /// Pushes the constant 1 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_1 = 0x4,
+        
+        /// <summary>
+        /// Pushes the constant 2 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_2 = 0x5,
+        
+        /// <summary>
+        /// Pushes the constant 3 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_3 = 0x6,
+        
+        /// <summary>
+        /// Pushes the constant 4 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_4 = 0x7,
+        
+        /// <summary>
+        /// Pushes the constant 5 as an <c>int</c> onto the stack.
+        /// </summary>
+        Iconst_5 = 0x8,
+        
+        /// <summary>
+        /// Divides two <c>int</c>s.
+        /// </summary>
+        Idiv = 0x6c,
         
         /// <summary>
         /// Branches if reference comparison is equal.
