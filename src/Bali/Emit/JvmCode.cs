@@ -369,7 +369,7 @@ namespace Bali.Emit
         Fneg = 0x76,
         
         /// <summary>
-        /// Divides two <c>float</c> and gets the remaineder.
+        /// Divides two <c>float</c> and gets the remainder.
         /// </summary>
         Frem = 0x72,
         
