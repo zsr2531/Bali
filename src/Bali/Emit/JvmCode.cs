@@ -6,6 +6,8 @@ namespace Bali.Emit
     /// The raw opcode of a JVM instruction.
     /// </summary>
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "IdentifierTypo")]
+    [SuppressMessage("ReSharper", "CommentTypo")]
     public enum JvmCode : byte
     {
         /// <summary>
@@ -980,6 +982,21 @@ namespace Bali.Emit
         /// <item><description><see cref="Iinc"/></description></item>
         /// </list>
         /// </summary>
-        Wide = 0xc4
+        Wide = 0xc4,
+        
+        /// <summary>
+        /// Reserved opcode.
+        /// </summary>
+        Imdep1 = 0xfe,
+        
+        /// <summary>
+        /// Reserved opcode.
+        /// </summary>
+        Imdep2 = 0xff,
+        
+        /// <summary>
+        /// Signals to the debugger that a breakpoint has been hit.
+        /// </summary>
+        Breakpoint = 0xca
     }
 }
