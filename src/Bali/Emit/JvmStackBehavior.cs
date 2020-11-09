@@ -16,6 +16,11 @@
         Pop1,
         
         /// <summary>
+        /// The instruction pops 2 items off the stack.
+        /// </summary>
+        Pop2,
+        
+        /// <summary>
         /// The instruction pops 3 items off the stack.
         /// </summary>
         Pop3,
@@ -49,11 +54,6 @@
         /// The instruction pops 2 item off the stack and pushes 3 item on the stack.
         /// </summary>
         Pop2Push3,
-        
-        /// <summary>
-        /// The instruction pops 3 item off the stack and pushes 3 item on the stack.
-        /// </summary>
-        Pop3Push3,
         
         /// <summary>
         /// The instruction's stack usage is dynamic (ie. depends on the operand).
