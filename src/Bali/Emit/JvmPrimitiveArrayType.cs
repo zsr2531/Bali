@@ -3,7 +3,7 @@
     /// <summary>
     /// The 8 "real" primitive types that the JVM supports.
     /// </summary>
-    public enum JvmPrimitiveType
+    public enum JvmPrimitiveArrayType
     {
         /// <summary>
         /// The <c>boolean</c> primitive.
