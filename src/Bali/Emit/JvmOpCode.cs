@@ -9,42 +9,42 @@ namespace Bali.Emit
     {
         private readonly uint _raw;
 
-        private const uint OperandTypeMask = 0xFFU;
-        private const uint OpCodeMask = 0xFFU << 8;
+        private const uint OpCodeMask = 0xFFU;
+        private const uint OperandTypeMask = 0xFFU << 8;
         private const uint FlowControlMask = 0xFFU << 16;
         private const uint StackBehaviorMask = 0xFFU << 24;
 
         internal JvmOpCode(
-            JvmCode code, JvmStackBehavior stackBehavior, JvmFlowControl flowControl, JvmOperandType operandType)
+            JvmCode code, JvmOperandType operandType, JvmStackBehavior stackBehavior, JvmFlowControl flowControl)
         {
-            _raw = (uint) operandType;
-            _raw |= (uint) code << 8;
+            _raw = (uint) code;
+            _raw |= (uint) operandType << 8;
             _raw |= (uint) flowControl << 16;
             _raw |= (uint) stackBehavior << 24;
             
-            JvmOpCodes.OpCodes[(byte) code] = this;
+            JvmOpCodes.RawOpCodes[(byte) code] = this;
         }
 
         /// <summary>
         /// Gets the <see cref="JvmCode"/> of the opcode.
         /// </summary>
-        public JvmCode Code => (JvmCode) ((_raw & OpCodeMask) >> 8);
+        public JvmCode Code => (JvmCode) (_raw & OpCodeMask);
 
         /// <summary>
-        /// Gets the stack behavior of the opcode.
+        /// Gets the operand's type.
         /// </summary>
-        public JvmStackBehavior StackBehavior => (JvmStackBehavior) ((_raw & StackBehaviorMask) >> 24);
-        
+        public JvmOperandType OperandType => (JvmOperandType) ((_raw & OperandTypeMask) >> 8);
+
         /// <summary>
         /// Gets the flow control of the opcode.
         /// </summary>
         public JvmFlowControl FlowControl => (JvmFlowControl) ((_raw & FlowControlMask) >> 16);
 
         /// <summary>
-        /// Gets the operand's type.
+        /// Gets the stack behavior of the opcode.
         /// </summary>
-        public JvmOperandType OperandType => (JvmOperandType) (_raw & OperandTypeMask);
-        
+        public JvmStackBehavior StackBehavior => (JvmStackBehavior) ((_raw & StackBehaviorMask) >> 24);
+
         /// <inheritdoc />
         public bool Equals(JvmOpCode other) => GetHashCode() == other.GetHashCode();
 
