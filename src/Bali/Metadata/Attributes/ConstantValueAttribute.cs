@@ -3,7 +3,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class ConstantValueAttribute : Attribute
+    public sealed class ConstantValueAttribute : JvmAttribute
     {
         public ConstantValueAttribute(ushort nameIndex, ushort constantValueIndex) : base(nameIndex) =>
             ConstantValueIndex = constantValueIndex;

@@ -3,7 +3,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class SignatureAttribute : Attribute
+    public sealed class SignatureAttribute : JvmAttribute
     {
         public SignatureAttribute(ushort nameIndex, ushort signatureIndex)
             : base(nameIndex)

@@ -11,19 +11,23 @@ namespace Bali.Emit
     /// </summary>
     public sealed class JvmInstruction : IEquatable<JvmInstruction>
     {
-        internal JvmInstruction(int offset, JvmOpCode opCode, object? operand = null)
-            : this(opCode, operand)
-        {
-            Offset = offset;
-        }
-        
         /// <summary>
         /// Creates a new <see cref="JvmInstruction"/>.
         /// </summary>
         /// <param name="opCode">The <see cref="JvmOpCode"/> of the instruction.</param>
         /// <param name="operand">The instruction's operand.</param>
         public JvmInstruction(JvmOpCode opCode, object? operand = null)
+            : this(-1, opCode, operand) { }
+
+        /// <summary>
+        /// Creates a new <see cref="JvmInstruction"/>.
+        /// </summary>
+        /// <param name="offset">The offset to the instruction from the start of the method body.</param>
+        /// <param name="opCode">The <see cref="JvmOpCode"/> of the instruction.</param>
+        /// <param name="operand">The instruction's operand.</param>
+        public JvmInstruction(int offset, JvmOpCode opCode, object? operand = null)
         {
+            Offset = offset;
             OpCode = opCode;
             Operand = operand;
         }

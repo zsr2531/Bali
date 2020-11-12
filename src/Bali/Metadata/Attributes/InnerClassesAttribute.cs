@@ -6,7 +6,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class InnerClassesAttribute : Attribute
+    public sealed class InnerClassesAttribute : JvmAttribute
     {
         public InnerClassesAttribute(ushort nameIndex, IList<InnerClassInfo> innerClasses)
             : base(nameIndex)

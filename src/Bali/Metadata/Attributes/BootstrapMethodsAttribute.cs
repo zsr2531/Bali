@@ -7,7 +7,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class BootstrapMethodsAttribute : Attribute
+    public sealed class BootstrapMethodsAttribute : JvmAttribute
     {
         public BootstrapMethodsAttribute(ushort nameIndex, IList<BootstrapInfo> bootstrapMethods)
             : base(nameIndex)

@@ -5,16 +5,16 @@ namespace Bali.Metadata
     /// <summary>
     /// Represents a raw field extracted from a class file.
     /// </summary>
-    public struct FieldInfo
+    public struct JvmFieldInfo
     {
         /// <summary>
-        /// Creates a new <see cref="FieldInfo"/>.
+        /// Creates a new <see cref="JvmFieldInfo"/>.
         /// </summary>
         /// <param name="flags">The see <see cref="AccessFlags"/>.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the field.</param>
         /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing the type of the field.</param>
         /// <param name="attributes">All of the field's attributes.</param>
-        public FieldInfo(AccessFlags flags, ushort nameIndex, ushort descriptorIndex, IList<Attribute> attributes)
+        public JvmFieldInfo(AccessFlags flags, ushort nameIndex, ushort descriptorIndex, IList<JvmAttribute> attributes)
         {
             Flags = flags;
             NameIndex = nameIndex;
@@ -52,7 +52,7 @@ namespace Bali.Metadata
         /// <summary>
         /// Gets all of the field's attributes.
         /// </summary>
-        public IList<Attribute> Attributes
+        public IList<JvmAttribute> Attributes
         {
             get;
             set;

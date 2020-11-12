@@ -84,7 +84,7 @@ namespace Bali
         /// <summary>
         /// Gets or sets the fields of this class.
         /// </summary>
-        public IReadOnlyList<FieldInfo>? Fields
+        public IReadOnlyList<JvmFieldInfo>? Fields
         {
             get;
             set;
@@ -93,7 +93,7 @@ namespace Bali
         /// <summary>
         /// Gets or sets the methods of this class.
         /// </summary>
-        public IReadOnlyList<MethodInfo>? Methods
+        public IReadOnlyList<JvmMethodInfo>? Methods
         {
             get;
             set;

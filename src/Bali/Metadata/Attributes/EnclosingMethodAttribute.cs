@@ -3,7 +3,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class EnclosingMethodAttribute : Attribute
+    public sealed class EnclosingMethodAttribute : JvmAttribute
     {
         public EnclosingMethodAttribute(ushort nameIndex, ushort classIndex, ushort methodIndex)
             : base(nameIndex)

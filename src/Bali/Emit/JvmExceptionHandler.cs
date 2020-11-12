@@ -5,6 +5,14 @@
     /// </summary>
     public struct JvmExceptionHandler
     {
+        public JvmExceptionHandler(ushort tryStart, ushort tryEnd, ushort handlerStart, ushort catchType)
+        {
+            TryStart = tryStart;
+            TryEnd = tryEnd;
+            HandlerStart = handlerStart;
+            CatchType = catchType;
+        }
+
         /// <summary>
         /// Gets a logical value whether this <see cref="JvmExceptionHandler"/> is a
         /// <c>finally</c> exception handler or not.

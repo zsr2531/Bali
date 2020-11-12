@@ -5,7 +5,7 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class ExceptionsAttribute : Attribute
+    public sealed class ExceptionsAttribute : JvmAttribute
     {
         public ExceptionsAttribute(ushort nameIndex, IList<ushort> exceptions) : base(nameIndex) =>
             Exceptions = exceptions;

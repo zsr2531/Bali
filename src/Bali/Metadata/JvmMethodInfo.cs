@@ -5,16 +5,16 @@ namespace Bali.Metadata
     /// <summary>
     /// Represents a raw method extracted from a class file.
     /// </summary>
-    public struct MethodInfo
+    public struct JvmMethodInfo
     {
         /// <summary>
-        /// Creates a new <see cref="MethodInfo"/>.
+        /// Creates a new <see cref="JvmMethodInfo"/>.
         /// </summary>
         /// <param name="accessFlags">The <see cref="AccessFlags"/>.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the method.</param>
         /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing the signature of the method.</param>
         /// <param name="attributes">All of the method's attributes.</param>
-        public MethodInfo(AccessFlags accessFlags, ushort nameIndex, ushort descriptorIndex, IList<Attribute> attributes)
+        public JvmMethodInfo(AccessFlags accessFlags, ushort nameIndex, ushort descriptorIndex, IList<JvmAttribute> attributes)
         {
             AccessFlags = accessFlags;
             NameIndex = nameIndex;
@@ -52,7 +52,7 @@ namespace Bali.Metadata
         /// <summary>
         /// Gets all of the method's signatures.
         /// </summary>
-        public IList<Attribute> Attributes
+        public IList<JvmAttribute> Attributes
         {
             get;
             set;

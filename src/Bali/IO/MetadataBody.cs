@@ -6,13 +6,13 @@ namespace Bali.IO
     {
         public readonly ushort[] Interfaces;
         
-        public readonly FieldInfo[] Fields;
+        public readonly JvmFieldInfo[] Fields;
         
-        public readonly MethodInfo[] Methods;
+        public readonly JvmMethodInfo[] Methods;
         
-        public readonly Attribute[] Attributes;
+        public readonly JvmAttribute[] Attributes;
 
-        public MetadataBody(ushort[] interfaces, FieldInfo[] fields, MethodInfo[] methods, Attribute[] attributes)
+        public MetadataBody(ushort[] interfaces, JvmFieldInfo[] fields, JvmMethodInfo[] methods, JvmAttribute[] attributes)
         {
             Interfaces = interfaces;
             Fields = fields;
