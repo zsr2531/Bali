@@ -18,7 +18,7 @@ namespace Bali.Emit
             {
                 byte raw = stream.ReadU1();
                 if (!JvmOpCodes.OpCodes.TryGetValue(raw, out var opCode))
-                    throw null; // TODO: Throw more meaningful exception kekw
+                    throw new DisassemblyException($"Unknown opcode: 0x{raw:X2}");
 
                 if (opCode == JvmOpCodes.Wide)
                 {
