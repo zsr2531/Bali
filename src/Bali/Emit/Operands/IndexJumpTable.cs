@@ -2,9 +2,9 @@
 
 namespace Bali.Emit.Operands
 {
-    public class TableSwitchTable
+    public class IndexJumpTable
     {
-        public TableSwitchTable(int @default, int low, int high, IList<int> offsets)
+        public IndexJumpTable(int @default, int low, int high, IList<int> offsets)
         {
             Default = @default;
             Low = low;

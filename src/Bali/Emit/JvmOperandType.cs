@@ -26,13 +26,13 @@
         /// Indicates that the opcode has a jump table operand.
         /// </summary>
         /// <remarks>Used by <see cref="JvmOpCodes.Lookupswitch"/>.</remarks>
-        LookupSwitchJumpTable,
+        KeyJumpTable,
         
         /// <summary>
         /// Indicates that the opcode has a jump table operand.
         /// </summary>
         /// <remarks>Used by <see cref="JvmOpCodes.Tableswitch"/>.</remarks>
-        TableSwitchJumpTable,
+        IndexJumpTable,
         
         /// <summary>
         /// Indicates that the opcode's operand references an argument/local variable with a single unsigned byte as the index.

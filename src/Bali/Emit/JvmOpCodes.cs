@@ -1216,7 +1216,7 @@ namespace Bali.Emit
         /// <inheritdoc cref="JvmCode.Lookupswitch" />
         public static readonly JvmOpCode Lookupswitch = new JvmOpCode(
             JvmCode.Lookupswitch,
-            JvmOperandType.LookupSwitchJumpTable,
+            JvmOperandType.KeyJumpTable,
             JvmStackBehavior.Pop1,
             JvmFlowControl.UnconditionalBranch);
 
@@ -1426,7 +1426,7 @@ namespace Bali.Emit
         /// <inheritdoc cref="JvmCode.Tableswitch" />
         public static readonly JvmOpCode Tableswitch = new JvmOpCode(
             JvmCode.Tableswitch,
-            JvmOperandType.TableSwitchJumpTable,
+            JvmOperandType.IndexJumpTable,
             JvmStackBehavior.Pop1,
             JvmFlowControl.UnconditionalBranch);
 

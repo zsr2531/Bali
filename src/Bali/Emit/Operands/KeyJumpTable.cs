@@ -2,9 +2,9 @@
 
 namespace Bali.Emit.Operands
 {
-    public class LookupSwitchTable
+    public class KeyJumpTable
     {
-        public LookupSwitchTable(int @default, IDictionary<int, int> matches)
+        public KeyJumpTable(int @default, IDictionary<int, int> matches)
         {
             Default = @default;
             Matches = matches;

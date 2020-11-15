@@ -6,6 +6,9 @@ using Bali.IO;
 
 namespace Bali.Emit
 {
+    /// <summary>
+    /// Provides a basic implementation of the <see cref="IJvmBytecodeDisassembler"/> contract.
+    /// </summary>
     public class JvmBytecodeDisassembler : IJvmBytecodeDisassembler
     {
         /// <inheritdoc />
@@ -52,8 +55,8 @@ namespace Bali.Emit
                 JvmOperandType.None => null,
                 JvmOperandType.BranchOffset => stream.ReadI1(),
                 JvmOperandType.WideBranchOffset => stream.ReadI2(),
-                JvmOperandType.LookupSwitchJumpTable => ReadLookupSwitchTable(offset, stream),
-                JvmOperandType.TableSwitchJumpTable => ReadTableSwitchTable(offset, stream),
+                JvmOperandType.KeyJumpTable => ReadLookupSwitchOperand(offset, stream),
+                JvmOperandType.IndexJumpTable => ReadTableSwitchOperand(offset, stream),
                 JvmOperandType.LocalIndex => stream.ReadU1(),
                 JvmOperandType.LocalIndexWithSignedByte => new LocalIndexWithSignedByte(stream.ReadU1(), stream.ReadI1()),
                 JvmOperandType.ConstantPoolIndex => stream.ReadU1(),
@@ -83,7 +86,7 @@ namespace Bali.Emit
             return new WideLocalIndexWithSignedShort(index, constant);
         }
 
-        private static object ReadLookupSwitchTable(int offset, Stream stream)
+        private static object ReadLookupSwitchOperand(int offset, Stream stream)
         {
             AlignOn4ByteBoundary(offset, stream);
             int @default = stream.ReadI4();
@@ -93,10 +96,10 @@ namespace Bali.Emit
             for (int i = 0; i < count; i++)
                 buffer.Add(stream.ReadI4(), stream.ReadI4());
             
-            return new LookupSwitchTable(@default, buffer);
+            return new KeyJumpTable(@default, buffer);
         }
 
-        private static object ReadTableSwitchTable(int offset, Stream stream)
+        private static object ReadTableSwitchOperand(int offset, Stream stream)
         {
             AlignOn4ByteBoundary(offset, stream);
             int @default = stream.ReadI4();
@@ -107,7 +110,7 @@ namespace Bali.Emit
             for (int i = 0; i < buffer.Capacity; i++)
                 buffer.Add(stream.ReadI4());
             
-            return new TableSwitchTable(@default, low, high, buffer);
+            return new IndexJumpTable(@default, low, high, buffer);
         }
 
         private static void AlignOn4ByteBoundary(int offset, Stream stream)
