@@ -8,12 +8,12 @@ namespace Bali.IO
     public readonly struct MetadataBodyReader
     {
         private readonly Stream? _inputStream;
-        private readonly IJvmAttributeFactory? _attributeFactory;
+        private readonly IJvmAttributeFactoryFacade? _attributeFactory;
 
         public MetadataBodyReader(Stream inputStream, in ConstantPool constantPool)
         {
             _inputStream = inputStream;
-            _attributeFactory = new JvmAttributeFactory(constantPool);
+            _attributeFactory = new JvmAttributeFactoryFacade(constantPool);
         }
 
         public MetadataBody ReadMetadataBody()

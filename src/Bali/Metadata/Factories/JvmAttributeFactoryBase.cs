@@ -6,21 +6,21 @@ namespace Bali.Metadata.Factories
     /// <summary>
     /// Provides a contract for a factory that can create a concrete <see cref="JvmAttribute"/> instance.
     /// </summary>
-    public abstract class ConcreteJvmAttributeFactoryBase
+    public abstract class JvmAttributeFactoryBase
     {
         /// <summary>
-        /// Initializes the <see cref="AttributeFactory"/>.
+        /// Initializes the <see cref="AttributeFactoryFacade"/>.
         /// </summary>
-        /// <param name="attributeFactory">The attribute factory that can be used to create other types of attributes.</param>
-        protected ConcreteJvmAttributeFactoryBase(IJvmAttributeFactory attributeFactory)
+        /// <param name="attributeFactoryFacade">The attribute factory that can be used to create other types of attributes.</param>
+        protected JvmAttributeFactoryBase(IJvmAttributeFactoryFacade attributeFactoryFacade)
         {
-            AttributeFactory = attributeFactory;
+            AttributeFactoryFacade = attributeFactoryFacade;
         }
 
         /// <summary>
         /// Gets the attribute factory that can be used to create other types of attributes.
         /// </summary>
-        protected IJvmAttributeFactory AttributeFactory
+        protected IJvmAttributeFactoryFacade AttributeFactoryFacade
         {
             get;
         }

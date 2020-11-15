@@ -1,10 +1,25 @@
-﻿namespace Bali.Emit
+﻿using System;
+
+// GetHashCode not overridden
+#pragma warning disable 659
+
+namespace Bali.Emit
 {
     /// <summary>
     /// Represents a JVM exception handler.
     /// </summary>
-    public struct JvmExceptionHandler
+    public class JvmExceptionHandler : IEquatable<JvmExceptionHandler>
     {
+        /// <summary>
+        /// Creates a new <see cref="JvmExceptionHandler"/>.
+        /// </summary>
+        /// <param name="tryStart">The inclusive index of the first instruction to protect.</param>
+        /// <param name="tryEnd">The exclusive index of the last instruction to protect.</param>
+        /// <param name="handlerStart">The inclusive index of the first instruction of the handler.</param>
+        /// <param name="catchType">
+        /// The index into the <see cref="ConstantPool" /> describing the type of the exception to catch
+        /// or 0 if the exception handler is a <c>finally</c> block.
+        /// </param>
         public JvmExceptionHandler(ushort tryStart, ushort tryEnd, ushort handlerStart, ushort catchType)
         {
             TryStart = tryStart;
@@ -56,5 +71,19 @@
             get;
             set;
         }
+
+        /// <inheritdoc />
+        public bool Equals(JvmExceptionHandler other) =>
+            TryStart == other.TryStart
+            && TryEnd == other.TryEnd
+            && HandlerStart == other.HandlerStart
+            && CatchType == other.CatchType;
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) => obj is JvmExceptionHandler other && Equals(other);
+
+        /// <inheritdoc />
+        public override string ToString() =>
+            $"[0x{TryStart:X4},0x{TryEnd:X4}) HandlerStart: 0x{HandlerStart:X4} CatchType: {CatchType}";
     }
 }

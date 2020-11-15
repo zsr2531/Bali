@@ -4,11 +4,11 @@ using Bali.Metadata.Attributes;
 
 namespace Bali.Metadata.Factories
 {
-    public class ConstantValueAttributeFactory : ConcreteJvmAttributeFactoryBase
+    public class ConstantValueAttributeFactory : JvmAttributeFactoryBase
     {
         /// <inheritdoc />
-        public ConstantValueAttributeFactory(IJvmAttributeFactory attributeFactory)
-            : base(attributeFactory) { }
+        public ConstantValueAttributeFactory(IJvmAttributeFactoryFacade attributeFactoryFacade)
+            : base(attributeFactoryFacade) { }
 
         /// <inheritdoc />
         public override string Name => "ConstantValue";

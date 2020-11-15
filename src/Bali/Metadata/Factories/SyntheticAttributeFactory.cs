@@ -3,11 +3,11 @@ using Bali.Metadata.Attributes;
 
 namespace Bali.Metadata.Factories
 {
-    public class SyntheticAttributeFactory : ConcreteJvmAttributeFactoryBase
+    public class SyntheticAttributeFactory : JvmAttributeFactoryBase
     {
         /// <inheritdoc />
-        public SyntheticAttributeFactory(IJvmAttributeFactory attributeFactory)
-            : base(attributeFactory) { }
+        public SyntheticAttributeFactory(IJvmAttributeFactoryFacade attributeFactoryFacade)
+            : base(attributeFactoryFacade) { }
 
         /// <inheritdoc />
         public override string Name => "Synthetic";

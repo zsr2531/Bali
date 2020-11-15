@@ -5,9 +5,9 @@ using Bali.IO;
 namespace Bali.Metadata.Factories
 {
     /// <summary>
-    /// Provides a default implementation of the <see cref="ConcreteJvmAttributeFactoryBase"/> contract.
+    /// Provides a default implementation of the <see cref="JvmAttributeFactoryBase"/> contract.
     /// </summary>
-    public sealed class DefaultJvmAttributeFactory : ConcreteJvmAttributeFactoryBase
+    public sealed class DefaultJvmAttributeFactory : JvmAttributeFactoryBase
     {
         /// <inheritdoc />
         public DefaultJvmAttributeFactory()
