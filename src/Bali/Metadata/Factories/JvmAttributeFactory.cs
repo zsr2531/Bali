@@ -11,6 +11,9 @@ namespace Bali.Metadata.Factories
         private readonly ConstantPool _constantPool;
         private readonly Dictionary<string, ConcreteJvmAttributeFactoryBase> _concreteFactories;
 
+        private static readonly DefaultJvmAttributeFactory _defaultJvmAttributeFactory =
+            new DefaultJvmAttributeFactory();
+
         public JvmAttributeFactory(in ConstantPool constantPool)
         {
             _constantPool = constantPool;
@@ -23,31 +26,25 @@ namespace Bali.Metadata.Factories
         
         public ConcreteJvmAttributeFactoryBase this[string name]
         {
+            get
+            {
+                if (_concreteFactories.TryGetValue(name, out var value))
+                    return value;
+
+                return _defaultJvmAttributeFactory;
+            }
             set => _concreteFactories[name] = value;
         }
-        
+
         /// <inheritdoc />
-        public JvmAttribute Create(Stream stream, ushort nameIndex)
+        public JvmAttribute Create(Stream stream)
         {
+            ushort nameIndex = stream.ReadU2();
             var nameConstant = _constantPool[nameIndex];
             if (!(nameConstant is Utf8Constant { Value: {} name }))
                 throw new ArgumentException(nameof(nameIndex));
 
-            return _concreteFactories.TryGetValue(name, out var factory)
-                ? factory.Create(stream, nameIndex)
-                : new JvmAttribute(nameIndex, ReadRawData(stream));
-        }
-
-        private static byte[] ReadRawData(Stream stream)
-        {
-            uint length = stream.ReadU4();
-            if (length == 0)
-                return Array.Empty<byte>();
-
-            var buffer = new byte[length];
-            stream.Read(buffer, 0, (int) length);
-
-            return buffer;
+            return this[name].Create(stream, nameIndex);
         }
     }
 }

@@ -65,7 +65,7 @@ namespace Bali.IO
             for (int i = 0; i < attributesCount; i++)
             {
                 ushort nameIndex = _inputStream!.ReadU2();
-                attributes[i] = _attributeFactory!.Create(_inputStream!, nameIndex);
+                attributes[i] = _attributeFactory!.Create(_inputStream!);
             }
 
             return attributes;
