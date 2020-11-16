@@ -86,29 +86,29 @@ namespace Bali
         /// <summary>
         /// Gets or sets the fields of this class.
         /// </summary>
-        public IReadOnlyList<JvmFieldInfo>? Fields
+        public IList<JvmFieldInfo> Fields
         {
             get;
             private set;
-        } = new List<FieldInfo>();
+        } = new List<JvmFieldInfo>();
 
         /// <summary>
         /// Gets or sets the methods of this class.
         /// </summary>
-        public IReadOnlyList<JvmMethodInfo>? Methods
+        public IList<JvmMethodInfo> Methods
         {
             get;
             private set;
-        } = new List<MethodInfo>();
+        } = new List<JvmMethodInfo>();
 
         /// <summary>
         /// Gets or sets the attributes of this class.
         /// </summary>
-        public IList<AttributeInfo> Attributes
+        public IList<JvmAttribute> Attributes
         {
             get;
             private set;
-        } = new List<AttributeInfo>();
+        } = new List<JvmAttribute>();
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from the given <paramref name="path"/>.
@@ -142,7 +142,7 @@ namespace Bali
             var header = new ClassFileHeaderReader(stream).ReadHeader();
             var constantPool = new ConstantPoolReader(stream, (ushort) (stream.ReadU2() - 1)).ReadConstantPool();
             var body = new ClassFileBodyReader(stream).ReadBody();
-            var metadata = new MetadataBodyReader(stream).ReadMetadataBody();
+            var metadata = new MetadataBodyReader(stream, constantPool).ReadMetadataBody();
             
             return new ClassFile
             {
