@@ -11,14 +11,26 @@ namespace Bali.Emit
     /// </summary>
     public class JvmBytecodeDisassembler : IJvmBytecodeDisassembler
     {
+        /// <summary>
+        /// Provides a singleton JvmBytecodeDisassembler instance.
+        /// </summary>
+        public static readonly JvmBytecodeDisassembler Instance = new JvmBytecodeDisassembler();
+
+        /// <summary>
+        /// Default parameterless constructor.
+        /// </summary>
+        protected JvmBytecodeDisassembler() { }
+
         /// <inheritdoc />
         public IList<JvmInstruction> Disassemble(Stream stream, uint count)
         {
             var instructions = new List<JvmInstruction>();
             bool isWide = false;
 
-            for (int i = 0; i < count; i++)
+            long start = stream.Position;
+            while (stream.Position - start < count)
             {
+                int current = (int) (stream.Position - start);
                 byte raw = stream.ReadU1();
                 if (!JvmOpCodes.OpCodes.TryGetValue(raw, out var opCode))
                     throw new DisassemblyException($"Unknown opcode: 0x{raw:X2}");
@@ -26,15 +38,15 @@ namespace Bali.Emit
                 if (opCode == JvmOpCodes.Wide)
                 {
                     isWide = true;
-                    instructions.Add(new JvmInstruction(i, opCode));
+                    instructions.Add(new JvmInstruction(current, opCode));
                     continue;
                 }
 
                 var operand = isWide
                     ? ReadWideOperand(stream, opCode)
-                    : ReadOperand(i, stream, opCode.OperandType);
+                    : ReadOperand(current, stream, opCode.OperandType);
                 
-                instructions.Add(new JvmInstruction(i, opCode, operand));
+                instructions.Add(new JvmInstruction(current, opCode, operand));
                 isWide = false;
             }
 
