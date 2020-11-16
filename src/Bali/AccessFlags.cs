@@ -3,7 +3,7 @@ using System;
 namespace Bali
 {
     /// <summary>
-    /// Denotes access permissions to and properties of this class or interface.
+    /// Denotes access permissions of a metadata member.
     /// </summary>
     [Flags]
     public enum AccessFlags : ushort

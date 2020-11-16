@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using Bali.IO;
 using Bali.Metadata;
 
 namespace Bali
@@ -46,7 +48,7 @@ namespace Bali
         }
         
         /// <summary>
-        /// Gets or sets the <see cref="Bali.AccessFlags"/>.
+        /// Gets or sets the <see cref="AccessFlags"/>.
         /// </summary>
         public AccessFlags AccessFlags
         {
@@ -75,11 +77,11 @@ namespace Bali
         /// <summary>
         /// Gets or sets the indices into the <see cref="Constants"/> representing direct superinterfaces of this class.
         /// </summary>
-        public IReadOnlyList<ushort>? Interfaces
+        public IList<ushort> Interfaces
         {
             get;
             set;
-        }
+        } = new List<ushort>();
 
         /// <summary>
         /// Gets or sets the fields of this class.
@@ -87,8 +89,8 @@ namespace Bali
         public IReadOnlyList<JvmFieldInfo>? Fields
         {
             get;
-            set;
-        }
+            private set;
+        } = new List<FieldInfo>();
 
         /// <summary>
         /// Gets or sets the methods of this class.
@@ -96,7 +98,66 @@ namespace Bali
         public IReadOnlyList<JvmMethodInfo>? Methods
         {
             get;
-            set;
+            private set;
+        } = new List<MethodInfo>();
+
+        /// <summary>
+        /// Gets or sets the attributes of this class.
+        /// </summary>
+        public IList<AttributeInfo> Attributes
+        {
+            get;
+            private set;
+        } = new List<AttributeInfo>();
+
+        /// <summary>
+        /// Reads and parses a <see cref="ClassFile"/> from the given <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">The file's path to read.</param>
+        /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
+        public static ClassFile FromFile(string path)
+        {
+            using var stream = File.OpenRead(path);
+            return FromStream(stream);
+        }
+
+        /// <summary>
+        /// Reads and parses a <see cref="ClassFile"/> from an array of <paramref name="bytes"/>.
+        /// </summary>
+        /// <param name="bytes">The raw bytes.</param>
+        /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
+        public static ClassFile FromBytes(byte[] bytes)
+        {
+            using var stream = new MemoryStream(bytes);
+            return FromStream(stream);
+        }
+
+        /// <summary>
+        /// Reads and parses a <see cref="ClassFile"/> from the given input <paramref name="stream"/>.
+        /// </summary>
+        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
+        /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
+        public static ClassFile FromStream(Stream stream)
+        {
+            var header = new ClassFileHeaderReader(stream).ReadHeader();
+            var constantPool = new ConstantPoolReader(stream, (ushort) (stream.ReadU2() - 1)).ReadConstantPool();
+            var body = new ClassFileBodyReader(stream).ReadBody();
+            var metadata = new MetadataBodyReader(stream).ReadMetadataBody();
+            
+            return new ClassFile
+            {
+                Magic = header.Magic,
+                MinorVersion = header.Minor,
+                MajorVersion = header.Major,
+                Constants = constantPool,
+                AccessFlags = body.AccessFlags,
+                ThisClassIndex = body.ThisClass,
+                SuperClassIndex = body.SuperClass,
+                Interfaces = metadata.Interfaces,
+                Fields = metadata.Fields,
+                Methods = metadata.Methods,
+                Attributes = metadata.Attributes
+            };
         }
     }
 }
