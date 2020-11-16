@@ -3,9 +3,10 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class SignatureAttribute : Attribute
+    public sealed class SignatureAttribute : JvmAttribute
     {
-        public SignatureAttribute(ushort nameIndex, ushort signatureIndex) : base(nameIndex)
+        public SignatureAttribute(ushort nameIndex, ushort signatureIndex)
+            : base(nameIndex)
         {
             SignatureIndex = signatureIndex;
         }
@@ -13,8 +14,15 @@ namespace Bali.Metadata.Attributes
         public ushort SignatureIndex
         {
             get;
+            set;
         }
-        
+
+        /// <inheritdoc />
+        public override byte[] GetData() => new[]
+        {
+            (byte) ((SignatureIndex >> 8) & 0xFF), (byte) (SignatureIndex & 0xFF)
+        };
+
         public static SignatureAttribute Create(Stream stream, ushort nameIndex) =>
             new SignatureAttribute(nameIndex, stream.ReadU2());
     }

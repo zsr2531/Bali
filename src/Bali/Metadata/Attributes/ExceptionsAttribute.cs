@@ -5,31 +5,29 @@ using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
-    public sealed class ExceptionsAttribute : Attribute
+    public sealed class ExceptionsAttribute : JvmAttribute
     {
-        public ExceptionsAttribute(ushort nameIndex, IReadOnlyList<ushort> exceptions) : base(nameIndex) =>
+        public ExceptionsAttribute(ushort nameIndex, IList<ushort> exceptions) : base(nameIndex) =>
             Exceptions = exceptions;
         
-        public IReadOnlyList<ushort> Exceptions
+        public IList<ushort> Exceptions
         {
             get;
+            set;
         }
 
         /// <inheritdoc />
-        public override byte[] Data
+        public override byte[] GetData()
         {
-            get
+            var buffer = new byte[Exceptions.Count * 2];
+
+            for (int i = 0; i < buffer.Length; i++)
             {
-                var buffer = new byte[Exceptions.Count * 2];
-
-                for (int i = 0; i < buffer.Length; i++)
-                {
-                    buffer[i] = (byte) ((Exceptions[i] >> 8) & 0xFF);
-                    buffer[++i] = (byte) (Exceptions[i] & 0xFF);
-                }
-
-                return buffer;
+                buffer[i] = (byte)((Exceptions[i] >> 8) & 0xFF);
+                buffer[++i] = (byte)(Exceptions[i] & 0xFF);
             }
+
+            return buffer;
         }
 
         public static ExceptionsAttribute Create(Stream stream, ushort nameIndex)

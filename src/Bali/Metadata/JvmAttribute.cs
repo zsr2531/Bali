@@ -1,31 +1,31 @@
 using System;
-
 namespace Bali.Metadata
 {
     /// <summary>
     /// Represents a raw attribute extracted from the class file.
     /// </summary>
-    public class Attribute
+    public class JvmAttribute
     {
+        private readonly byte[]? _data;
+
         /// <summary>
-        /// Creates a new <see cref="Attribute"/>.
+        /// Creates a new <see cref="JvmAttribute"/>.
         /// </summary>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the attribute.</param>
         /// <param name="data">The raw data of the attribute.</param>
-        public Attribute(ushort nameIndex, byte[] data)
+        public JvmAttribute(ushort nameIndex, byte[] data)
             : this(nameIndex)
         {
-            Data = data;
+            _data = data;
         }
 
         /// <summary>
-        /// Creates a new <see cref="Attribute"/>.
+        /// Creates a new <see cref="JvmAttribute"/>.
         /// </summary>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the attribute.</param>
-        protected Attribute(ushort nameIndex)
+        protected JvmAttribute(ushort nameIndex)
         {
             NameIndex = nameIndex;
-            Data = Array.Empty<byte>();
         }
 
         /// <summary>
@@ -34,14 +34,12 @@ namespace Bali.Metadata
         public ushort NameIndex
         {
             get;
+            set;
         }
 
         /// <summary>
         /// Gets the raw data of the attribute.
         /// </summary>
-        public virtual byte[] Data
-        {
-            get;
-        }
+        public virtual byte[] GetData() => _data ?? Array.Empty<byte>();
     }
 }

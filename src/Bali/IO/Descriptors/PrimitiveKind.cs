@@ -1,7 +1,7 @@
 namespace Bali.IO.Descriptors
 {
     /// <summary>
-    /// The 7 primitive types that the JVM supports.
+    /// The 9 primitive types that JVM descriptors support.
     /// </summary>
     public enum PrimitiveKind
     {
