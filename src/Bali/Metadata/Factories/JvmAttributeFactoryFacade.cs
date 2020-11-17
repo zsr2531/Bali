@@ -15,8 +15,7 @@ namespace Bali.Metadata.Factories
         private readonly ConstantPool _constantPool;
         private readonly Dictionary<string, JvmAttributeFactoryBase> _concreteFactories;
 
-        private static readonly DefaultJvmAttributeFactory DefaultJvmAttributeFactory =
-            new DefaultJvmAttributeFactory();
+        private static readonly DefaultJvmAttributeFactory DefaultJvmAttributeFactory = new();
 
         /// <summary>
         /// Creates a new <see cref="JvmAttributeFactoryFacade"/>.
@@ -27,6 +26,7 @@ namespace Bali.Metadata.Factories
             _constantPool = constantPool;
             _concreteFactories = new Dictionary<string, JvmAttributeFactoryBase>
             {
+                ["Code"] = new CodeAttributeFactory(this),
                 ["ConstantValue"] = new ConstantValueAttributeFactory(this),
                 ["Synthetic"] = new SyntheticAttributeFactory(this)
             };
