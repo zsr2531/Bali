@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Bali.Metadata;
 
-namespace Bali.Metadata
+namespace Bali
 {
     /// <summary>
     /// Represents a raw method extracted from a class file.

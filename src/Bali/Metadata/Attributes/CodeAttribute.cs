@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using Bali.Emit;
-using Bali.IO;
 
 namespace Bali.Metadata.Attributes
 {
