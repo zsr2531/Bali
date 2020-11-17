@@ -36,6 +36,7 @@ namespace Bali.Metadata.Factories
         /// <inheritdoc />
         public override JvmAttribute Create(Stream stream, ushort nameIndex)
         {
+            _ = stream.ReadU4();
             ushort maxStack = stream.ReadU2(), maxLocals = stream.ReadU2();
             var instructions = ReadInstructions(stream);
             var exceptionHandlers = ReadExceptionHandlers(stream);
