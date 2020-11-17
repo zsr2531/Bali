@@ -3,15 +3,30 @@ using System;
 namespace Bali
 {
     /// <summary>
-    /// Denotes access permissions of a metadata member.
+    /// Denotes access permissions of a class or interface.
     /// </summary>
     [Flags]
-    public enum AccessFlags : ushort
+    public enum ClassAccessFlags : ushort
     {
         /// <summary>
         /// Declared public; may be accessed from outside its package. 
         /// </summary>
         Public = 0x0001,
+        
+        /// <summary>
+        /// Declared private; usable only within defining parent class.
+        /// </summary>
+        Private = 0x0002,
+        
+        /// <summary>
+        /// Declared protected; may be accessed from within subclasses.
+        /// </summary>
+        Protected = 0x0004,
+        
+        /// <summary>
+        /// Marked or implicitly static in source.
+        /// </summary>
+        Static = 0x0008,
 
         /// <summary>
         /// Declared final; no subclasses allowed. 

@@ -50,7 +50,7 @@ namespace Bali
         /// <summary>
         /// Gets or sets the <see cref="AccessFlags"/>.
         /// </summary>
-        public AccessFlags AccessFlags
+        public ClassAccessFlags AccessFlags
         {
             get;
             set;

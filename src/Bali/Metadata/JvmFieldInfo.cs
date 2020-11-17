@@ -10,22 +10,22 @@ namespace Bali.Metadata
         /// <summary>
         /// Creates a new <see cref="JvmFieldInfo"/>.
         /// </summary>
-        /// <param name="flags">The see <see cref="AccessFlags"/>.</param>
+        /// <param name="accessFlags">The see <see cref="FieldAccessFlags"/>.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the field.</param>
         /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing the type of the field.</param>
         /// <param name="attributes">All of the field's attributes.</param>
-        public JvmFieldInfo(AccessFlags flags, ushort nameIndex, ushort descriptorIndex, IList<JvmAttribute> attributes)
+        public JvmFieldInfo(FieldAccessFlags accessFlags, ushort nameIndex, ushort descriptorIndex, IList<JvmAttribute> attributes)
         {
-            Flags = flags;
+            AccessFlags = accessFlags;
             NameIndex = nameIndex;
             DescriptorIndex = descriptorIndex;
             Attributes = attributes;
         }
 
         /// <summary>
-        /// Gets the <see cref="AccessFlags"/>.
+        /// Gets the <see cref="FieldAccessFlags"/>.
         /// </summary>
-        public AccessFlags Flags
+        public FieldAccessFlags AccessFlags
         {
             get;
             set;
