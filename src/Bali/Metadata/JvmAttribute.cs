@@ -1,4 +1,5 @@
 using System;
+
 namespace Bali.Metadata
 {
     /// <summary>

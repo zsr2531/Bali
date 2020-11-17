@@ -49,7 +49,7 @@ namespace Bali.Metadata.Attributes
             for (int i = 0; i < count; i++)
             {
                 buffer[i] = new InnerClassInfo(
-                    stream.ReadU2(), stream.ReadU2(), stream.ReadU2(), (AccessFlags) stream.ReadU2());
+                    stream.ReadU2(), stream.ReadU2(), stream.ReadU2(), (ClassAccessFlags) stream.ReadU2());
             }
 
             return new InnerClassesAttribute(nameIndex, buffer);
@@ -59,7 +59,7 @@ namespace Bali.Metadata.Attributes
     public struct InnerClassInfo
     {
         public InnerClassInfo(
-            ushort innerClassIndex, ushort outerClassIndex, ushort innerNameIndex, AccessFlags innerAccessFlags)
+            ushort innerClassIndex, ushort outerClassIndex, ushort innerNameIndex, ClassAccessFlags innerAccessFlags)
         {
             InnerClassIndex = innerClassIndex;
             OuterClassIndex = outerClassIndex;
@@ -85,7 +85,7 @@ namespace Bali.Metadata.Attributes
             set;
         }
 
-        public AccessFlags InnerAccessFlags
+        public ClassAccessFlags InnerAccessFlags
         {
             get;
             set;

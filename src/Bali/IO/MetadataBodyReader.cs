@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Bali.Metadata;
 using Bali.Metadata.Factories;
 
@@ -28,23 +29,24 @@ namespace Bali.IO
             for (int i = 0; i < interfacesCount; i++)
                 interfaces.Add(_inputStream.ReadU2());
 
-            var fields = ReadInfo((f, n, d, a) => new JvmFieldInfo(f, n, d, a));
-            var methods = ReadInfo((f, n, d, a) => new JvmMethodInfo(f, n, d, a));
+            var fields = ReadInfo<JvmFieldInfo, FieldAccessFlags>((f, n, d, a) => new JvmFieldInfo(f, n, d, a));
+            var methods = ReadInfo<JvmMethodInfo, MethodAccessFlags>((f, n, d, a) => new JvmMethodInfo(f, n, d, a));
             var attributes = ReadAttributes();
             
             return new MetadataBody(interfaces, fields, methods, attributes);
         }
 
-        private IList<T> ReadInfo<T>(Func<AccessFlags, ushort, ushort, JvmAttribute[], T> factory)
+        private IList<TType> ReadInfo<TType, TFlags>(Func<TFlags, ushort, ushort, IList<JvmAttribute>, TType> factory)
         {
             ushort count = _inputStream!.ReadU2();
             if (count == 0)
-                return new List<T>();
+                return new List<TType>();
 
-            var buffer = new List<T>(count);
+            var buffer = new List<TType>(count);
             for (int i = 0; i < count; i++)
             {
-                var flags = (AccessFlags) _inputStream!.ReadU2();
+                ushort rawFlags = _inputStream!.ReadU2();
+                var flags = Unsafe.As<ushort, TFlags>(ref rawFlags);
                 ushort nameIndex = _inputStream!.ReadU2();
                 ushort descriptorIndex = _inputStream!.ReadU2();
                 var attributes = ReadAttributes();
@@ -54,18 +56,15 @@ namespace Bali.IO
             return buffer;
         }
 
-        private JvmAttribute[] ReadAttributes()
+        private IList<JvmAttribute> ReadAttributes()
         {
             ushort attributesCount = _inputStream!.ReadU2();
             if (attributesCount == 0)
-                return Array.Empty<JvmAttribute>();
+                return new List<JvmAttribute>();
             
-            JvmAttribute[] attributes = new JvmAttribute[attributesCount];
+            var attributes = new List<JvmAttribute>(attributesCount);
             for (int i = 0; i < attributesCount; i++)
-            {
-                ushort nameIndex = _inputStream!.ReadU2();
-                attributes[i] = _attributeFactory!.Create(_inputStream!);
-            }
+                attributes.Add(_attributeFactory!.Create(_inputStream!));
 
             return attributes;
         }
