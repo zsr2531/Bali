@@ -14,7 +14,7 @@ namespace Bali.Emit
         /// <summary>
         /// Provides a singleton JvmBytecodeDisassembler instance.
         /// </summary>
-        public static readonly JvmBytecodeDisassembler Instance = new JvmBytecodeDisassembler();
+        public static readonly JvmBytecodeDisassembler Instance = new();
 
         /// <summary>
         /// Default parameterless constructor.
@@ -26,8 +26,9 @@ namespace Bali.Emit
         {
             var instructions = new List<JvmInstruction>();
             bool isWide = false;
-
+            bool needsAlignment = stream.Position % 4 == 0;
             long start = stream.Position;
+            
             while (stream.Position - start < count)
             {
                 int current = (int) (stream.Position - start);
@@ -44,7 +45,7 @@ namespace Bali.Emit
 
                 var operand = isWide
                     ? ReadWideOperand(stream, opCode)
-                    : ReadOperand(current, stream, opCode.OperandType);
+                    : ReadOperand(current, stream, opCode.OperandType, needsAlignment);
                 
                 instructions.Add(new JvmInstruction(current, opCode, operand));
                 isWide = false;
@@ -59,16 +60,17 @@ namespace Bali.Emit
         /// <param name="offset">The offset.</param>
         /// <param name="stream">The input <see cref="Stream"/> to read from.</param>
         /// <param name="type">The <see cref="JvmOperandType"/> to read.</param>
+        /// <param name="needsAlignment">Whether some operands need to be 4-byte aligned.</param>
         /// <returns>The deserialized operand.</returns>
-        protected static object? ReadOperand(int offset, Stream stream, JvmOperandType type)
+        protected static object? ReadOperand(int offset, Stream stream, JvmOperandType type, bool needsAlignment)
         {
             return type switch
             {
                 JvmOperandType.None => null,
-                JvmOperandType.BranchOffset => stream.ReadI1(),
-                JvmOperandType.WideBranchOffset => stream.ReadI2(),
-                JvmOperandType.KeyJumpTable => ReadLookupSwitchOperand(offset, stream),
-                JvmOperandType.IndexJumpTable => ReadTableSwitchOperand(offset, stream),
+                JvmOperandType.BranchOffset => stream.ReadI2(),
+                JvmOperandType.WideBranchOffset => stream.ReadI4(),
+                JvmOperandType.KeyJumpTable => ReadLookupSwitchOperand(offset, stream, needsAlignment),
+                JvmOperandType.IndexJumpTable => ReadTableSwitchOperand(offset, stream, needsAlignment),
                 JvmOperandType.LocalIndex => stream.ReadU1(),
                 JvmOperandType.LocalIndexWithSignedByte => new LocalIndexWithSignedByte(stream.ReadU1(), stream.ReadI1()),
                 JvmOperandType.ConstantPoolIndex => stream.ReadU1(),
@@ -98,9 +100,9 @@ namespace Bali.Emit
             return new WideLocalIndexWithSignedShort(index, constant);
         }
 
-        private static object ReadLookupSwitchOperand(int offset, Stream stream)
+        private static object ReadLookupSwitchOperand(int offset, Stream stream, bool needsAlignment)
         {
-            AlignOn4ByteBoundary(offset, stream);
+            AlignOn4ByteBoundary(offset, stream, needsAlignment);
             int @default = stream.ReadI4();
             int count = stream.ReadI4();
             var buffer = new Dictionary<int, int>(count);
@@ -111,9 +113,9 @@ namespace Bali.Emit
             return new KeyJumpTable(@default, buffer);
         }
 
-        private static object ReadTableSwitchOperand(int offset, Stream stream)
+        private static object ReadTableSwitchOperand(int offset, Stream stream, bool needsAlignment)
         {
-            AlignOn4ByteBoundary(offset, stream);
+            AlignOn4ByteBoundary(offset, stream, needsAlignment);
             int @default = stream.ReadI4();
             int low = stream.ReadI4();
             int high = stream.ReadI4();
@@ -125,8 +127,11 @@ namespace Bali.Emit
             return new IndexJumpTable(@default, low, high, buffer);
         }
 
-        private static void AlignOn4ByteBoundary(int offset, Stream stream)
+        private static void AlignOn4ByteBoundary(int offset, Stream stream, bool needsAlignment)
         {
+            if (!needsAlignment)
+                return;
+            
             int padding = offset % 4;
             for (int i = 0; i < padding; i++)
                 stream.ReadU1();
