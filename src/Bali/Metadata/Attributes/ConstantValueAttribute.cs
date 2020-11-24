@@ -17,8 +17,5 @@ namespace Bali.Metadata.Attributes
         /// <inheritdoc />
         public override byte[] GetData() =>
             new[] { (byte) ((ConstantValueIndex >> 8) & 0xFF), (byte) (ConstantValueIndex & 0xFF) };
-        
-        public static ConstantValueAttribute Create(Stream stream, ushort nameIndex) =>
-            new ConstantValueAttribute(nameIndex, stream.ReadU2());
     }
 }

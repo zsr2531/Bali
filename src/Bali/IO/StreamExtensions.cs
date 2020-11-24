@@ -29,6 +29,32 @@ namespace Bali.IO
 
         internal static int ReadI4(this Stream stream) => (int) stream.ReadU4();
 
-        internal static long ReadI8(this Stream stream) => (long) stream.ReadU8();
+        internal static void WriteU1(this Stream stream, byte value) => stream.WriteByte(value);
+
+        internal static void WriteU2(this Stream stream, ushort value)
+        {
+            stream.WriteU1((byte) (value >> 8));
+            stream.WriteU1((byte) (value & 0xFF));
+        }
+
+        internal static void WriteU4(this Stream stream, uint value)
+        {
+            stream.WriteU2((ushort) (value >> 16));
+            stream.WriteU2((ushort) (value & 0xFFFF));
+        }
+
+        internal static void WriteU8(this Stream stream, ulong value)
+        {
+            stream.WriteU4((uint) (value >> 32));
+            stream.WriteU4((uint) (value & 0xFFFFFFFF));
+        }
+
+        internal static void WriteI1(this Stream stream, sbyte value) => stream.WriteU1((byte) value);
+        
+        internal static void WriteI2(this Stream stream, short value) => stream.WriteU2((ushort) value);
+
+        internal static void WriteI4(this Stream stream, int value) => stream.WriteU4((uint) value);
+
+        internal static void WriteI8(this Stream stream, long value) => stream.WriteU8((ulong) value);
     }
 }

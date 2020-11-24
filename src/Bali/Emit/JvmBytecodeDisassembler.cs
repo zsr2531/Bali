@@ -12,7 +12,7 @@ namespace Bali.Emit
     public class JvmBytecodeDisassembler : IJvmBytecodeDisassembler
     {
         /// <summary>
-        /// Provides a singleton JvmBytecodeDisassembler instance.
+        /// Provides a singleton <see cref="JvmBytecodeDisassembler"/> instance.
         /// </summary>
         public static readonly JvmBytecodeDisassembler Instance = new();
 
