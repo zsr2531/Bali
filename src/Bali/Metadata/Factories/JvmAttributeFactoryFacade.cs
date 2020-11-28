@@ -12,6 +12,7 @@ namespace Bali.Metadata.Factories
     /// </summary>
     public class JvmAttributeFactoryFacade : IJvmAttributeFactoryFacade
     {
+        private readonly Stream _stream;
         private readonly ConstantPool _constantPool;
         private readonly Dictionary<string, JvmAttributeFactoryBase> _concreteFactories;
 
@@ -20,9 +21,11 @@ namespace Bali.Metadata.Factories
         /// <summary>
         /// Creates a new <see cref="JvmAttributeFactoryFacade"/>.
         /// </summary>
+        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <param name="constantPool">The <see cref="ConstantPool"/>.</param>
-        public JvmAttributeFactoryFacade(in ConstantPool constantPool)
+        public JvmAttributeFactoryFacade(Stream stream, in ConstantPool constantPool)
         {
+            _stream = stream;
             _constantPool = constantPool;
             _concreteFactories = new Dictionary<string, JvmAttributeFactoryBase>
             {
@@ -38,18 +41,31 @@ namespace Bali.Metadata.Factories
             get => _concreteFactories.TryGetValue(name, out var value)
                 ? value
                 : DefaultJvmAttributeFactory;
-            set => _concreteFactories[name] = value;
+            set
+            {
+                if (name != value.Name)
+                    throw new ArgumentException(nameof(name));
+                
+                _concreteFactories[name] = value;
+            }
         }
 
         /// <inheritdoc />
-        public JvmAttribute Create(Stream stream)
+        public JvmAttribute Create()
         {
-            ushort nameIndex = stream.ReadU2();
-            var nameConstant = _constantPool[nameIndex];
-            if (!(nameConstant is Utf8Constant { Value: {} name }))
+            ushort nameIndex = _stream.ReadU2();
+            string name = GetName(nameIndex);
+
+            return this[name].Create(_stream, nameIndex);
+        }
+
+        private string GetName(ushort nameIndex)
+        {
+            var constant = _constantPool[nameIndex];
+            if (constant is not Utf8Constant { Value: { } name })
                 throw new ArgumentException(nameof(nameIndex));
 
-            return this[name].Create(stream, nameIndex);
+            return name;
         }
     }
 }

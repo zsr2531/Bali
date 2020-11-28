@@ -15,7 +15,7 @@ namespace Bali.IO
         public MetadataBodyReader(Stream inputStream, in ConstantPool constantPool)
         {
             _inputStream = inputStream;
-            _attributeFactory = new JvmAttributeFactoryFacade(constantPool);
+            _attributeFactory = new JvmAttributeFactoryFacade(inputStream, constantPool);
         }
 
         public MetadataBody ReadMetadataBody()
@@ -64,7 +64,7 @@ namespace Bali.IO
             
             var attributes = new List<JvmAttribute>(attributesCount);
             for (int i = 0; i < attributesCount; i++)
-                attributes.Add(_attributeFactory!.Create(_inputStream!));
+                attributes.Add(_attributeFactory!.Create());
 
             return attributes;
         }
