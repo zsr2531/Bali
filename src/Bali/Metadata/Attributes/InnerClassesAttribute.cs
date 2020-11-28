@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.IO;
 using Bali.IO;
@@ -18,25 +17,6 @@ namespace Bali.Metadata.Attributes
         {
             get;
             set;
-        }
-
-        /// <inheritdoc />
-        public override byte[] GetData()
-        {
-            var buffer = new byte[InnerClasses.Count * 8];
-
-            for (int i = 0; i < InnerClasses.Count; i++)
-            {
-                var span = buffer.AsSpan().Slice(i * 8);
-                var item = InnerClasses[i];
-
-                BinaryPrimitives.WriteUInt16BigEndian(span, item.InnerClassIndex);
-                BinaryPrimitives.WriteUInt16BigEndian(span.Slice(2), item.OuterClassIndex);
-                BinaryPrimitives.WriteUInt16BigEndian(span.Slice(4), item.InnerNameIndex);
-                BinaryPrimitives.WriteUInt16BigEndian(span.Slice(8), (ushort)item.InnerAccessFlags);
-            }
-
-            return buffer;
         }
 
         public static InnerClassesAttribute Create(Stream stream, ushort nameIndex)

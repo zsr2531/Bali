@@ -45,7 +45,7 @@ namespace Bali.Metadata.Factories
             var attributes = new List<JvmAttribute>(attributeCount);
 
             for (int i = 0; i < attributeCount; i++)
-                attributes.Add(AttributeFactoryFacade.Create(stream));
+                attributes.Add(AttributeFactoryFacade.Create());
 
             return new CodeAttribute(nameIndex, maxStack, maxLocals, instructions, exceptionHandlers, attributes);
         }

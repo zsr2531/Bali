@@ -24,13 +24,6 @@ namespace Bali.Metadata.Attributes
             set;
         }
 
-        /// <inheritdoc />
-        public override byte[] GetData() => new[]
-        {
-            (byte) ((ClassIndex >> 8) & 0xFF), (byte) (ClassIndex & 0xFF),
-            (byte) ((MethodIndex >> 8) & 0xFF), (byte) (MethodIndex & 0xFF)
-        };
-
         public static EnclosingMethodAttribute Create(Stream stream, ushort nameIndex) =>
             new EnclosingMethodAttribute(nameIndex, stream.ReadU2(), stream.ReadU2());
     }

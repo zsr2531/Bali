@@ -16,20 +16,6 @@ namespace Bali.Metadata.Attributes
             set;
         }
 
-        /// <inheritdoc />
-        public override byte[] GetData()
-        {
-            var buffer = new byte[Exceptions.Count * 2];
-
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                buffer[i] = (byte)((Exceptions[i] >> 8) & 0xFF);
-                buffer[++i] = (byte)(Exceptions[i] & 0xFF);
-            }
-
-            return buffer;
-        }
-
         public static ExceptionsAttribute Create(Stream stream, ushort nameIndex)
         {
             ushort count = stream.ReadU2();

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Bali.IO;
 
 namespace Bali.Metadata.Attributes
@@ -19,28 +17,6 @@ namespace Bali.Metadata.Attributes
         {
             get;
             set;
-        }
-
-        /// <inheritdoc />
-        public override byte[] GetData()
-        {
-            var buffer = new byte[BootstrapMethods.Sum(info => info.Size)];
-            var span = buffer.AsSpan();
-
-            foreach (var info in BootstrapMethods)
-            {
-                BinaryPrimitives.WriteUInt16BigEndian(span, info.BootstrapMethodIndex);
-
-                foreach (ushort index in info.BootstrapMethodArgumentIndices)
-                {
-                    span = span.Slice(2);
-                    BinaryPrimitives.WriteUInt16BigEndian(span, index);
-                }
-
-                span = span.Slice(info.Size);
-            }
-
-            return buffer;
         }
 
         public static BootstrapMethodsAttribute Create(Stream stream, ushort nameIndex)

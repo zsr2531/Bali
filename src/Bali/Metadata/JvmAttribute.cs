@@ -1,7 +1,3 @@
-using System;
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Metadata
 {
     /// <summary>
@@ -9,7 +5,7 @@ namespace Bali.Metadata
     /// </summary>
     public class JvmAttribute
     {
-        private readonly byte[]? _data;
+        internal readonly byte[]? Data;
 
         /// <summary>
         /// Creates a new <see cref="JvmAttribute"/>.
@@ -19,7 +15,7 @@ namespace Bali.Metadata
         public JvmAttribute(ushort nameIndex, byte[] data)
             : this(nameIndex)
         {
-            _data = data;
+            Data = data;
         }
 
         /// <summary>
@@ -39,33 +35,5 @@ namespace Bali.Metadata
             get;
             set;
         }
-
-        /// <summary>
-        /// Gets the raw data of the attribute.
-        /// </summary>
-        public byte[] GetData()
-        {
-            using var ms = Serialize();
-            return ms.ToArray();
-        }
-
-        /// <summary>
-        /// Writes the raw byte representation of the attribute to the <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        public void WriteTo(Stream stream)
-        {
-            using var ms = Serialize();
-            
-            stream.WriteU2(NameIndex);
-            stream.WriteU4((uint) ms.Length);
-            ms.WriteTo(stream);
-        }
-
-        /// <summary>
-        /// Serializes the attribute into a <see cref="MemoryStream"/>.
-        /// </summary>
-        /// <returns>The serialized attribute.</returns>
-        protected virtual MemoryStream Serialize() => new(_data ?? Array.Empty<byte>());
     }
 }
