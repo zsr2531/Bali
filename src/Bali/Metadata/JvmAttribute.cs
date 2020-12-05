@@ -1,5 +1,3 @@
-using System;
-
 namespace Bali.Metadata
 {
     /// <summary>
@@ -7,7 +5,7 @@ namespace Bali.Metadata
     /// </summary>
     public class JvmAttribute
     {
-        private readonly byte[]? _data;
+        internal readonly byte[]? Data;
 
         /// <summary>
         /// Creates a new <see cref="JvmAttribute"/>.
@@ -17,7 +15,7 @@ namespace Bali.Metadata
         public JvmAttribute(ushort nameIndex, byte[] data)
             : this(nameIndex)
         {
-            _data = data;
+            Data = data;
         }
 
         /// <summary>
@@ -37,10 +35,5 @@ namespace Bali.Metadata
             get;
             set;
         }
-
-        /// <summary>
-        /// Gets the raw data of the attribute.
-        /// </summary>
-        public virtual byte[] GetData() => _data ?? Array.Empty<byte>();
     }
 }

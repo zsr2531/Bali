@@ -21,4 +21,8 @@
       <PackageReference Include="System.Memory" Version="4.5.4" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="../Bali.SourceGenerators/Bali.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
 </Project>
