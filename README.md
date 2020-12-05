@@ -28,6 +28,11 @@ Want to contribute?
 
 If you wish to contribute, I will gladly appreciate it. You can read the contributing guidelines and a few small tips [here](CONTRIBUTING.md).
 
+External libraries used
+-----------------------
+
+- [CodeGenHelpers](https://github.com/dansiegel/CodeGenHelpers) (MIT License): Used only for aiding source generation.
+
 Disclaimer
 ----------
 
