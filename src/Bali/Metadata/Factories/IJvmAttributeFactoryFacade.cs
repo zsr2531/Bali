@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Bali.Metadata.Factories
+﻿namespace Bali.Metadata.Factories
 {
     /// <summary>
     /// Provides a contract for keeping track of <see cref="JvmAttributeFactoryBase"/> instances.

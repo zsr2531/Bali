@@ -1,6 +1,4 @@
-﻿using System.IO;
-using Bali.IO;
-using Bali.SourceGeneration;
+﻿using Bali.SourceGeneration;
 
 namespace Bali.Metadata.Attributes
 {
@@ -18,8 +16,5 @@ namespace Bali.Metadata.Attributes
             get;
             set;
         }
-
-        public static SignatureAttribute Create(Stream stream, ushort nameIndex) =>
-            new SignatureAttribute(nameIndex, stream.ReadU2());
     }
 }
