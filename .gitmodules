@@ -1,0 +1,3 @@
+[submodule "deps/CodeGenHelpers"]
+	path = deps/CodeGenHelpers
+	url = https://github.com/dansiegel/CodeGenHelpers.git
