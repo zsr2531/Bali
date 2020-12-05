@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Bali.IO;
+﻿using System.Collections.Generic;
+using Bali.SourceGeneration;
 
 namespace Bali.Metadata.Attributes
 {
+    [AutoBuilder]
     public sealed class InnerClassesAttribute : JvmAttribute
     {
         public InnerClassesAttribute(ushort nameIndex, IList<InnerClassInfo> innerClasses)
@@ -17,22 +16,6 @@ namespace Bali.Metadata.Attributes
         {
             get;
             set;
-        }
-
-        public static InnerClassesAttribute Create(Stream stream, ushort nameIndex)
-        {
-            ushort count = stream.ReadU2();
-            var buffer = count == 0
-                ? Array.Empty<InnerClassInfo>()
-                : new InnerClassInfo[count];
-
-            for (int i = 0; i < count; i++)
-            {
-                buffer[i] = new InnerClassInfo(
-                    stream.ReadU2(), stream.ReadU2(), stream.ReadU2(), (ClassAccessFlags) stream.ReadU2());
-            }
-
-            return new InnerClassesAttribute(nameIndex, buffer);
         }
     }
 

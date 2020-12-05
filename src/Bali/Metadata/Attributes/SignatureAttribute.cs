@@ -1,8 +1,10 @@
 ﻿using System.IO;
 using Bali.IO;
+using Bali.SourceGeneration;
 
 namespace Bali.Metadata.Attributes
 {
+    [AutoBuilder]
     public sealed class SignatureAttribute : JvmAttribute
     {
         public SignatureAttribute(ushort nameIndex, ushort signatureIndex)

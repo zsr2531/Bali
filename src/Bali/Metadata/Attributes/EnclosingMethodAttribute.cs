@@ -1,8 +1,8 @@
-﻿using System.IO;
-using Bali.IO;
+﻿using Bali.SourceGeneration;
 
 namespace Bali.Metadata.Attributes
 {
+    [AutoBuilder]
     public sealed class EnclosingMethodAttribute : JvmAttribute
     {
         public EnclosingMethodAttribute(ushort nameIndex, ushort classIndex, ushort methodIndex)
@@ -23,8 +23,5 @@ namespace Bali.Metadata.Attributes
             get;
             set;
         }
-
-        public static EnclosingMethodAttribute Create(Stream stream, ushort nameIndex) =>
-            new EnclosingMethodAttribute(nameIndex, stream.ReadU2(), stream.ReadU2());
     }
 }
