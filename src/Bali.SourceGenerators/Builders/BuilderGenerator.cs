@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Bali.SourceGenerators
+namespace Bali.SourceGenerators.Builders
 {
     [Generator]
     public class BuilderGenerator : SourceGeneratorBase
@@ -18,7 +18,7 @@ namespace Bali.SourceGenerators
         private const string BuilderNamespace = "Bali.Metadata.Builders";
 
         public BuilderGenerator()
-            : base(AttributeName, AttributeSource, () => new SyntaxReceiver()) { }
+            : base(FullAttributeName, AttributeSource) { }
 
         static BuilderGenerator()
         {
@@ -33,27 +33,9 @@ namespace Bali.SourceGenerators
             AttributeSource = builder.Build();
         }
 
-        protected override void Execute(Compilation compilation, GeneratorExecutionContext context)
+        protected override void Execute(List<INamedTypeSymbol> targets, Compilation compilation, GeneratorExecutionContext context)
         {
-            if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-                return;
-
-            var toProcess = new List<INamedTypeSymbol>();
-            var builderAttribute = compilation.GetTypeByMetadataName(FullAttributeName);
-
-            foreach (var candidate in receiver.CandidateClasses)
-            {
-                var model = compilation.GetSemanticModel(candidate.SyntaxTree);
-                var symbol = model.GetDeclaredSymbol(candidate);
-                var attributes = symbol!.GetAttributes();
-
-                if (!attributes.Any(ad => ad.AttributeClass!.Equals(builderAttribute, SymbolEqualityComparer.Default)))
-                    continue;
-                
-                toProcess.Add(symbol);
-            }
-
-            foreach (var attribute in toProcess)
+            foreach (var attribute in targets)
             {
                 string source = ProcessClass(attribute, compilation);
                 context.AddSource(attribute.Name + "Builder", source);
@@ -73,7 +55,7 @@ namespace Bali.SourceGenerators
                         .AddParameter("JvmAttributeDirector", "director")
                         .WithBody(w =>
                         {
-                            foreach (var target in toProcess)
+                            foreach (var target in targets)
                             {
                                 string attributeName = target.Name;
                                 string withoutAttribute = attributeName.Substring(0, attributeName.Length - 9);
@@ -89,7 +71,34 @@ namespace Bali.SourceGenerators
         {
             string attributeName = attribute.Name;
             string builderName = attributeName + "Builder";
-            var builder = CodeBuilder.Create(BuilderNamespace)
+            
+            var builder = CreateBuilder(builderName, attributeName);
+            var steps = new List<string>();
+
+            foreach (var property in attribute.GetMembers().Where(m => m is IPropertySymbol).Cast<IPropertySymbol>())
+            {
+                if (property.Type is not INamedTypeSymbol type)
+                {
+                    steps.Add($"throw new System.NotSupportedException(\"Unsupported type {property.Type.Name}\");");
+                    continue;
+                }
+
+                var processor = new TypeProcessor(builder.Class, type, $"attribute.{property.Name}");
+                steps.Add(processor.Process());
+            }
+
+            builder.WithBody(w =>
+            {
+                foreach (string step in steps)
+                    w.AppendLine(step);
+            });
+            
+            return builder.Class.Build();
+        }
+
+        private static MethodBuilder CreateBuilder(string builderName, string attributeName)
+        {
+            return CodeBuilder.Create(BuilderNamespace)
                 .AddNamespaceImport("System")
                 .AddNamespaceImport("System.IO")
                 .AddNamespaceImport("System.Collections.Generic")
@@ -118,46 +127,6 @@ namespace Bali.SourceGenerators
                         .WithInheritDoc()
                         .AddParameter("Stream", "stream")
                         .AddParameter(attributeName, "attribute");
-
-            var steps = new List<string>();
-
-            foreach (var property in attribute.GetMembers().Where(m => m is IPropertySymbol).Cast<IPropertySymbol>())
-            {
-                if (property.Type is not INamedTypeSymbol type)
-                {
-                    steps.Add($"throw new System.NotSupportedException(\"Unsupported type {property.Type.Name}\");");
-                    continue;
-                }
-
-                var processor = new TypeProcessor(builder.Class, type, $"attribute.{property.Name}");
-                steps.Add(processor.Process());
-            }
-
-            builder.WithBody(w =>
-            {
-                foreach (string step in steps)
-                    w.AppendLine(step);
-            });
-            
-            return builder.Class.Build();
-        }
-
-        private sealed class SyntaxReceiver : ISyntaxReceiver
-        {
-            public List<ClassDeclarationSyntax> CandidateClasses
-            {
-                get;
-            } = new();
-            
-            public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
-            {
-                if (syntaxNode is not ClassDeclarationSyntax classDeclarationSyntax)
-                    return;
-
-                var attributeList = classDeclarationSyntax.AttributeLists;
-                if (attributeList.Count > 0)
-                    CandidateClasses.Add(classDeclarationSyntax);
-            }
         }
     }
 }

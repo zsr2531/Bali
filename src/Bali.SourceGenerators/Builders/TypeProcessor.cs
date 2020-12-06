@@ -5,7 +5,7 @@ using System.Reflection;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 
-namespace Bali.SourceGenerators
+namespace Bali.SourceGenerators.Builders
 {
     public class TypeProcessor
     {
