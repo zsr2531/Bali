@@ -40,7 +40,7 @@ namespace Bali.SourceGenerators.Builders
             if (CheckExistingMethod(n => n == $"IList<{_type.Name}>") is { } existing)
                 return existing;
 
-            var method = _builder.AddMethod($"Build{type.Name}List", Accessibility.Private)
+            var method = _builder.AddMethod($"Write{type.Name}List", Accessibility.Private)
                 .AddParameter("Stream", "stream")
                 .AddParameter($"IList<{type.Name}>", "list")
                 .MakeStaticMethod();
@@ -64,7 +64,7 @@ namespace Bali.SourceGenerators.Builders
             if (CheckExistingMethod(n => n == _type.Name) is { } existing)
                 return existing;
 
-            var method = _builder.AddMethod($"Build{_type.Name}", Accessibility.Private)
+            var method = _builder.AddMethod($"Write{_type.Name}", Accessibility.Private)
                 .AddParameter("Stream", "stream")
                 .AddParameter(_type, "data")
                 .MakeStaticMethod();
@@ -101,7 +101,7 @@ namespace Bali.SourceGenerators.Builders
                 SpecialType.System_Int64 => "WriteI8",
                 SpecialType.System_Single => "WriteR4",
                 SpecialType.System_Double => "WriteR8",
-                _ => $"throw new System.NotSupportedException(\"Unsupported special type: {symbol.MetadataName}\");"
+                _ => $"throw new NotSupportedException(\"Unsupported special type: {symbol.MetadataName}\");"
             };
 
             return method.Length > 20

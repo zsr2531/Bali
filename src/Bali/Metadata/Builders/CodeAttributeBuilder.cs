@@ -22,7 +22,7 @@ namespace Bali.Metadata.Builders
         public override string Name => "Code";
 
         /// <inheritdoc />
-        protected override void BuildBody(Stream stream, CodeAttribute attribute)
+        protected override void WriteBody(Stream stream, CodeAttribute attribute)
         {
             stream.WriteU2(attribute.MaxStack);
             stream.WriteU2(attribute.MaxLocals);

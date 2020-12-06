@@ -23,12 +23,12 @@ namespace Bali.Metadata.Builders
         }
 
         /// <inheritdoc />
-        public void BuildName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
+        public void WriteName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
 
         /// <inheritdoc />
-        public void BuildBody(Stream stream, JvmAttribute attribute) => BuildBody(stream, (T) attribute);
+        public void WriteBody(Stream stream, JvmAttribute attribute) => WriteBody(stream, (T) attribute);
 
-        /// <inheritdoc cref="BuildBody" />
-        protected abstract void BuildBody(Stream stream, T attribute);
+        /// <inheritdoc cref="WriteBody" />
+        protected abstract void WriteBody(Stream stream, T attribute);
     }
 }

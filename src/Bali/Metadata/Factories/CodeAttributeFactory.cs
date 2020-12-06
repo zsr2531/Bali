@@ -34,7 +34,7 @@ namespace Bali.Metadata.Factories
         public override string Name => "Code";
 
         /// <inheritdoc />
-        public override JvmAttribute Create(Stream stream, ushort nameIndex)
+        public override JvmAttribute Read(Stream stream, ushort nameIndex)
         {
             _ = stream.ReadU4();
             ushort maxStack = stream.ReadU2(), maxLocals = stream.ReadU2();

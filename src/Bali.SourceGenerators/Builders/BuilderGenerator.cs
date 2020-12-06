@@ -2,8 +2,6 @@
 using System.Linq;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Bali.SourceGenerators.Builders
 {
@@ -52,7 +50,7 @@ namespace Bali.SourceGenerators.Builders
                     .AddMethod("AddToCache", Accessibility.Internal)
                         .MakeStaticMethod()
                         .WithReturnType("void")
-                        .AddParameter("JvmAttributeDirector", "director")
+                        .AddParameter("IJvmAttributeDirector", "director")
                         .WithBody(w =>
                         {
                             foreach (var target in targets)
@@ -79,7 +77,7 @@ namespace Bali.SourceGenerators.Builders
             {
                 if (property.Type is not INamedTypeSymbol type)
                 {
-                    steps.Add($"throw new System.NotSupportedException(\"Unsupported type {property.Type.Name}\");");
+                    steps.Add($"throw new NotSupportedException(\"Unsupported type {property.Type.Name}\");");
                     continue;
                 }
 
@@ -122,7 +120,7 @@ namespace Bali.SourceGenerators.Builders
                         .WithGetterExpression($"\"{attributeName.Substring(0, attributeName.Length - 9)}\"")
                         .WithInheritDoc()
                         .Class
-                    .AddMethod("BuildBody", Accessibility.Protected)
+                    .AddMethod("WriteBody", Accessibility.Protected)
                         .Override()
                         .WithInheritDoc()
                         .AddParameter("Stream", "stream")

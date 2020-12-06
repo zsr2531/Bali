@@ -48,14 +48,14 @@ namespace Bali.Metadata.Builders
             string name = GetName(attribute.NameIndex);
             var builder = this[name];
             
-            builder.BuildName(_stream, attribute);
+            builder.WriteName(_stream, attribute);
             ConstructBody(builder, attribute);
         }
 
         private void ConstructBody(IJvmAttributeBuilder builder, JvmAttribute attribute)
         {
             using var ms = new MemoryStream();
-            builder.BuildBody(ms, attribute);
+            builder.WriteBody(ms, attribute);
             
             _stream.WriteU4((uint) ms.Length);
             ms.WriteTo(_stream);
