@@ -44,6 +44,6 @@ namespace Bali.IO.Constants
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="InterfaceMethodrefConstant"/>.</returns>
         public static InterfaceMethodrefConstant Create(Stream stream) =>
-            new InterfaceMethodrefConstant(stream.ReadU2(), stream.ReadU2());
+            new(stream.ReadU2(), stream.ReadU2());
     }
 }

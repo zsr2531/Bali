@@ -28,6 +28,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="MethodTypeConstant"/>.</returns>
-        public static MethodTypeConstant Create(Stream stream) => new MethodTypeConstant(stream.ReadU2());
+        public static MethodTypeConstant Create(Stream stream) => new(stream.ReadU2());
     }
 }

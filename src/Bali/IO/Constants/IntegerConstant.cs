@@ -28,6 +28,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="IntegerConstant"/>.</returns>
-        public static IntegerConstant Create(Stream stream) => new IntegerConstant((int) stream.ReadU4());
+        public static IntegerConstant Create(Stream stream) => new((int) stream.ReadU4());
     }
 }
