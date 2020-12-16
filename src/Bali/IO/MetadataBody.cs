@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Bali.Metadata;
+using Bali.Attributes;
 
 namespace Bali.IO
 {

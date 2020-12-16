@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
-using Bali.Metadata;
-using Bali.Metadata.Factories;
+using Bali.Attributes;
+using Bali.Attributes.Factories;
 
 namespace Bali.IO
 {

@@ -1,5 +1,4 @@
 using System;
-using Bali.IO.Descriptors;
 using Xunit;
 
 namespace Bali.Descriptors.Tests.Parser
