@@ -6,6 +6,9 @@ using Bali.Metadata.Attributes;
 
 namespace Bali.Metadata.Factories
 {
+    /// <summary>
+    /// Provides an implementation of the <see cref="JvmAttributeFactoryBase"/> contract that can create <see cref="CodeAttribute"/>s.
+    /// </summary>
     public class CodeAttributeFactory : JvmAttributeFactoryBase
     {
         private readonly IJvmBytecodeDisassembler _disassembler;
@@ -15,7 +18,9 @@ namespace Bali.Metadata.Factories
         /// </summary>
         /// <param name="attributeFactoryFacade">The attribute factory that can be used to create other types of attributes.</param>
         public CodeAttributeFactory(IJvmAttributeFactoryFacade attributeFactoryFacade)
-            : this(attributeFactoryFacade, JvmBytecodeDisassembler.Instance) { }
+            : this(attributeFactoryFacade, JvmBytecodeDisassembler.Instance)
+        {
+        }
 
         /// <summary>
         /// Creates a new <see cref="CodeAttributeFactory"/>.
