@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Bali.IO
 {
-    internal static class StreamExtensions
+    internal static unsafe class StreamExtensions
     {
         internal static byte ReadU1(this Stream stream)
         {
@@ -28,6 +28,12 @@ namespace Bali.IO
         internal static short ReadI2(this Stream stream) => (short) stream.ReadU2();
 
         internal static int ReadI4(this Stream stream) => (int) stream.ReadU4();
+
+        internal static long ReadI8(this Stream stream) => (long) stream.ReadU8();
+
+        internal static float ReadR4(this Stream stream) => *(float*) stream.ReadU4();
+
+        internal static double ReadR8(this Stream stream) => *(double*) stream.ReadU8();
 
         internal static void WriteU1(this Stream stream, byte value) => stream.WriteByte(value);
 
@@ -56,5 +62,9 @@ namespace Bali.IO
         internal static void WriteI4(this Stream stream, int value) => stream.WriteU4((uint) value);
 
         internal static void WriteI8(this Stream stream, long value) => stream.WriteU8((ulong) value);
+
+        internal static void WriteR4(this Stream stream, float value) => stream.WriteU4(*(uint*) &value);
+        
+        internal static void WriteR8(this Stream stream, double value) => stream.WriteU8(*(ulong*) &value);
     }
 }
