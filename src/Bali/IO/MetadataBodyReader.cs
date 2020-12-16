@@ -7,17 +7,30 @@ using Bali.Metadata.Factories;
 
 namespace Bali.IO
 {
+    /// <summary>
+    /// Reads the interface indices, fields, methods and attributes from a given <see cref="Stream"/>.
+    /// </summary>
     public readonly struct MetadataBodyReader
     {
         private readonly Stream? _inputStream;
         private readonly IJvmAttributeFactoryFacade? _attributeFactory;
 
+        /// <summary>
+        /// Creates a new <see cref="MetadataBodyReader"/>.
+        /// </summary>
+        /// <param name="inputStream">The input <see cref="Stream"/> to read data from.</param>
+        /// <param name="constantPool">The <see cref="ConstantPool"/> to resolve constant pool indices with.</param>
         public MetadataBodyReader(Stream inputStream, in ConstantPool constantPool)
         {
             _inputStream = inputStream;
             _attributeFactory = new JvmAttributeFactoryFacade(inputStream, constantPool);
         }
 
+        /// <summary>
+        /// Parses the <see cref="MetadataBody"/> from the input <see cref="Stream"/>.
+        /// </summary>
+        /// <returns>The parsed <see cref="MetadataBody"/>.</returns>
+        /// <exception cref="ArgumentException">When the input <see cref="Stream"/> is <i>null</i>.</exception>
         public MetadataBody ReadMetadataBody()
         {
             if (_inputStream is null)
