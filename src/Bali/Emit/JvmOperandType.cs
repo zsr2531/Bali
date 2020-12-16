@@ -83,6 +83,11 @@
         /// <summary>
         /// Indicates that the opcode's operand is a signed short.
         /// </summary>
-        InlineShort
+        InlineShort,
+        
+        /// <summary>
+        /// Indicates that the opcode's operand is not defined.
+        /// </summary>
+        Undefined
     }
 }
