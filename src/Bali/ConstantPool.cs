@@ -33,7 +33,7 @@ namespace Bali
         /// <summary>
         /// Gets the number of constants in the pool <b><i>+ 1</i></b>.
         /// </summary>
-        public int Count => _constants.Count + 1;
+        public int Count => _constants.Count;
 
         /// <inheritdoc />
         public bool IsReadOnly => false;
