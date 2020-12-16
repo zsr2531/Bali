@@ -34,11 +34,11 @@ namespace Bali.Metadata.Factories
         }
         
         /// <summary>
-        /// Creates a <see cref="JvmAttribute"/> from the <paramref name="stream"/>.
+        /// Reads a <see cref="JvmAttribute"/> from the <paramref name="stream"/>.
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> to a <see cref="Utf8Constant"/> holding the name.</param>
         /// <returns>The parsed <see cref="JvmAttribute"/>.</returns>
-        public abstract JvmAttribute Create(Stream stream, ushort nameIndex);
+        public abstract JvmAttribute Read(Stream stream, ushort nameIndex);
     }
 }

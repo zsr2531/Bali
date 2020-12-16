@@ -42,6 +42,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="FieldrefConstant"/>.</returns>
-        public static FieldrefConstant Create(Stream stream) => new FieldrefConstant(stream.ReadU2(), stream.ReadU2());
+        public static FieldrefConstant Create(Stream stream) => new(stream.ReadU2(), stream.ReadU2());
     }
 }

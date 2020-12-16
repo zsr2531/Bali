@@ -20,13 +20,13 @@ namespace Bali.Metadata.Builders
         /// </summary>
         /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
         /// <param name="attribute">The <see cref="JvmAttribute"/> to write the name index of to the output <paramref name="stream"/>.</param>
-        void BuildName(Stream stream, JvmAttribute attribute);
+        void WriteName(Stream stream, JvmAttribute attribute);
         
         /// <summary>
         /// Writes the contents of the <see cref="JvmAttribute"/> to the output <paramref name="stream"/>.
         /// </summary>
         /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
         /// <param name="attribute">The <see cref="JvmAttribute"/> to write the contents of to the output <paramref name="stream"/>.</param>
-        void BuildBody(Stream stream, JvmAttribute attribute);
+        void WriteBody(Stream stream, JvmAttribute attribute);
     }
 }

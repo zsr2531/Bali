@@ -43,6 +43,6 @@ namespace Bali.IO.Constants
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="NameAndTypeConstant"/>.</returns>
         public static NameAndTypeConstant Create(Stream stream) =>
-            new NameAndTypeConstant(stream.ReadU2(), stream.ReadU2());
+            new(stream.ReadU2(), stream.ReadU2());
     }
 }

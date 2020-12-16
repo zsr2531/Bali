@@ -17,8 +17,8 @@ namespace Bali.Metadata.Factories
         public override string Name => throw new NotSupportedException();
 
         /// <inheritdoc />
-        public override JvmAttribute Create(Stream stream, ushort nameIndex) =>
-            new JvmAttribute(nameIndex, ReadRawData(stream));
+        public override JvmAttribute Read(Stream stream, ushort nameIndex) =>
+            new(nameIndex, ReadRawData(stream));
 
         private static byte[] ReadRawData(Stream stream)
         {

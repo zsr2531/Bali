@@ -16,7 +16,7 @@
         }
 
         /// <summary>
-        /// Creates a <see cref="JvmAttribute"/> from the <paramref name="stream"/>.
+        /// Creates a <see cref="JvmAttribute"/>.
         /// </summary>
         /// <returns>The parsed <see cref="JvmAttribute"/>.</returns>
         JvmAttribute Create();

@@ -17,7 +17,9 @@ namespace Bali.Emit
         /// <param name="opCode">The <see cref="JvmOpCode"/> of the instruction.</param>
         /// <param name="operand">The instruction's operand.</param>
         public JvmInstruction(JvmOpCode opCode, object? operand = null)
-            : this(-1, opCode, operand) { }
+            : this(-1, opCode, operand)
+        {
+        }
 
         /// <summary>
         /// Creates a new <see cref="JvmInstruction"/>.

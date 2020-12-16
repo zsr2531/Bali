@@ -109,6 +109,6 @@ namespace Bali.IO.Constants
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="MethodHandleConstant"/>.</returns>
         public static MethodHandleConstant Create(Stream stream) =>
-            new MethodHandleConstant((MethodReferenceKind) stream.ReadU1(), stream.ReadU2());
+            new((MethodReferenceKind) stream.ReadU1(), stream.ReadU2());
     }
 }

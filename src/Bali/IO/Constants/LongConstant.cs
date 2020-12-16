@@ -28,6 +28,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="LongConstant"/>.</returns>
-        public static LongConstant Create(Stream stream) => new LongConstant((long) stream.ReadU8());
+        public static LongConstant Create(Stream stream) => new((long) stream.ReadU8());
     }
 }

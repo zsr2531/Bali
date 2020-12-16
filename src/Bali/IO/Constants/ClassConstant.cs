@@ -29,6 +29,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="ClassConstant"/>.</returns>
-        public static ClassConstant Create(Stream stream) => new ClassConstant(stream.ReadU2());
+        public static ClassConstant Create(Stream stream) => new(stream.ReadU2());
     }
 }

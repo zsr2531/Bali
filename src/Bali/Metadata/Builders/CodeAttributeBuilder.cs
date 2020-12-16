@@ -5,13 +5,27 @@ using Bali.Metadata.Attributes;
 
 namespace Bali.Metadata.Builders
 {
+    /// <summary>
+    /// Provides an implementation of the <see cref="JvmAttributeBuilderBase{T}"/> contract which can build <see cref="CodeAttribute"/>s.
+    /// </summary>
     public class CodeAttributeBuilder : JvmAttributeBuilderBase<CodeAttribute>
     {
         private readonly IJvmBytecodeAssembler _assembler;
 
+        /// <summary>
+        /// Creates a new <see cref="CodeAttributeBuilder"/>.
+        /// </summary>
+        /// <param name="director">The underlying <see cref="IJvmAttributeDirector"/>.</param>
         public CodeAttributeBuilder(IJvmAttributeDirector director)
-            : this(director, JvmBytecodeAssembler.Instance) { }
+            : this(director, JvmBytecodeAssembler.Instance)
+        {
+        }
 
+        /// <summary>
+        /// Creates a new <see cref="CodeAttributeBuilder"/>.
+        /// </summary>
+        /// <param name="director">The underlying <see cref="IJvmAttributeDirector"/>.</param>
+        /// <param name="assembler">The <see cref="IJvmBytecodeAssembler"/> to assemble bytecode with.</param>
         public CodeAttributeBuilder(IJvmAttributeDirector director, IJvmBytecodeAssembler assembler)
             : base(director)
         {
@@ -22,7 +36,7 @@ namespace Bali.Metadata.Builders
         public override string Name => "Code";
 
         /// <inheritdoc />
-        protected override void BuildBody(Stream stream, CodeAttribute attribute)
+        protected override void WriteBody(Stream stream, CodeAttribute attribute)
         {
             stream.WriteU2(attribute.MaxStack);
             stream.WriteU2(attribute.MaxLocals);

@@ -28,10 +28,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="FloatConstant"/>.</returns>
-        public static unsafe FloatConstant Create(Stream stream)
-        {
-            uint bits = stream.ReadU4();
-            return new FloatConstant(*(float*)&bits);
-        }
+        public static FloatConstant Create(Stream stream) => new(stream.ReadR4());
     }
 }

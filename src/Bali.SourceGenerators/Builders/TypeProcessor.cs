@@ -5,7 +5,7 @@ using System.Reflection;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 
-namespace Bali.SourceGenerators
+namespace Bali.SourceGenerators.Builders
 {
     public class TypeProcessor
     {
@@ -40,7 +40,7 @@ namespace Bali.SourceGenerators
             if (CheckExistingMethod(n => n == $"IList<{_type.Name}>") is { } existing)
                 return existing;
 
-            var method = _builder.AddMethod($"Build{type.Name}List", Accessibility.Private)
+            var method = _builder.AddMethod($"Write{type.Name}List", Accessibility.Private)
                 .AddParameter("Stream", "stream")
                 .AddParameter($"IList<{type.Name}>", "list")
                 .MakeStaticMethod();
@@ -51,9 +51,11 @@ namespace Bali.SourceGenerators
             method.WithBody(w =>
             {
                 w.AppendLine("stream.WriteU2((ushort) list.Count);");
-                
-                using var block = w.Block("foreach (var element in list)");
-                w.AppendLine(step);
+
+                using (w.Block("foreach (var element in list)"))
+                {
+                    w.AppendLine(step);
+                }
             });
 
             return $"{method.Name}(stream, {_access});";
@@ -64,7 +66,7 @@ namespace Bali.SourceGenerators
             if (CheckExistingMethod(n => n == _type.Name) is { } existing)
                 return existing;
 
-            var method = _builder.AddMethod($"Build{_type.Name}", Accessibility.Private)
+            var method = _builder.AddMethod($"Write{_type.Name}", Accessibility.Private)
                 .AddParameter("Stream", "stream")
                 .AddParameter(_type, "data")
                 .MakeStaticMethod();
@@ -101,7 +103,7 @@ namespace Bali.SourceGenerators
                 SpecialType.System_Int64 => "WriteI8",
                 SpecialType.System_Single => "WriteR4",
                 SpecialType.System_Double => "WriteR8",
-                _ => $"throw new System.NotSupportedException(\"Unsupported special type: {symbol.MetadataName}\");"
+                _ => $"throw new NotSupportedException(\"Unsupported special type: {symbol.MetadataName}\");"
             };
 
             return method.Length > 20

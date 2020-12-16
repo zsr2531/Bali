@@ -1434,21 +1434,21 @@ namespace Bali.Emit
         /// <inheritdoc cref="JvmCode.Imdep1"/>
         public static readonly JvmOpCode Imdep1 = new(
             JvmCode.Imdep1,
-            JvmOperandType.None,
+            JvmOperandType.Undefined,
             JvmStackBehavior.Undefined,
             JvmFlowControl.Undefined);
             
         /// <inheritdoc cref="JvmCode.Imdep2"/>
         public static readonly JvmOpCode Imdep2 = new(
             JvmCode.Imdep2,
-            JvmOperandType.None,
+            JvmOperandType.Undefined,
             JvmStackBehavior.Undefined,
             JvmFlowControl.Undefined);
         
         /// <inheritdoc cref="JvmCode.Breakpoint"/>
         public static readonly JvmOpCode Breakpoint = new(
             JvmCode.Breakpoint,
-            JvmOperandType.None,
+            JvmOperandType.Undefined,
             JvmStackBehavior.Undefined,
             JvmFlowControl.Undefined);
     }

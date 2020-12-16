@@ -4,16 +4,19 @@ using Bali.IO;
 
 namespace Bali.Metadata.Builders
 {
+    /// <summary>
+    /// Provides a default implementation of the <see cref="IJvmAttributeBuilder"/> contract.
+    /// </summary>
     public sealed class DefaultJvmAttributeBuilder : IJvmAttributeBuilder
     {
         /// <inheritdoc />
         public string Name => throw new NotSupportedException();
 
         /// <inheritdoc />
-        public void BuildName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
+        public void WriteName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
 
         /// <inheritdoc />
-        public void BuildBody(Stream stream, JvmAttribute attribute)
+        public void WriteBody(Stream stream, JvmAttribute attribute)
         {
             if (attribute.Data is null)
                 throw new ArgumentOutOfRangeException(nameof(attribute));
