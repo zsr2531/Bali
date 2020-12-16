@@ -45,6 +45,15 @@ namespace Bali.Emit
             }
         }
 
+        /// <summary>
+        /// Serializes the operand of a given <see cref="JvmInstruction"/>.
+        /// </summary>
+        /// <param name="instruction">The <see cref="JvmInstruction"/> to write the <see cref="JvmInstruction.Operand"/> of.</param>
+        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
+        /// <param name="needsAlignment">Whether some operands need to be 4-byte aligned.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// When the <paramref name="instruction"/>'s <see cref="JvmOpCode"/> has an <see cref="JvmOperandType.Undefined"/> operand type.
+        /// </exception>
         protected static void WriteOperand(JvmInstruction instruction, Stream stream, bool needsAlignment)
         {
             var operand = instruction.Operand;
@@ -58,6 +67,7 @@ namespace Bali.Emit
                     stream.WriteI4(CastOperand<int>(operand));
                     break;
 
+                // TODO: Write jump tables.
                 case JvmOperandType.KeyJumpTable:
                     break;
 
@@ -106,6 +116,11 @@ namespace Bali.Emit
             }
         }
 
+        /// <summary>
+        /// Serializes the wide version of the operand of a given <see cref="JvmInstruction"/>.
+        /// </summary>
+        /// <param name="instruction">The <see cref="JvmInstruction"/> to write the <see cref="JvmInstruction.Operand"/> of.</param>
+        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
         protected static void WriteWideOperand(JvmInstruction instruction, Stream stream)
         {
             if (instruction.OpCode != JvmOpCodes.Iinc)
