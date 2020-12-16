@@ -19,7 +19,7 @@ namespace Bali.Metadata
         }
 
         /// <summary>
-        /// Creates a new <see cref="JvmAttribute"/>.
+        /// Initializes the <see cref="NameIndex"/> of the attribute.
         /// </summary>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> representing the name of the attribute.</param>
         protected JvmAttribute(ushort nameIndex)
