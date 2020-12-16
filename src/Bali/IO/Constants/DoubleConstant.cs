@@ -28,10 +28,6 @@ namespace Bali.IO.Constants
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The parsed <see cref="DoubleConstant"/>.</returns>
-        public static unsafe DoubleConstant Create(Stream stream)
-        {
-            ulong bits = stream.ReadU8();
-            return new DoubleConstant(*(double*)&bits);
-        }
+        public static DoubleConstant Create(Stream stream) => new(stream.ReadR8());
     }
 }
