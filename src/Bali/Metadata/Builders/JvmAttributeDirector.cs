@@ -7,6 +7,10 @@ using Bali.SourceGeneration;
 
 namespace Bali.Metadata.Builders
 {
+    /// <summary>
+    /// Provides a default implementation of the <see cref="IJvmAttributeDirector"/> contract, with
+    /// modularity in mind, so non-standard attributes can be processed.
+    /// </summary>
     public sealed class JvmAttributeDirector : IJvmAttributeDirector
     {
         private readonly Stream _stream;
@@ -15,6 +19,11 @@ namespace Bali.Metadata.Builders
 
         private static readonly DefaultJvmAttributeBuilder DefaultJvmAttributeBuilder = new();
 
+        /// <summary>
+        /// Creates a new <see cref="JvmAttributeDirector"/>.
+        /// </summary>
+        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
+        /// <param name="constantPool">The <see cref="ConstantPool"/> to resolve the name of attributes from.</param>
         public JvmAttributeDirector(Stream stream, in ConstantPool constantPool)
         {
             _stream = stream;

@@ -4,6 +4,9 @@ using Bali.IO;
 
 namespace Bali.Metadata.Builders
 {
+    /// <summary>
+    /// Provides a default implementation of the <see cref="IJvmAttributeBuilder"/> contract.
+    /// </summary>
     public sealed class DefaultJvmAttributeBuilder : IJvmAttributeBuilder
     {
         /// <inheritdoc />
