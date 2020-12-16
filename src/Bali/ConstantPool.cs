@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Bali.IO.Constants;
+using Bali.Constants;
 
 namespace Bali
 {

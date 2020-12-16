@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Bali.IO.Descriptors;
 
 namespace Bali.Descriptors.Tests.Lexer
 {

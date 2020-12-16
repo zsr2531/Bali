@@ -1,5 +1,5 @@
 using System;
-using Bali.Metadata.Attributes;
+using Bali.Attributes;
 
 // GetHashCode not overriden... blah blah blah
 #pragma warning disable 660,661,659

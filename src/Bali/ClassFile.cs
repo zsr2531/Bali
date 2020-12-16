@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using Bali.Attributes;
 using Bali.IO;
-using Bali.Metadata;
 
 namespace Bali
 {

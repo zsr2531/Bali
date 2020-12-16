@@ -4,7 +4,27 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>default</LangVersion>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1-alpha</PackageVersion>
+        <Title>Bali</Title>
+        <Authors>zsr2531</Authors>
+        <Description>A fast and lightweight .Net library for reading and writing .class files.</Description>
+        <Copyright>zsr2531</Copyright>
+        <PackageProjectUrl>https://github.com/zsr2531/Bali</PackageProjectUrl>
+        <License>https://github.com/zsr2531/Bali/blob/master/LICENSE</License>
+        <PackageIcon>cava.png</PackageIcon>
+        <RepositoryUrl>https://github.com/zsr2531/Bali.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>java bytecode jvm assembly disassembly class format</PackageTags>
+        <PackageReleaseNotes>alpha</PackageReleaseNotes>
+        <Company>zsr2531</Company>
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+        <FileVersion>0.0.1.0</FileVersion>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="../../assets/cava.png" Pack="true" PackagePath="" />
+    </ItemGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DocumentationFile>bin\Debug\Bali.xml</DocumentationFile>
