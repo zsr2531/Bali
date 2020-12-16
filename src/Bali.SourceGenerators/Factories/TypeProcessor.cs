@@ -50,10 +50,10 @@ namespace Bali.SourceGenerators.Factories
 
             method.WithBody(w =>
             {
-                w.AppendLine($"ushort count = stream.ReadU2();");
+                w.AppendLine("ushort count = stream.ReadU2();");
                 w.AppendLine($"var list = new List<{type.Name}>(count);");
 
-                using (var block = w.Block("for (int i = 0; i < count; i++)"))
+                using (w.Block("for (int i = 0; i < count; i++)"))
                 {
                     w.AppendLine(step);
                     w.AppendLine("list.Add(element);");

@@ -51,9 +51,11 @@ namespace Bali.SourceGenerators.Builders
             method.WithBody(w =>
             {
                 w.AppendLine("stream.WriteU2((ushort) list.Count);");
-                
-                using var block = w.Block("foreach (var element in list)");
-                w.AppendLine(step);
+
+                using (w.Block("foreach (var element in list)"))
+                {
+                    w.AppendLine(step);
+                }
             });
 
             return $"{method.Name}(stream, {_access});";

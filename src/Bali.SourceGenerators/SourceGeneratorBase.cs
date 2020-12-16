@@ -50,11 +50,11 @@ namespace Bali.SourceGenerators
                 toProcess.Add(symbol);
             }
             
-            Execute(toProcess, compilation, context);
+            Execute(toProcess, context);
         }
 
         protected abstract void Execute(
-            List<INamedTypeSymbol> targets, Compilation compilation, GeneratorExecutionContext context);
+            List<INamedTypeSymbol> targets, GeneratorExecutionContext context);
 
         private sealed class SyntaxReceiver : ISyntaxReceiver
         {
