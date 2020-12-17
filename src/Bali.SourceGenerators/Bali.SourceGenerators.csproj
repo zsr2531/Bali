@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE; TEST</DefineConstants>
+      <DefineConstants>TRACE; INCLUDE_ROSLYN_EXTENSIONS</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE; TEST</DefineConstants>
+      <DefineConstants>TRACE; INCLUDE_ROSLYN_EXTENSIONS</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
