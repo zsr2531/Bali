@@ -13,7 +13,10 @@ namespace Bali.Constants
         /// </summary>
         /// <param name="value">The value of the constant.</param>
         public Utf8Constant(string value)
-            : base(ConstantKind.Utf8) => Value = value;
+            : base(ConstantKind.Utf8)
+        {
+            Value = value;
+        }
 
         /// <summary>
         /// Gets or sets the value of the constant.
@@ -22,17 +25,6 @@ namespace Bali.Constants
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// Parses a <see cref="Utf8Constant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="Utf8Constant"/>.</returns>
-        public static Utf8Constant Create(Stream stream)
-        {
-            ushort length = stream.ReadU2();
-            return new Utf8Constant(JavaUtf8.Decode(stream, length));
         }
     }
 }

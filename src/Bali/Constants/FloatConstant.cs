@@ -1,6 +1,3 @@
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Constants
 {
     /// <summary>
@@ -13,7 +10,10 @@ namespace Bali.Constants
         /// </summary>
         /// <param name="value">The value of the constant.</param>
         public FloatConstant(float value)
-            : base(ConstantKind.Float) => Value = value;
+            : base(ConstantKind.Float)
+        {
+            Value = value;
+        }
 
         /// <summary>
         /// Gets or sets the value of the constant.
@@ -23,12 +23,5 @@ namespace Bali.Constants
             get;
             set;
         }
-
-        /// <summary>
-        /// Parses a <see cref="FloatConstant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="FloatConstant"/>.</returns>
-        public static FloatConstant Create(Stream stream) => new(stream.ReadR4());
     }
 }

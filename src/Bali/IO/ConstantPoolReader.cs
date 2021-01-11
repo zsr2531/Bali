@@ -10,39 +10,18 @@ namespace Bali.IO
     /// </summary>
     public readonly struct ConstantPoolReader
     {
-        private readonly Stream? _inputStream;
+        private readonly Stream? _stream;
         private readonly ushort _count;
-        
-        private static readonly Dictionary<ConstantKind, Func<Stream, Constant>> ConstantFactories;
 
         /// <summary>
         /// Creates a new <see cref="ConstantPoolReader"/>.
         /// </summary>
-        /// <param name="inputStream">The input <see cref="Stream"/> to read data from.</param>
+        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <param name="count">The number of constants to read.</param>
-        public ConstantPoolReader(Stream inputStream, ushort count)
+        public ConstantPoolReader(Stream stream, ushort count)
         {
-            _inputStream = inputStream;
+            _stream = stream;
             _count = count;
-        }
-
-        static ConstantPoolReader()
-        {
-            ConstantFactories = new()
-            {
-                [ConstantKind.String] = StringConstant.Create,
-                [ConstantKind.Utf8] = Utf8Constant.Create,
-                [ConstantKind.Class] = ClassConstant.Create,
-                [ConstantKind.Fieldref] = FieldrefConstant.Create,
-                [ConstantKind.Integer] = IntegerConstant.Create,
-                [ConstantKind.Methodref] = MethodrefConstant.Create,
-                [ConstantKind.Long] = LongConstant.Create,
-                [ConstantKind.NameAndType] = NameAndTypeConstant.Create,
-                [ConstantKind.InterfaceMethodref] = InterfaceMethodrefConstant.Create,
-                [ConstantKind.InvokeDynamic] = InvokeDynamicConstant.Create,
-                [ConstantKind.MethodType] = MethodTypeConstant.Create,
-                [ConstantKind.MethodHandle] = MethodHandleConstant.Create
-            };
         }
 
         /// <summary>
@@ -51,20 +30,18 @@ namespace Bali.IO
         /// <returns>The <see cref="ConstantPool"/> from the input <see cref="Stream"/>.</returns>
         public ConstantPool ReadConstantPool()
         {
-            if (_inputStream is null)
+            if (_stream is null)
                 throw new ArgumentException("No input stream was provided.");
             
             var constants = new List<Constant>();
 
             for (int i = 0; i < _count;)
             {
-                var tag = (ConstantKind) _inputStream.ReadU1();
-                constants.Add(ConstantFactories[tag](_inputStream));
+                var constant = ConstantBuilder.BuildConstant(_stream);
 
-                i += tag switch
+                i += constant switch
                 {
-                    ConstantKind.Long => 2,
-                    ConstantKind.Double => 2,
+                    LongConstant or DoubleConstant => 2,
                     _ => 1
                 };
             }
