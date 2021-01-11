@@ -37,7 +37,7 @@ namespace Bali.IO
 
             for (int i = 0; i < _count;)
             {
-                var constant = ConstantBuilder.BuildConstant(_stream);
+                var constant = ConstantFactory.CreateConstant(_stream);
 
                 i += constant switch
                 {
