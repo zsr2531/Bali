@@ -16,19 +16,18 @@ namespace Bali.IO
             _stream = stream;
         }
 
-        public void Write()
+        public void WriteConstantPool()
         {
             if (_pool is null)
                 throw new ArgumentException("pool");
             if (_stream is null)
                 throw new ArgumentException("stream");
 
-            int count = _pool.Aggregate(0, (acc, curr) => acc + (curr is LongConstant or DoubleConstant ? 2 : 1));
+            int count = _pool.Aggregate(0, (acc, curr) => acc + (curr is LongConstant or DoubleConstant ? 2 : 1)) + 1;
             _stream.WriteU2((ushort) count);
 
             foreach (var constant in _pool)
-            {
-            }
+                ConstantBuilder.BuildConstant(constant, _stream);
         }
     }
 }
