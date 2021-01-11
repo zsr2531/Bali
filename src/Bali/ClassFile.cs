@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Bali.Attributes;
+using Bali.Constants;
 using Bali.IO;
 
 namespace Bali
@@ -44,8 +45,8 @@ namespace Bali
         public ConstantPool Constants
         {
             get;
-            set;
-        }
+            private set;
+        } = new(new List<Constant>());
         
         /// <summary>
         /// Gets or sets the <see cref="AccessFlags"/>.
