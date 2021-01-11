@@ -28,7 +28,7 @@ namespace Bali.IO
 
         static ConstantPoolReader()
         {
-            ConstantFactories = new Dictionary<ConstantKind, Func<Stream, Constant>>
+            ConstantFactories = new()
             {
                 [ConstantKind.String] = StringConstant.Create,
                 [ConstantKind.Utf8] = Utf8Constant.Create,
