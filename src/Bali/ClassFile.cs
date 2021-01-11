@@ -80,7 +80,7 @@ namespace Bali
         public IList<ushort> Interfaces
         {
             get;
-            set;
+            private set;
         } = new List<ushort>();
 
         /// <summary>
@@ -109,6 +109,16 @@ namespace Bali
             get;
             private set;
         } = new List<JvmAttribute>();
+
+        public void Write(string path)
+        {
+            //
+        }
+
+        public void Write(Stream stream)
+        {
+            //
+        }
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from the given <paramref name="path"/>.
