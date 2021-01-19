@@ -5,7 +5,7 @@ namespace Bali.Attributes
     /// </summary>
     public class JvmAttribute
     {
-        internal readonly byte[]? Data;
+        internal byte[]? Data;
 
         /// <summary>
         /// Creates a new <see cref="JvmAttribute"/>.
