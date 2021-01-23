@@ -32,7 +32,7 @@ namespace Bali.Attributes
     }
     
     /// <summary>
-    /// Re 
+    /// Represents a local variable in a code array. 
     /// </summary>
     public struct LocalVariableInfo
     {
