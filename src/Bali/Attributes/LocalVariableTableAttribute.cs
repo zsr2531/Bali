@@ -38,12 +38,12 @@ namespace Bali.Attributes
     {
         /// <summary>
         /// Indicates a range of code array offsets within which a local variable has a value.
-        /// It also indicates the index into the local variable array of the current frame at which that local variable can be found
+        /// It also indicates the index into the local variable array of the current frame at which that local variable can be found.
         /// </summary>
         /// <param name="startPc">The program counter position.</param>
         /// <param name="length">Length of the code array range.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> denoting a local variable.</param>
-        /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> encoding the type of a local variable.</param>
+        /// <param name="descriptorIndex">The index into the <see cref="ConstantPool"/> representing a field descriptor.</param>
         /// <param name="index">The index of a local variable.</param>
         public LocalVariableInfo(ushort startPc, ushort length, ushort nameIndex, ushort descriptorIndex, ushort index)
         {
