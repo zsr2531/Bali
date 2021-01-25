@@ -32,13 +32,13 @@ namespace Bali.Attributes
     }
 
     /// <summary>
-    /// Represents a local variable in a code array. 
+    /// Indicates a range of code array offsets within which a local variable has a value.
+    /// It also indicates the index into the local variable array of the current frame at which that local variable can be found.
     /// </summary>
     public struct LocalVariableTypeInfo
     {
         /// <summary>
-        /// Indicates a range of code array offsets within which a local variable has a value.
-        /// It also indicates the index into the local variable array of the current frame at which that local variable can be found.
+        /// Creates a new <see cref="LocalVariableTypeInfo"/>.
         /// </summary>
         /// <param name="startPc">The program counter position.</param>
         /// <param name="length">Length of the code array range.</param>
@@ -64,7 +64,7 @@ namespace Bali.Attributes
         }
 
         /// <summary>
-        /// Gets or sets the length of the code array.
+        /// Gets or sets the exclusive upper bound of the code array.
         /// </summary>
         public ushort Length
         {
