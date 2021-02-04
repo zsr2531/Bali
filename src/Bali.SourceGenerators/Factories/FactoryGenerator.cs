@@ -13,6 +13,7 @@ namespace Bali.SourceGenerators.Factories
 
         private const string AttributeNamespace = "Bali.SourceGeneration";
         private const string AttributeName = "AutoFactoryAttribute";
+        private const string CustomName = "CustomFactoryConverterAttribute";
         private const string FactoryNamespace = "Bali.Attributes.Factories";
 
         public FactoryGenerator()
@@ -28,7 +29,19 @@ namespace Bali.SourceGenerators.Factories
                 .AddClass(AttributeName)
                     .SetBaseClass("Attribute")
                     .AddAttribute("CompilerGenerated")
-                    .AddAttribute("AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)");
+                    .AddAttribute("AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)")
+                .Builder
+                .AddClass(CustomName)
+                    .SetBaseClass("Attribute")
+                    .AddAttribute("CompilerGenerated")
+                    .AddAttribute("AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)")
+                    .AddProperty("Source", Accessibility.Internal)
+                        .SetType("string")
+                    .Class
+                    .AddConstructor(Accessibility.Internal)
+                        .AddParameter("string", "source")
+                        .WithBody(w => w.AppendLine("Source = source;"))
+                .Class;
 
             AttributeSource = builder.Build();
         }
@@ -84,8 +97,16 @@ namespace Bali.SourceGenerators.Factories
                     continue;
                 }
 
-                var processor = new TypeProcessor(builder.Class, type, $"var {property.Name} = ");
-                steps.Add(processor.Process());
+                var attributes = property.GetAttributes();
+                if (attributes.FirstOrDefault(a => a.AttributeClass?.Name == CustomName) is { } custom)
+                {
+                    steps.Add(custom.ConstructorArguments[0].Value as string);
+                }
+                else
+                {
+                    var processor = new TypeProcessor(builder.Class, type, $"var {property.Name} = ");
+                    steps.Add(processor.Process());
+                }
             }
 
             builder.WithBody(w =>
