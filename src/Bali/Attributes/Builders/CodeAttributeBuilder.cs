@@ -45,7 +45,7 @@ namespace Bali.Attributes.Builders
             
             stream.WriteU2((ushort) attribute.Attributes.Count);
             foreach (var nestedAttribute in attribute.Attributes)
-                Director.ConstructAttribute(nestedAttribute);
+                Director.ConstructAttribute(nestedAttribute, stream);
         }
 
         private void BuildBytecode(Stream stream, CodeAttribute attribute)
@@ -54,11 +54,12 @@ namespace Bali.Attributes.Builders
             _assembler.Assemble(attribute.Instructions, ms);
 
             stream.WriteU4((uint) ms.Length);
-            ms.CopyTo(stream);
+            ms.WriteTo(stream);
         }
 
         private static void BuildExceptionHandlers(Stream stream, CodeAttribute attribute)
         {
+            stream.WriteU2((ushort) attribute.ExceptionHandlers.Count);
             foreach (var exceptionHandler in attribute.ExceptionHandlers)
             {
                 stream.WriteU2(exceptionHandler.TryStart);
