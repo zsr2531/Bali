@@ -58,7 +58,7 @@ namespace Bali.Attributes.Builders
             ConstructBody(stream, builder, attribute);
         }
 
-        private void ConstructBody(Stream stream, IJvmAttributeBuilder builder, JvmAttribute attribute)
+        private static void ConstructBody(Stream stream, IJvmAttributeBuilder builder, JvmAttribute attribute)
         {
             using var ms = new MemoryStream();
             builder.WriteBody(ms, attribute);
