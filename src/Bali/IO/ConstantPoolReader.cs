@@ -35,15 +35,12 @@ namespace Bali.IO
             
             var constants = new List<Constant>();
 
-            for (int i = 0; i < _count;)
+            for (int i = 0; i < _count; i++)
             {
                 var constant = ConstantFactory.CreateConstant(_stream);
-
-                i += constant switch
-                {
-                    LongConstant or DoubleConstant => 2,
-                    _ => 1
-                };
+                constants.Add(constant);
+                if (constant is LongConstant or DoubleConstant)
+                    constants.Add(constant); // Longs and doubles take up 2 slots... urgh
             }
 
             return new ConstantPool(constants);
