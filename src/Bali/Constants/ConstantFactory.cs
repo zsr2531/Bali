@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.IO;
 using Bali.IO;
 
@@ -9,6 +10,8 @@ namespace Bali.Constants
     /// </summary>
     public static class ConstantFactory
     {
+        private static readonly ArrayPool<byte> Pool = ArrayPool<byte>.Create();
+        
         /// <summary>
         /// Reads the next <see cref="Constant"/> from the given input <paramref name="stream"/>.
         /// </summary>
@@ -68,8 +71,15 @@ namespace Bali.Constants
         private static NameAndTypeConstant CreateNameAndTypeConstant(Stream stream) =>
             new(stream.ReadU2(), stream.ReadU2());
 
-        private static Utf8Constant CreateUtf8Constant(Stream stream) =>
-            new(JavaUtf8.Decode(stream, stream.ReadU2()));
+        private static Utf8Constant CreateUtf8Constant(Stream stream)
+        {
+            ushort length = stream.ReadU2();
+            byte[] array = Pool.Rent(length);
+            stream.Read(array, 0, length);
+            string text = JavaUtf8.Instance.GetString(array, 0, length);
+            Pool.Return(array, true);
+            return new(text);
+        }
 
         private static MethodHandleConstant CreateMethodHandleConstant(Stream stream) =>
             new((MethodReferenceKind) stream.ReadU1(), stream.ReadU2());
