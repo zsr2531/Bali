@@ -67,12 +67,9 @@ namespace Bali.Emit
                     stream.WriteI4(CastOperand<int>(operand));
                     break;
 
-                // TODO: Write jump tables.
                 case JvmOperandType.KeyJumpTable:
-                    break;
-
                 case JvmOperandType.IndexJumpTable:
-                    break;
+                    throw new NotImplementedException();
 
                 case JvmOperandType.LocalIndex:
                     stream.WriteU1(CastOperand<byte>(operand));
@@ -93,9 +90,16 @@ namespace Bali.Emit
                     break;
 
                 case JvmOperandType.WideConstantPoolIndexWithArrayDimensions:
+                    var op = CastOperand<WideConstantPoolIndexWithArrayDimensions>(operand);
+                    stream.WriteU2(op.WideConstantPoolIndex);
+                    stream.WriteU1(op.ArrayDimensions);
                     break;
-
+                
                 case JvmOperandType.WideConstantPoolIndexWithTwoBytes:
+                    var op1 = CastOperand<WideConstantPoolIndexWithTwoBytes>(operand);
+                    stream.WriteU2(op1.WideConstantPoolIndex);
+                    stream.WriteU1(op1.ByteOne);
+                    stream.WriteU1(op1.ByteTwo);
                     break;
 
                 case JvmOperandType.ArrayType:
@@ -103,6 +107,9 @@ namespace Bali.Emit
                     break;
 
                 case JvmOperandType.BranchOffset:
+                    stream.WriteI2(CastOperand<short>(operand));
+                    break;
+                
                 case JvmOperandType.InlineByte:
                     stream.WriteI1(CastOperand<sbyte>(operand));
                     break;

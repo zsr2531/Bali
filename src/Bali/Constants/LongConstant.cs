@@ -1,6 +1,3 @@
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Constants
 {
     /// <summary>
@@ -13,8 +10,11 @@ namespace Bali.Constants
         /// </summary>
         /// <param name="value">The value of the constant.</param>
         public LongConstant(long value)
-            : base(ConstantKind.Long) => Value = value;
-        
+            : base(ConstantKind.Long)
+        {
+            Value = value;
+        }
+
         /// <summary>
         /// Gets or sets the value of the constant.
         /// </summary>
@@ -23,12 +23,5 @@ namespace Bali.Constants
             get;
             set;
         }
-        
-        /// <summary>
-        /// Parses a <see cref="LongConstant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="LongConstant"/>.</returns>
-        public static LongConstant Create(Stream stream) => new((long) stream.ReadU8());
     }
 }

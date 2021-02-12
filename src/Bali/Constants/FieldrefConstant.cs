@@ -1,6 +1,3 @@
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Constants
 {
     /// <summary>
@@ -37,12 +34,5 @@ namespace Bali.Constants
             get;
             set;
         }
-        
-        /// <summary>
-        /// Parses a <see cref="FieldrefConstant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="FieldrefConstant"/>.</returns>
-        public static FieldrefConstant Create(Stream stream) => new(stream.ReadU2(), stream.ReadU2());
     }
 }
