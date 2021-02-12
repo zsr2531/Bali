@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using Bali.Constants;
 
 namespace Bali.IO
