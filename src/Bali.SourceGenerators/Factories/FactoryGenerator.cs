@@ -90,6 +90,7 @@ namespace Bali.SourceGenerators.Factories
 
             builder.WithBody(w =>
             {
+                w.AppendLine("_ = stream.ReadU4();");
                 foreach (string step in steps)
                     w.AppendLine(step);
 
