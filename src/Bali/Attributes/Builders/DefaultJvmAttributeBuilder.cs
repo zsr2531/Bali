@@ -19,7 +19,7 @@ namespace Bali.Attributes.Builders
         public void WriteBody(Stream stream, JvmAttribute attribute)
         {
             if (attribute.Data is null)
-                throw new ArgumentOutOfRangeException(nameof(attribute));
+                throw new ArgumentException(nameof(attribute));
                 
             stream.Write(attribute.Data, 0, attribute.Data.Length);
         }
