@@ -1,7 +1,4 @@
-using System;
-using System.IO;
 using System.Text;
-using System.Threading;
 
 namespace Bali.IO
 {
@@ -45,52 +42,26 @@ namespace Bali.IO
         public override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
         {
             int start = byteIndex;
-            
+
             for (int i = charIndex; i < charIndex + charCount; i++)
             {
                 char current = chars[i];
                 
                 if (current == '\0')
                 {
+                    // The null character is a special case we need to handle.
                     bytes[byteIndex++] = 0xc0;
                     bytes[byteIndex++] = 0x80;
                 }
-                else if (current <= 0x7f)
-                {
-                    bytes[byteIndex++] = (byte) current;
-                }
-                else if (current <= 0x7ff)
-                {
-                    byte first = (byte) ((current >> 6) & 0x1f);
-                    byte second = (byte) (current & 0x3f);
-
-                    bytes[byteIndex++] = first;
-                    bytes[byteIndex++] = second;
-                }
                 else if (current <= 0xffff)
                 {
-                    byte first = (byte) ((current >> 12) & 0xf);
-                    byte second = (byte) ((current >> 6) & 0x3f);
-                    byte third = (byte) (current & 0x3f);
-                    
-                    bytes[byteIndex++] = first;
-                    bytes[byteIndex++] = second;
-                    bytes[byteIndex++] = third;
+                    // For lower characters, UTF8 is used.
+                    byteIndex += UTF8.GetEncoder().GetBytes(chars, i, 1, bytes, byteIndex, true);
                 }
                 else
                 {
-                    int value = current - 0x1000;
-                    byte second = (byte) ((value >> 16) & 0x0f);
-                    byte third = (byte) ((value >> 10) & 0x3f);
-                    byte fifth = (byte) ((value >> 6) & 0x0f);
-                    byte sixth = (byte) (value & 0x3f);
-                    
-                    bytes[byteIndex++] = 0xed;
-                    bytes[byteIndex++] = second;
-                    bytes[byteIndex++] = third;
-                    bytes[byteIndex++] = 0xed;
-                    bytes[byteIndex++] = fifth;
-                    bytes[byteIndex++] = sixth;
+                    // For higher characters, UTF16 is used.
+                    byteIndex += Unicode.GetEncoder().GetBytes(chars, i, 1, bytes, byteIndex, true);
                 }
             }
 
