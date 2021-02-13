@@ -53,15 +53,29 @@ namespace Bali.IO
                     bytes[byteIndex++] = 0xc0;
                     bytes[byteIndex++] = 0x80;
                 }
+                else if (current <= 0x7f)
+                {
+                    bytes[byteIndex++] = (byte) current;
+                }
+                else if (current <= 0x7ff)
+                {
+                    bytes[byteIndex++] = (byte) (0b11000000 | (byte) ((current & 0x7c0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
+                }
                 else if (current <= 0xffff)
                 {
-                    // For lower characters, UTF8 is used.
-                    byteIndex += UTF8.GetEncoder().GetBytes(chars, i, 1, bytes, byteIndex, true);
+                    bytes[byteIndex++] = (byte) (0b11100000 | (byte) ((current & 0xf000) >> 12));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) ((current & 0xfc0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
                 }
                 else
                 {
-                    // For higher characters, UTF16 is used.
-                    byteIndex += Unicode.GetEncoder().GetBytes(chars, i, 1, bytes, byteIndex, true);
+                    bytes[byteIndex++] = 0xed;
+                    bytes[byteIndex++] = (byte) (0b10100000 | (byte) ((current & 0xf000) >> 16));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) ((current & 0xfc00) >> 10));
+                    bytes[byteIndex++] = 0xed;
+                    bytes[byteIndex++] = (byte) (0b10110000 | (byte) ((current & 0x3c0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
                 }
             }
 
