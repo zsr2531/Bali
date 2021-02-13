@@ -13,7 +13,6 @@ namespace Bali.Attributes.Builders
     /// </summary>
     public sealed class JvmAttributeDirector : IJvmAttributeDirector
     {
-        private readonly Stream _stream;
         private readonly ConstantPool _constantPool;
         private readonly Dictionary<string, IJvmAttributeBuilder> _builders;
 
@@ -22,11 +21,9 @@ namespace Bali.Attributes.Builders
         /// <summary>
         /// Creates a new <see cref="JvmAttributeDirector"/>.
         /// </summary>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
         /// <param name="constantPool">The <see cref="ConstantPool"/> to resolve the name of attributes from.</param>
-        public JvmAttributeDirector(Stream stream, in ConstantPool constantPool)
+        public JvmAttributeDirector(ConstantPool constantPool)
         {
-            _stream = stream;
             _constantPool = constantPool;
             _builders = new Dictionary<string, IJvmAttributeBuilder>
             {
@@ -52,22 +49,22 @@ namespace Bali.Attributes.Builders
         }
 
         /// <inheritdoc />
-        public void ConstructAttribute(JvmAttribute attribute)
+        public void ConstructAttribute(JvmAttribute attribute, Stream stream)
         {
             string name = GetName(attribute.NameIndex);
             var builder = this[name];
             
-            builder.WriteName(_stream, attribute);
-            ConstructBody(builder, attribute);
+            builder.WriteName(stream, attribute);
+            ConstructBody(stream, builder, attribute);
         }
 
-        private void ConstructBody(IJvmAttributeBuilder builder, JvmAttribute attribute)
+        private static void ConstructBody(Stream stream, IJvmAttributeBuilder builder, JvmAttribute attribute)
         {
             using var ms = new MemoryStream();
             builder.WriteBody(ms, attribute);
-            
-            _stream.WriteU4((uint) ms.Length);
-            ms.WriteTo(_stream);
+
+            stream.WriteU4((uint) ms.Length);
+            ms.WriteTo(stream);
         }
 
         private string GetName(ushort nameIndex)

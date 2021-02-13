@@ -1,6 +1,3 @@
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Constants
 {
     /// <summary>
@@ -103,13 +100,5 @@ namespace Bali.Constants
             get;
             set;
         }
-
-        /// <summary>
-        /// Parses a <see cref="MethodHandleConstant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="MethodHandleConstant"/>.</returns>
-        public static MethodHandleConstant Create(Stream stream) =>
-            new((MethodReferenceKind) stream.ReadU1(), stream.ReadU2());
     }
 }

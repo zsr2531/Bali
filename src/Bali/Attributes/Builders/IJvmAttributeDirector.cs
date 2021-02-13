@@ -1,4 +1,6 @@
-﻿namespace Bali.Attributes.Builders
+﻿using System.IO;
+
+namespace Bali.Attributes.Builders
 {
     /// <summary>
     /// Provides a contract for keeping track of <see cref="IJvmAttributeBuilder"/> instances.
@@ -19,6 +21,7 @@
         /// Writes the <paramref name="attribute"/>.
         /// </summary>
         /// <param name="attribute">The <see cref="JvmAttribute"/> to write.</param>
-        void ConstructAttribute(JvmAttribute attribute);
+        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
+        void ConstructAttribute(JvmAttribute attribute, Stream stream);
     }
 }

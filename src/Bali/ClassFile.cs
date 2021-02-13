@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using Bali.Attributes;
+using Bali.Attributes.Builders;
+using Bali.Constants;
 using Bali.IO;
 
 namespace Bali
@@ -44,8 +46,8 @@ namespace Bali
         public ConstantPool Constants
         {
             get;
-            set;
-        }
+            private set;
+        } = new(new List<Constant>());
         
         /// <summary>
         /// Gets or sets the <see cref="AccessFlags"/>.
@@ -80,7 +82,7 @@ namespace Bali
         public IList<ushort> Interfaces
         {
             get;
-            set;
+            private set;
         } = new List<ushort>();
 
         /// <summary>
@@ -109,6 +111,58 @@ namespace Bali
             get;
             private set;
         } = new List<JvmAttribute>();
+
+        public void Write(string path)
+        {
+            using var ms = new MemoryStream();
+            Write(ms);
+            File.WriteAllBytes(path, ms.ToArray());
+        }
+
+        public void Write(Stream stream)
+        {
+            stream.WriteU4(Magic);
+            stream.WriteU2(MinorVersion);
+            stream.WriteU2(MajorVersion);
+
+            var constantPoolWriter = new ConstantPoolWriter(Constants, stream);
+            constantPoolWriter.WriteConstantPool();
+            
+            stream.WriteU2((ushort) AccessFlags);
+            stream.WriteU2(ThisClassIndex);
+            stream.WriteU2(SuperClassIndex);
+            
+            stream.WriteU2((ushort) Interfaces.Count);
+            foreach (ushort index in Interfaces)
+                stream.WriteU2(index);
+
+            var attributeDirector = new JvmAttributeDirector(Constants);
+            stream.WriteU2((ushort) Fields.Count);
+            foreach (var field in Fields)
+            {
+                stream.WriteU2((byte) field.AccessFlags);
+                stream.WriteU2(field.NameIndex);
+                stream.WriteU2(field.DescriptorIndex);
+                stream.WriteU2((ushort) field.Attributes.Count);
+                foreach (var attribute in field.Attributes)
+                    attributeDirector.ConstructAttribute(attribute, stream);
+            }
+            
+            stream.WriteU2((ushort) Methods.Count);
+            foreach (var method in Methods)
+            {
+                stream.WriteU2((byte) method.AccessFlags);
+                stream.WriteU2(method.NameIndex);
+                stream.WriteU2(method.DescriptorIndex);
+                stream.WriteU2((ushort) method.Attributes.Count);
+                foreach (var attribute in method.Attributes)
+                    attributeDirector.ConstructAttribute(attribute, stream);
+            }
+            
+            stream.WriteU2((ushort) Attributes.Count);
+            foreach (var attribute in Attributes)
+                attributeDirector.ConstructAttribute(attribute, stream);
+        }
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from the given <paramref name="path"/>.

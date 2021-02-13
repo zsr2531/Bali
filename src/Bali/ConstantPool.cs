@@ -8,7 +8,7 @@ namespace Bali
     /// <summary>
     /// Provides a <b><i>one</i></b>-base indexed list of <see cref="Constant"/>s.
     /// </summary>
-    public readonly struct ConstantPool : IList<Constant>
+    public sealed class ConstantPool : IList<Constant>
     {
         private readonly IList<Constant> _constants;
         

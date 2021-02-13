@@ -1,6 +1,3 @@
-using System.IO;
-using Bali.IO;
-
 namespace Bali.Constants
 {
     /// <summary>
@@ -13,7 +10,10 @@ namespace Bali.Constants
         /// </summary>
         /// <param name="value">The value of the constant.</param>
         public IntegerConstant(int value)
-            : base(ConstantKind.Integer) => Value = value;
+            : base(ConstantKind.Integer)
+        {
+            Value = value;
+        }
 
         /// <summary>
         /// Gets or sets the value of the constant.
@@ -23,12 +23,5 @@ namespace Bali.Constants
             get;
             set;
         }
-        
-        /// <summary>
-        /// Parses a <see cref="IntegerConstant"/> from the given input <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <returns>The parsed <see cref="IntegerConstant"/>.</returns>
-        public static IntegerConstant Create(Stream stream) => new((int) stream.ReadU4());
     }
 }

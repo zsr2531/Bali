@@ -1,144 +1,161 @@
-using System;
-using System.IO;
 using System.Text;
-using System.Threading;
 
 namespace Bali.IO
 {
     /// <summary>
-    /// Provides <see cref="Decode"/> and <see cref="Encode"/> methods to consume Java's "modified UTF-8" data.
+    /// Provides methods to consume Java's "modified UTF-8" data.
     /// </summary>
-    public static class JavaUtf8
+    public class JavaUtf8 : Encoding
     {
-        private static readonly ThreadLocal<StringBuilder> Builder =
-            new(() => new StringBuilder());
-
         /// <summary>
-        /// Decodes <paramref name="length"/> amount of bytes from the <paramref name="stream"/> into a <see cref="string"/>.
+        /// Provides a public singleton instance of this class.
         /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
-        /// <param name="length">The amount of <b><i><see cref="byte"/>s</i></b> to decode.</param>
-        /// <returns>The decoded <see cref="string"/>.</returns>
-        /// <exception cref="InvalidDataException">When the data read from the input stream isn't valid JavaUtf8.</exception>
-        /// <exception cref="InvalidOperationException">When more <see cref="byte"/>s get consumed than the <paramref name="length"/>.</exception>
-        public static string Decode(Stream stream, int length)
+        public static readonly JavaUtf8 Instance = new();
+
+        private JavaUtf8()
         {
-            var builder = Builder.Value;
-            builder.Clear();
-
-            for (int i = 0; i < length; i++)
-            {
-                if (i > length)
-                    throw new InvalidOperationException("Consumed more bytes than the specified length.");
-
-                byte first = ReadByte(stream);
-                if (first >= 0x01 && first <= 0x7F)
-                {
-                    builder.Append((char) first);
-                    continue;
-                }
-
-                byte second = ReadByte(stream);
-                i++;
-                if (first == 0xC0 && second == 0x80)
-                {
-                    builder.Append('\0');
-                    continue;
-                }
-
-                int twoByte = ((first & 0x1F) << 6) + (second & 0x3F);
-                if (twoByte <= 0x07FF)
-                {
-                    builder.Append((char) twoByte);
-                    continue;
-                }
-
-                byte third = ReadByte(stream);
-                i++;
-                int threeByte = ((first & 0xF) << 12) + ((second & 0x3F) << 6) + (third & 0x3F);
-                if (threeByte <= 0xFFFF)
-                {
-                    builder.Append((char) threeByte);
-                    continue;
-                }
-
-                byte fourth = ReadByte(stream), fifth = ReadByte(stream), sixth = ReadByte(stream);
-                if (first != 0xED || fourth != 0xED)
-                {
-                    throw new InvalidDataException(
-                        $"Invalid Java Utf-8: {first:X2}{second:X2}{third:X2}{fourth:X2}{fifth:X2}{sixth:X2}.");
-                }
-
-                i += 3;
-                int sixByte = 0x1000 + ((second & 0x0F) << 16) + ((third & 0x3F) << 10) + ((fifth & 0x0F) << 6) +
-                    (sixth & 0x3F);
-                builder.Append((char) sixByte);
-            }
-
-            return builder.ToString();
         }
 
-        /// <summary>
-        /// Encodes the given <paramref name="text"/> into JavaUtf8 and writes it to the <paramref name="stream"/>.
-        /// </summary>
-        /// <param name="stream">The <see cref="Stream"/> to write the encoded bytes to.</param>
-        /// <param name="text">The <see cref="string"/> to encode.></param>
-        public static void Encode(Stream stream, string text)
+        /// <inheritdoc />
+        public override int GetByteCount(char[] chars, int index, int count)
         {
-            foreach (char character in text)
+            int bytes = 0;
+
+            for (int i = index; i < index + count; i++)
             {
-                if (character == '\0')
+                if (chars[i] == 0)
+                    bytes += 2;
+                else if (chars[i] <= 0x7f)
+                    bytes++;
+                else if (chars[i] <= 0x7ff)
+                    bytes += 2;
+                else if (chars[i] <= 0xffff)
+                    bytes += 3;
+                else
+                    bytes += 6;
+            }
+
+            return bytes;
+        }
+
+        /// <inheritdoc />
+        public override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
+        {
+            int start = byteIndex;
+
+            for (int i = charIndex; i < charIndex + charCount; i++)
+            {
+                char current = chars[i];
+                
+                if (current == '\0')
                 {
-                    stream.WriteByte(0xC0);
-                    stream.WriteByte(0x80);
+                    // The null character is a special case we need to handle.
+                    bytes[byteIndex++] = 0xc0;
+                    bytes[byteIndex++] = 0x80;
                 }
-                else if (character >= 0x01 && character <= 0x7F)
+                else if (current <= 0x7f)
                 {
-                    stream.WriteByte((byte) character);
+                    bytes[byteIndex++] = (byte) current;
                 }
-                else if (character <= 0x07FF)
+                else if (current <= 0x7ff)
                 {
-                    byte first = (byte) ((character >> 6) & 0x1F);
-                    byte second = (byte) (character & 0x3F);
-                    
-                    stream.WriteByte(first);
-                    stream.WriteByte(second);
+                    bytes[byteIndex++] = (byte) (0b11000000 | (byte) ((current & 0x7c0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
                 }
-                else if (character <= 0xFFFF)
+                else if (current <= 0xffff)
                 {
-                    byte first = (byte) ((character >> 12) & 0xF);
-                    byte second = (byte) ((character >> 6) & 0x3F);
-                    byte third = (byte) (character & 0x3F);
-                    
-                    stream.WriteByte(first);
-                    stream.WriteByte(second);
-                    stream.WriteByte(third);
+                    bytes[byteIndex++] = (byte) (0b11100000 | (byte) ((current & 0xf000) >> 12));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) ((current & 0xfc0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
                 }
                 else
                 {
-                    int value = character - 0x1000;
-                    byte second = (byte) ((value >> 16) & 0x0F);
-                    byte third = (byte) ((value >> 10) & 0x3F);
-                    byte fifth = (byte) ((value >> 6) & 0x0F);
-                    byte sixth = (byte) (value & 0x3F);
-                    
-                    stream.WriteByte(0xED);
-                    stream.WriteByte(second);
-                    stream.WriteByte(third);
-                    stream.WriteByte(0xED);
-                    stream.WriteByte(fifth);
-                    stream.WriteByte(sixth);
+                    bytes[byteIndex++] = 0xed;
+                    bytes[byteIndex++] = (byte) (0b10100000 | (byte) ((current & 0xf000) >> 16));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) ((current & 0xfc00) >> 10));
+                    bytes[byteIndex++] = 0xed;
+                    bytes[byteIndex++] = (byte) (0b10110000 | (byte) ((current & 0x3c0) >> 6));
+                    bytes[byteIndex++] = (byte) (0b10000000 | (byte) (current & 0x3f));
                 }
             }
+
+            return byteIndex - start;
         }
 
-        private static byte ReadByte(Stream stream)
+        /// <inheritdoc />
+        public override int GetCharCount(byte[] bytes, int index, int count)
         {
-            byte value = stream.ReadU1();
-            if (value == 0 || value >= 0xF0 && value <= 0xFF)
-                throw new InvalidDataException($"Invalid byte in Java UTF-8: {value:X2}.");
+            int chars = 0;
+            
+            for (int i = index; i < index + count; chars++)
+            {
+                if (bytes[i] >= 0x01 && bytes[i] <= 0x7f)
+                    i++;
+                else if (bytes[i] == 0xc0 && bytes[i + 1] == 0x80)
+                    i += 2;
+                else if (((bytes[i] & 0x1f) << 6) + (bytes[i + 1] & 0x3f) <= 0x7ff)
+                    i += 2;
+                else if (((bytes[i] & 0xf) << 12) + ((bytes[i + 1] & 0x3f) << 6) + (bytes[i + 2] & 0x3f) <= 0xffff)
+                    i += 3;
+                else
+                    i += 6;
+            }
 
-            return value;
+            return chars;
         }
+
+        /// <inheritdoc />
+        public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+        {
+            int start = charIndex;
+
+            for (int i = byteIndex; i < byteIndex + byteCount; charIndex++)
+            {
+                byte first = bytes[i++];
+                if (first <= 0x7f)
+                {
+                    chars[charIndex] = (char) first;
+                    continue;
+                }
+                
+                byte second = bytes[i++];
+                if (first == 0xc0 && second == 0x80)
+                {
+                    chars[charIndex] = '\0';
+                    continue;
+                }
+
+                int twoBytes = ((first & 0x1f) << 6) + (second & 0x3f);
+                if (twoBytes <= 0x7ff)
+                {
+                    chars[charIndex] = (char) twoBytes;
+                    continue;
+                }
+
+                byte third = bytes[i++];
+                int threeBytes = ((first & 0xf) << 12) + ((second & 0x3f) << 6) + (third & 0x3f);
+                if (threeBytes <= 0xffff)
+                {
+                    chars[charIndex] = (char) threeBytes;
+                    continue;
+                }
+
+                _ = bytes[i++];
+                byte fifth = bytes[i++];
+                byte sixth = bytes[i++];
+
+                int sixBytes = 0x1000 + ((second & 0xf) << 16) + ((third & 0x3f) << 10)
+                    + ((fifth & 0xf) << 6) + (sixth & 0x3f);
+                chars[charIndex] = (char) sixBytes;
+            }
+
+            return charIndex - start;
+        }
+
+        /// <inheritdoc />
+        public override int GetMaxByteCount(int charCount) => charCount * 6;
+
+        /// <inheritdoc />
+        public override int GetMaxCharCount(int byteCount) => byteCount;
     }
 }
