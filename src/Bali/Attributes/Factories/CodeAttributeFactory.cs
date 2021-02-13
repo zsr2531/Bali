@@ -41,7 +41,8 @@ namespace Bali.Attributes.Factories
         public override JvmAttribute Read(Stream stream, ushort nameIndex)
         {
             _ = stream.ReadU4();
-            ushort maxStack = stream.ReadU2(), maxLocals = stream.ReadU2();
+            ushort maxStack = stream.ReadU2();
+            ushort maxLocals = stream.ReadU2();
             var instructions = ReadInstructions(stream);
             var exceptionHandlers = ReadExceptionHandlers(stream);
 
