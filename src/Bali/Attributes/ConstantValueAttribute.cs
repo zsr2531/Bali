@@ -5,8 +5,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes a constant value.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class ConstantValueAttribute : JvmAttribute
     {
         /// <summary>

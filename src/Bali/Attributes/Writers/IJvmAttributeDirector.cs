@@ -1,17 +1,17 @@
 ﻿using System.IO;
 
-namespace Bali.Attributes.Builders
+namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides a contract for keeping track of <see cref="IJvmAttributeBuilder"/> instances.
+    /// Provides a contract for keeping track of <see cref="IJvmAttributeWriter"/> instances.
     /// </summary>
     public interface IJvmAttributeDirector
     {
         /// <summary>
-        /// Gets or sets the <see cref="IJvmAttributeBuilder"/> for the given attribute <paramref name="name"/>.
+        /// Gets or sets the <see cref="IJvmAttributeWriter"/> for the given attribute <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
-        IJvmAttributeBuilder this[string name]
+        IJvmAttributeWriter this[string name]
         {
             get;
             set;

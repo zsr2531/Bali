@@ -6,8 +6,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which provides information about line numbers based on the program counter position.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class LineNumberTableAttribute : JvmAttribute
     {
         /// <summary>

@@ -5,7 +5,7 @@ using System.Reflection;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 
-namespace Bali.SourceGenerators.Builders
+namespace Bali.SourceGenerators.Writers
 {
     public class TypeProcessor
     {
@@ -115,13 +115,12 @@ namespace Bali.SourceGenerators.Builders
         {
             var existing = _builder.Methods.SingleOrDefault(m =>
             {
-                var target = typeof(MethodBuilder).GetField("_parameters", BindingFlags.NonPublic | BindingFlags.Instance);
-                var parameters = (List<ParameterBuilder<MethodBuilder>>) target!.GetValue(m);
+                var parameters = m.Parameters;
                 if (parameters.Count != 2)
                     return false;
 
-                var first = parameters[0];
-                var second = parameters[1];
+                var first = parameters.First();
+                var second = parameters.Skip(1).First();
 
                 return first.Type == "Stream" && predicate(second.Name);
             });

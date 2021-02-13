@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Bali.Attributes;
-using Bali.Attributes.Factories;
+using Bali.Attributes.Readers;
 
 namespace Bali.IO
 {
@@ -13,7 +13,7 @@ namespace Bali.IO
     public readonly struct MetadataBodyReader
     {
         private readonly Stream? _inputStream;
-        private readonly IJvmAttributeFactoryFacade? _attributeFactory;
+        private readonly IJvmAttributeReaderFacade? _attributeFactory;
 
         /// <summary>
         /// Creates a new <see cref="MetadataBodyReader"/>.
@@ -23,7 +23,7 @@ namespace Bali.IO
         public MetadataBodyReader(Stream inputStream, in ConstantPool constantPool)
         {
             _inputStream = inputStream;
-            _attributeFactory = new JvmAttributeFactoryFacade(inputStream, constantPool);
+            _attributeFactory = new JvmAttributeReaderFacade(inputStream, constantPool);
         }
 
         /// <summary>

@@ -1,20 +1,20 @@
 ﻿using System.IO;
 using Bali.IO;
 
-namespace Bali.Attributes.Builders
+namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides base functionality to help implement the <see cref="IJvmAttributeBuilder"/> contract.
+    /// Provides base functionality to help implement the <see cref="IJvmAttributeWriter"/> contract.
     /// </summary>
     /// <typeparam name="T">The type of the attribute to build.</typeparam>
-    public abstract class JvmAttributeBuilderBase<T> : IJvmAttributeBuilder
+    public abstract class JvmAttributeWriterBase<T> : IJvmAttributeWriter
         where T : JvmAttribute
     {
         /// <summary>
         /// Initializes the underlying <see cref="Director"/>.
         /// </summary>
         /// <param name="director">The underlying <see cref="IJvmAttributeDirector"/>.</param>
-        protected JvmAttributeBuilderBase(IJvmAttributeDirector director)
+        protected JvmAttributeWriterBase(IJvmAttributeDirector director)
         {
             Director = director;
         }
@@ -39,7 +39,7 @@ namespace Bali.Attributes.Builders
         /// <inheritdoc />
         public void WriteBody(Stream stream, JvmAttribute attribute) => WriteBody(stream, (T) attribute);
 
-        /// <inheritdoc cref="JvmAttributeBuilderBase{T}.WriteBody(Stream,JvmAttribute)" />
+        /// <inheritdoc cref="JvmAttributeWriterBase{T}.WriteBody(Stream,JvmAttribute)" />
         protected abstract void WriteBody(Stream stream, T attribute);
     }
 }

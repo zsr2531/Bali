@@ -1,11 +1,11 @@
 ﻿using System.IO;
 
-namespace Bali.Attributes.Builders
+namespace Bali.Attributes.Writers
 {
     /// <summary>
     /// Provides a contract for a builder that can serialize a specific type of <see cref="JvmAttribute"/>.
     /// </summary>
-    public interface IJvmAttributeBuilder
+    public interface IJvmAttributeWriter
     {
         /// <summary>
         /// Gets the name of the attribute that this class can serialize.

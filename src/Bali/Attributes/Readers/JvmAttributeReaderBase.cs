@@ -1,26 +1,26 @@
 ﻿using System.IO;
 using Bali.Constants;
 
-namespace Bali.Attributes.Factories
+namespace Bali.Attributes.Readers
 {
     /// <summary>
     /// Provides a contract for a factory that can create a concrete <see cref="JvmAttribute"/> instance.
     /// </summary>
-    public abstract class JvmAttributeFactoryBase
+    public abstract class JvmAttributeReaderBase
     {
         /// <summary>
-        /// Initializes the <see cref="AttributeFactoryFacade"/>.
+        /// Initializes the <see cref="AttributeReaderFacade"/>.
         /// </summary>
-        /// <param name="attributeFactoryFacade">The attribute factory that can be used to create other types of attributes.</param>
-        protected JvmAttributeFactoryBase(IJvmAttributeFactoryFacade attributeFactoryFacade)
+        /// <param name="attributeReaderFacade">The attribute factory that can be used to create other types of attributes.</param>
+        protected JvmAttributeReaderBase(IJvmAttributeReaderFacade attributeReaderFacade)
         {
-            AttributeFactoryFacade = attributeFactoryFacade;
+            AttributeReaderFacade = attributeReaderFacade;
         }
 
         /// <summary>
         /// Gets the attribute factory that can be used to create other types of attributes.
         /// </summary>
-        protected IJvmAttributeFactoryFacade AttributeFactoryFacade
+        protected IJvmAttributeReaderFacade AttributeReaderFacade
         {
             get;
         }

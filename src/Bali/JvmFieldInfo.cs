@@ -24,7 +24,7 @@ namespace Bali
         }
 
         /// <summary>
-        /// Gets the <see cref="FieldAccessFlags"/>.
+        /// Gets or sets the <see cref="FieldAccessFlags"/>.
         /// </summary>
         public FieldAccessFlags AccessFlags
         {
@@ -33,7 +33,7 @@ namespace Bali
         }
 
         /// <summary>
-        /// Gets the index into the <see cref="ConstantPool"/> representing the name of the field.
+        /// Gets or sets the index into the <see cref="ConstantPool"/> representing the name of the field.
         /// </summary>
         public ushort NameIndex
         {
@@ -42,7 +42,7 @@ namespace Bali
         }
 
         /// <summary>
-        /// Gets the index into the <see cref="ConstantPool"/> representing the type of the field.
+        /// Gets or sets the index into the <see cref="ConstantPool"/> representing the type of the field.
         /// </summary>
         public ushort DescriptorIndex
         {
@@ -56,7 +56,6 @@ namespace Bali
         public IList<JvmAttribute> Attributes
         {
             get;
-            set;
         }
     }
 }

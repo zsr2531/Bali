@@ -2,12 +2,12 @@
 using System.IO;
 using Bali.IO;
 
-namespace Bali.Attributes.Builders
+namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides a default implementation of the <see cref="IJvmAttributeBuilder"/> contract.
+    /// Provides a default implementation of the <see cref="IJvmAttributeWriter"/> contract.
     /// </summary>
-    public sealed class DefaultJvmAttributeBuilder : IJvmAttributeBuilder
+    public sealed class DefaultJvmAttributeWriter : IJvmAttributeWriter
     {
         /// <inheritdoc />
         public string Name => throw new NotSupportedException();

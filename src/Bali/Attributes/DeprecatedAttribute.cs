@@ -5,8 +5,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which indicates that the given member is deprecated.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class DeprecatedAttribute : JvmAttribute
     {
         /// <summary>
