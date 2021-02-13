@@ -77,7 +77,7 @@ namespace Bali.Emit
 
                 case JvmOperandType.LocalIndexWithSignedByte:
                     var real = CastOperand<LocalIndexWithSignedByte>(operand);
-                    stream.WriteU2(real.LocalIndex);
+                    stream.WriteU1(real.LocalIndex);
                     stream.WriteI1(real.SignedByte);
                     break;
 
