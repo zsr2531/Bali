@@ -1,0 +1,23 @@
+name: docfx
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/Bali/**'
+      - 'docs/**'
+jobs:
+  docfx:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nikeee/docfx-action@v1.0.0
+      name: docfx
+      with:
+        args: docs/docfx.json
+    - uses: maxheld83/ghpages@master
+      name: gh-pages publish
+      env:
+        BUILD_DIR: docs/_site
+        GH_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
