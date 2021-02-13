@@ -140,7 +140,7 @@ namespace Bali
             stream.WriteU2((ushort) Fields.Count);
             foreach (var field in Fields)
             {
-                stream.WriteU2((byte) field.AccessFlags);
+                stream.WriteU2((ushort) field.AccessFlags);
                 stream.WriteU2(field.NameIndex);
                 stream.WriteU2(field.DescriptorIndex);
                 stream.WriteU2((ushort) field.Attributes.Count);
@@ -151,7 +151,7 @@ namespace Bali
             stream.WriteU2((ushort) Methods.Count);
             foreach (var method in Methods)
             {
-                stream.WriteU2((byte) method.AccessFlags);
+                stream.WriteU2((ushort) method.AccessFlags);
                 stream.WriteU2(method.NameIndex);
                 stream.WriteU2(method.DescriptorIndex);
                 stream.WriteU2((ushort) method.Attributes.Count);
