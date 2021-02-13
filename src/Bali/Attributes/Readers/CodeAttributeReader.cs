@@ -3,33 +3,33 @@ using System.IO;
 using Bali.Emit;
 using Bali.IO;
 
-namespace Bali.Attributes.Factories
+namespace Bali.Attributes.Readers
 {
     /// <summary>
-    /// Provides an implementation of the <see cref="JvmAttributeFactoryBase"/> contract that can create <see cref="CodeAttribute"/>s.
+    /// Provides an implementation of the <see cref="JvmAttributeReaderBase"/> contract that can create <see cref="CodeAttribute"/>s.
     /// </summary>
-    public class CodeAttributeFactory : JvmAttributeFactoryBase
+    public class CodeAttributeReader : JvmAttributeReaderBase
     {
         private readonly IJvmBytecodeDisassembler _disassembler;
         
         /// <summary>
-        /// Creates a new <see cref="CodeAttributeFactory"/>.
+        /// Creates a new <see cref="CodeAttributeReader"/>.
         /// </summary>
-        /// <param name="attributeFactoryFacade">The attribute factory that can be used to create other types of attributes.</param>
-        public CodeAttributeFactory(IJvmAttributeFactoryFacade attributeFactoryFacade)
-            : this(attributeFactoryFacade, JvmBytecodeDisassembler.Instance)
+        /// <param name="attributeReaderFacade">The attribute factory that can be used to create other types of attributes.</param>
+        public CodeAttributeReader(IJvmAttributeReaderFacade attributeReaderFacade)
+            : this(attributeReaderFacade, JvmBytecodeDisassembler.Instance)
         {
         }
 
         /// <summary>
-        /// Creates a new <see cref="CodeAttributeFactory"/>.
+        /// Creates a new <see cref="CodeAttributeReader"/>.
         /// </summary>
-        /// <param name="attributeFactoryFacade">The attribute factory that can be used to create other types of attributes.</param>
+        /// <param name="attributeReaderFacade">The attribute factory that can be used to create other types of attributes.</param>
         /// <param name="disassembler">The disassembler that is used to parse instructions.</param>
-        public CodeAttributeFactory(
-            IJvmAttributeFactoryFacade attributeFactoryFacade,
+        public CodeAttributeReader(
+            IJvmAttributeReaderFacade attributeReaderFacade,
             IJvmBytecodeDisassembler disassembler)
-            : base(attributeFactoryFacade)
+            : base(attributeReaderFacade)
         {
             _disassembler = disassembler;
         }
@@ -50,7 +50,7 @@ namespace Bali.Attributes.Factories
             var attributes = new List<JvmAttribute>(attributeCount);
 
             for (int i = 0; i < attributeCount; i++)
-                attributes.Add(AttributeFactoryFacade.Create());
+                attributes.Add(AttributeReaderFacade.Create());
 
             return new CodeAttribute(nameIndex, maxStack, maxLocals, instructions, exceptionHandlers, attributes);
         }

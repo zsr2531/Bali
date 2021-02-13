@@ -2,15 +2,15 @@ using System;
 using System.IO;
 using Bali.IO;
 
-namespace Bali.Attributes.Factories
+namespace Bali.Attributes.Readers
 {
     /// <summary>
-    /// Provides a default implementation of the <see cref="JvmAttributeFactoryBase"/> contract.
+    /// Provides a default implementation of the <see cref="JvmAttributeReaderBase"/> contract.
     /// </summary>
-    public sealed class DefaultJvmAttributeFactory : JvmAttributeFactoryBase
+    public sealed class DefaultJvmAttributeReader : JvmAttributeReaderBase
     {
         /// <inheritdoc />
-        public DefaultJvmAttributeFactory()
+        public DefaultJvmAttributeReader()
             : base(null!) { }
 
         /// <inheritdoc />

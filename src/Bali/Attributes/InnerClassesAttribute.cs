@@ -6,8 +6,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes nested classes of a given class.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class InnerClassesAttribute : JvmAttribute
     {
         /// <summary>

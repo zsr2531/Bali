@@ -5,8 +5,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes a local/anonymous class defined in a method in the source code.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class EnclosingMethodAttribute : JvmAttribute
     {
         /// <summary>

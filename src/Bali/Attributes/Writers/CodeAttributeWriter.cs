@@ -2,30 +2,30 @@
 using Bali.Emit;
 using Bali.IO;
 
-namespace Bali.Attributes.Builders
+namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides an implementation of the <see cref="JvmAttributeBuilderBase{T}"/> contract which can build <see cref="CodeAttribute"/>s.
+    /// Provides an implementation of the <see cref="JvmAttributeWriterBase{T}"/> contract which can build <see cref="CodeAttribute"/>s.
     /// </summary>
-    public class CodeAttributeBuilder : JvmAttributeBuilderBase<CodeAttribute>
+    public class CodeAttributeWriter : JvmAttributeWriterBase<CodeAttribute>
     {
         private readonly IJvmBytecodeAssembler _assembler;
 
         /// <summary>
-        /// Creates a new <see cref="CodeAttributeBuilder"/>.
+        /// Creates a new <see cref="CodeAttributeWriter"/>.
         /// </summary>
         /// <param name="director">The underlying <see cref="IJvmAttributeDirector"/>.</param>
-        public CodeAttributeBuilder(IJvmAttributeDirector director)
+        public CodeAttributeWriter(IJvmAttributeDirector director)
             : this(director, JvmBytecodeAssembler.Instance)
         {
         }
 
         /// <summary>
-        /// Creates a new <see cref="CodeAttributeBuilder"/>.
+        /// Creates a new <see cref="CodeAttributeWriter"/>.
         /// </summary>
         /// <param name="director">The underlying <see cref="IJvmAttributeDirector"/>.</param>
         /// <param name="assembler">The <see cref="IJvmBytecodeAssembler"/> to assemble bytecode with.</param>
-        public CodeAttributeBuilder(IJvmAttributeDirector director, IJvmBytecodeAssembler assembler)
+        public CodeAttributeWriter(IJvmAttributeDirector director, IJvmBytecodeAssembler assembler)
             : base(director)
         {
             _assembler = assembler;

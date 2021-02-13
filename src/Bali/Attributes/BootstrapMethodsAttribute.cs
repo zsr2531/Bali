@@ -7,8 +7,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes bootstrap method specifiers referenced by <see cref="JvmOpCodes.Invokedynamic"/> instructions.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class BootstrapMethodsAttribute : JvmAttribute
     {
         /// <summary>
