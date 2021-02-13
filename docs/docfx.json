@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "src": "../../",
+          "src": "../",
           "files": [
             "src/Bali/Bali.csproj"
           ]
@@ -18,10 +18,13 @@
     "content": [
       {
         "files": [
+            "api/**"
         ]
       },
       {
         "files": [
+            "*.md",
+            "toc.yml"
         ]
       }
     ],
