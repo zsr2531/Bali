@@ -7,3 +7,5 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 *.user
+docs/api/*
+docs/_site/*
