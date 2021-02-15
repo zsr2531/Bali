@@ -8,7 +8,7 @@ namespace Bali.Emit
     /// <summary>
     /// Represents a JVM exception handler.
     /// </summary>
-    public class JvmExceptionHandler : IEquatable<JvmExceptionHandler>
+    public sealed class JvmExceptionHandler : IEquatable<JvmExceptionHandler>
     {
         /// <summary>
         /// Creates a new <see cref="JvmExceptionHandler"/>.
