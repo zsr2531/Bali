@@ -49,7 +49,7 @@ namespace Bali.Attributes.Writers
         }
 
         /// <inheritdoc />
-        public void ConstructAttribute(JvmAttribute attribute, Stream stream)
+        public void WriteAttribute(JvmAttribute attribute, Stream stream)
         {
             string name = GetName(attribute.NameIndex);
             var builder = this[name];

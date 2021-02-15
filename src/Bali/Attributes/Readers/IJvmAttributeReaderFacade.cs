@@ -6,19 +6,19 @@
     public interface IJvmAttributeReaderFacade
     {
         /// <summary>
-        /// Gets or sets the attribute factory for a given attribute <paramref name="name"/>.
+        /// Gets or sets the <see cref="IJvmAttributeReader"/> for a given attribute <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
-        JvmAttributeReaderBase this[string name]
+        IJvmAttributeReader this[string name]
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Creates a <see cref="JvmAttribute"/>.
+        /// Reads a <see cref="JvmAttribute"/>.
         /// </summary>
         /// <returns>The parsed <see cref="JvmAttribute"/>.</returns>
-        JvmAttribute Create();
+        JvmAttribute ReadAttribute();
     }
 }

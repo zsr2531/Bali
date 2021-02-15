@@ -22,6 +22,6 @@ namespace Bali.Attributes.Writers
         /// </summary>
         /// <param name="attribute">The <see cref="JvmAttribute"/> to write.</param>
         /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        void ConstructAttribute(JvmAttribute attribute, Stream stream);
+        void WriteAttribute(JvmAttribute attribute, Stream stream);
     }
 }

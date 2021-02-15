@@ -6,7 +6,7 @@ using Bali.IO;
 namespace Bali.Attributes.Readers
 {
     /// <summary>
-    /// Provides an implementation of the <see cref="JvmAttributeReaderBase"/> contract that can create <see cref="CodeAttribute"/>s.
+    /// Provides an implementation of the <see cref="JvmAttributeReaderBase"/> contract that can read <see cref="CodeAttribute"/>s.
     /// </summary>
     public class CodeAttributeReader : JvmAttributeReaderBase
     {
@@ -50,7 +50,7 @@ namespace Bali.Attributes.Readers
             var attributes = new List<JvmAttribute>(attributeCount);
 
             for (int i = 0; i < attributeCount; i++)
-                attributes.Add(AttributeReaderFacade.Create());
+                attributes.Add(AttributeReaderFacade.ReadAttribute());
 
             return new CodeAttribute(nameIndex, maxStack, maxLocals, instructions, exceptionHandlers, attributes);
         }
