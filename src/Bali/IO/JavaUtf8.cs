@@ -5,7 +5,7 @@ namespace Bali.IO
     /// <summary>
     /// Provides methods to consume Java's "modified UTF-8" data.
     /// </summary>
-    public class JavaUtf8 : Encoding
+    public sealed class JavaUtf8 : Encoding
     {
         /// <summary>
         /// Provides a public singleton instance of this class.
