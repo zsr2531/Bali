@@ -20,7 +20,7 @@ namespace Bali.IO
         /// </summary>
         /// <param name="inputStream">The input <see cref="Stream"/> to read data from.</param>
         /// <param name="constantPool">The <see cref="ConstantPool"/> to resolve constant pool indices with.</param>
-        public MetadataBodyReader(Stream inputStream, in ConstantPool constantPool)
+        public MetadataBodyReader(Stream inputStream, ConstantPool constantPool)
         {
             _inputStream = inputStream;
             _attributeFactory = new JvmAttributeReaderFacade(inputStream, constantPool);
@@ -77,7 +77,7 @@ namespace Bali.IO
             
             var attributes = new List<JvmAttribute>(attributesCount);
             for (int i = 0; i < attributesCount; i++)
-                attributes.Add(_attributeFactory!.Create());
+                attributes.Add(_attributeFactory!.ReadAttribute());
 
             return attributes;
         }
