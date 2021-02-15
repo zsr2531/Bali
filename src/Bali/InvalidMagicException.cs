@@ -1,6 +1,6 @@
 using System;
 
-namespace Bali.IO
+namespace Bali
 {
     /// <summary>
     /// Thrown when the first 4 bytes of a <see cref="ClassFile"/> isn't <b>0xCAFEBABE</b>.
