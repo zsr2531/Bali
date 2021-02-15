@@ -119,6 +119,14 @@ namespace Bali
             File.WriteAllBytes(path, ms.ToArray());
         }
 
+        public byte[] Write()
+        {
+            using var ms = new MemoryStream();
+            Write(ms);
+
+            return ms.ToArray();
+        }
+
         public void Write(Stream stream)
         {
             stream.WriteU4(Magic);
@@ -145,7 +153,7 @@ namespace Bali
                 stream.WriteU2(field.DescriptorIndex);
                 stream.WriteU2((ushort) field.Attributes.Count);
                 foreach (var attribute in field.Attributes)
-                    attributeDirector.ConstructAttribute(attribute, stream);
+                    attributeDirector.WriteAttribute(attribute, stream);
             }
             
             stream.WriteU2((ushort) Methods.Count);
@@ -156,12 +164,12 @@ namespace Bali
                 stream.WriteU2(method.DescriptorIndex);
                 stream.WriteU2((ushort) method.Attributes.Count);
                 foreach (var attribute in method.Attributes)
-                    attributeDirector.ConstructAttribute(attribute, stream);
+                    attributeDirector.WriteAttribute(attribute, stream);
             }
             
             stream.WriteU2((ushort) Attributes.Count);
             foreach (var attribute in Attributes)
-                attributeDirector.ConstructAttribute(attribute, stream);
+                attributeDirector.WriteAttribute(attribute, stream);
         }
 
         /// <summary>
