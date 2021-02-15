@@ -15,7 +15,7 @@ namespace Bali.Attributes.Readers
     {
         private readonly Stream _stream;
         private readonly ConstantPool _constantPool;
-        private readonly Dictionary<string, JvmAttributeReaderBase> _concreteFactories;
+        private readonly Dictionary<string, IJvmAttributeReader> _concreteFactories;
 
         private static readonly DefaultJvmAttributeReader DefaultJvmAttributeReader = new();
 
@@ -28,7 +28,7 @@ namespace Bali.Attributes.Readers
         {
             _stream = stream;
             _constantPool = constantPool;
-            _concreteFactories = new Dictionary<string, JvmAttributeReaderBase>
+            _concreteFactories = new Dictionary<string, IJvmAttributeReader>
             {
                 ["Code"] = new CodeAttributeReader(this)
             };
@@ -37,7 +37,7 @@ namespace Bali.Attributes.Readers
         }
 
         /// <inheritdoc />
-        public JvmAttributeReaderBase this[string name]
+        public IJvmAttributeReader this[string name]
         {
             get => _concreteFactories.TryGetValue(name, out var value)
                 ? value
@@ -52,7 +52,7 @@ namespace Bali.Attributes.Readers
         }
 
         /// <inheritdoc />
-        public JvmAttribute Create()
+        public JvmAttribute ReadAttribute()
         {
             ushort nameIndex = _stream.ReadU2();
             string name = GetName(nameIndex);

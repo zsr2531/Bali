@@ -5,7 +5,7 @@ using Bali.IO;
 namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides an implementation of the <see cref="JvmAttributeWriterBase{T}"/> contract which can build <see cref="CodeAttribute"/>s.
+    /// Provides an implementation of the <see cref="JvmAttributeWriterBase{T}"/> contract which can write <see cref="CodeAttribute"/>s.
     /// </summary>
     public class CodeAttributeWriter : JvmAttributeWriterBase<CodeAttribute>
     {
@@ -40,15 +40,15 @@ namespace Bali.Attributes.Writers
             stream.WriteU2(attribute.MaxStack);
             stream.WriteU2(attribute.MaxLocals);
             
-            BuildBytecode(stream, attribute);
-            BuildExceptionHandlers(stream, attribute);
+            WriteBytecode(stream, attribute);
+            WriteExceptionHandlers(stream, attribute);
             
             stream.WriteU2((ushort) attribute.Attributes.Count);
             foreach (var nestedAttribute in attribute.Attributes)
-                Director.ConstructAttribute(nestedAttribute, stream);
+                Director.WriteAttribute(nestedAttribute, stream);
         }
 
-        private void BuildBytecode(Stream stream, CodeAttribute attribute)
+        private void WriteBytecode(Stream stream, CodeAttribute attribute)
         {
             using var ms = new MemoryStream();
             _assembler.Assemble(attribute.Instructions, ms);
@@ -57,7 +57,7 @@ namespace Bali.Attributes.Writers
             ms.WriteTo(stream);
         }
 
-        private static void BuildExceptionHandlers(Stream stream, CodeAttribute attribute)
+        private static void WriteExceptionHandlers(Stream stream, CodeAttribute attribute)
         {
             stream.WriteU2((ushort) attribute.ExceptionHandlers.Count);
             foreach (var exceptionHandler in attribute.ExceptionHandlers)

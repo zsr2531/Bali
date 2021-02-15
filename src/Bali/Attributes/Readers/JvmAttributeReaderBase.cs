@@ -6,7 +6,7 @@ namespace Bali.Attributes.Readers
     /// <summary>
     /// Provides a contract for a factory that can create a concrete <see cref="JvmAttribute"/> instance.
     /// </summary>
-    public abstract class JvmAttributeReaderBase
+    public abstract class JvmAttributeReaderBase : IJvmAttributeReader
     {
         /// <summary>
         /// Initializes the <see cref="AttributeReaderFacade"/>.
