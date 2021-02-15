@@ -8,6 +8,7 @@ Bali
 [![License](https://img.shields.io/github/license/zsr2531/Bali?style=for-the-badge)](https://github.com/zsr2531/Bali/tree/master/LICENSE)
 [![Docs](https://img.shields.io/badge/docs-Docfx-blueviolet?style=for-the-badge)](https://zsr2531.github.io/Bali/api)
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Bali?style=for-the-badge)](https://www.nuget.org/packages/Bali)
+[![Nuget](https://img.shields.io/nuget/dt/Bali?color=blue&style=for-the-badge)](https://www.nuget.org/packages/Bali)
 
 A fast and lightweight .Net library to read and write Java .class files.
 
