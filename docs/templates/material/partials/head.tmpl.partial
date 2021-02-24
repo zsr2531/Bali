@@ -20,6 +20,7 @@
   {{#_enableNewTab}}<meta property="docfx:newtab" content="true">{{/_enableNewTab}}
 </head>
 <script>
+function fixxyBoi() {
 $(function() {
     $('table').each(function(a, tbl) {
         var currentTableRows = $(tbl).find('tbody tr').length;
@@ -37,4 +38,6 @@ $(function() {
         });
     });
 });
+}
 </script>
+<body onload="fixxyBoi()">
