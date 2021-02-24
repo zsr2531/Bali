@@ -19,7 +19,7 @@
   {{#_enableSearch}}<meta property="docfx:rel" content="{{_rel}}">{{/_enableSearch}}
   {{#_enableNewTab}}<meta property="docfx:newtab" content="true">{{/_enableNewTab}}
   <script>
-    document.addEventListener('onload', function() {
+    document.body.addEventListener('onload', function() {
         $(function() {
             $('table').each(function(a, tbl) {
                 var currentTableRows = $(tbl).find('tbody tr').length;
