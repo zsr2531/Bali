@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Bali.IO;
 
 namespace Bali.Attributes.Readers
@@ -17,17 +16,17 @@ namespace Bali.Attributes.Readers
         public override string Name => throw new NotSupportedException();
 
         /// <inheritdoc />
-        public override JvmAttribute Read(Stream stream, ushort nameIndex) =>
-            new(nameIndex, ReadRawData(stream));
+        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex) =>
+            new(nameIndex, ReadRawData(reader));
 
-        private static byte[] ReadRawData(Stream stream)
+        private static byte[] ReadRawData(IBigEndianReader reader)
         {
-            uint length = stream.ReadU4();
+            uint length = reader.ReadU4();
             if (length == 0)
                 return Array.Empty<byte>();
 
-            var buffer = new byte[length];
-            stream.Read(buffer, 0, (int) length);
+            byte[] buffer = new byte[length];
+            reader.Read(buffer);
 
             return buffer;
         }

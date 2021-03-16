@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Bali.Constants;
 using Bali.IO;
 using Bali.SourceGeneration;
@@ -14,7 +13,7 @@ namespace Bali.Attributes.Writers
     public sealed class JvmAttributeDirector : IJvmAttributeDirector
     {
         private readonly ConstantPool _constantPool;
-        private readonly Dictionary<string, IJvmAttributeWriter> _builders;
+        private readonly Dictionary<string, IJvmAttributeWriter> _writers;
 
         private static readonly DefaultJvmAttributeWriter DefaultJvmAttributeWriter = new();
 
@@ -25,7 +24,7 @@ namespace Bali.Attributes.Writers
         public JvmAttributeDirector(ConstantPool constantPool)
         {
             _constantPool = constantPool;
-            _builders = new Dictionary<string, IJvmAttributeWriter>
+            _writers = new Dictionary<string, IJvmAttributeWriter>
             {
                 ["Code"] = new CodeAttributeWriter(this)
             };
@@ -36,7 +35,7 @@ namespace Bali.Attributes.Writers
         /// <inheritdoc />
         public IJvmAttributeWriter this[string name]
         {
-            get => _builders.TryGetValue(name, out var builder)
+            get => _writers.TryGetValue(name, out var builder)
                 ? builder
                 : DefaultJvmAttributeWriter;
             set
@@ -44,27 +43,20 @@ namespace Bali.Attributes.Writers
                 if (name != value.Name)
                     throw new ArgumentException(nameof(name));
                 
-                _builders[name] = value;
+                _writers[name] = value;
             }
         }
 
         /// <inheritdoc />
-        public void WriteAttribute(JvmAttribute attribute, Stream stream)
+        public void WriteAttribute(JvmAttribute attribute, IBigEndianWriter writer)
         {
             string name = GetName(attribute.NameIndex);
-            var builder = this[name];
+            var handler = this[name];
             
-            builder.WriteName(stream, attribute);
-            ConstructBody(stream, builder, attribute);
-        }
-
-        private static void ConstructBody(Stream stream, IJvmAttributeWriter writer, JvmAttribute attribute)
-        {
-            using var ms = new MemoryStream();
-            writer.WriteBody(ms, attribute);
-
-            stream.WriteU4((uint) ms.Length);
-            ms.WriteTo(stream);
+            handler.WriteName(attribute, writer);
+            
+            using var segment = writer.WithU4Length();
+            handler.WriteBody(attribute, segment);
         }
 
         private string GetName(ushort nameIndex)

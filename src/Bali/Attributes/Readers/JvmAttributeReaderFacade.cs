@@ -13,22 +13,22 @@ namespace Bali.Attributes.Readers
     /// </summary>
     public class JvmAttributeReaderFacade : IJvmAttributeReaderFacade
     {
-        private readonly Stream _stream;
+        private readonly IBigEndianReader _reader;
         private readonly ConstantPool _constantPool;
-        private readonly Dictionary<string, IJvmAttributeReader> _concreteFactories;
+        private readonly Dictionary<string, IJvmAttributeReader> _concreteReaders;
 
         private static readonly DefaultJvmAttributeReader DefaultJvmAttributeReader = new();
 
         /// <summary>
         /// Creates a new <see cref="JvmAttributeReaderFacade"/>.
         /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
+        /// <param name="reader">The input <see cref="Stream"/> to read data from.</param>
         /// <param name="constantPool">The <see cref="ConstantPool"/>.</param>
-        public JvmAttributeReaderFacade(Stream stream, in ConstantPool constantPool)
+        public JvmAttributeReaderFacade(IBigEndianReader reader, ConstantPool constantPool)
         {
-            _stream = stream;
+            _reader = reader;
             _constantPool = constantPool;
-            _concreteFactories = new Dictionary<string, IJvmAttributeReader>
+            _concreteReaders = new Dictionary<string, IJvmAttributeReader>
             {
                 ["Code"] = new CodeAttributeReader(this)
             };
@@ -39,7 +39,7 @@ namespace Bali.Attributes.Readers
         /// <inheritdoc />
         public IJvmAttributeReader this[string name]
         {
-            get => _concreteFactories.TryGetValue(name, out var value)
+            get => _concreteReaders.TryGetValue(name, out var value)
                 ? value
                 : DefaultJvmAttributeReader;
             set
@@ -47,17 +47,17 @@ namespace Bali.Attributes.Readers
                 if (name != value.Name)
                     throw new ArgumentException(nameof(name));
                 
-                _concreteFactories[name] = value;
+                _concreteReaders[name] = value;
             }
         }
 
         /// <inheritdoc />
         public JvmAttribute ReadAttribute()
         {
-            ushort nameIndex = _stream.ReadU2();
+            ushort nameIndex = _reader.ReadU2();
             string name = GetName(nameIndex);
 
-            return this[name].Read(_stream, nameIndex);
+            return this[name].Read(_reader, nameIndex);
         }
 
         private string GetName(ushort nameIndex)

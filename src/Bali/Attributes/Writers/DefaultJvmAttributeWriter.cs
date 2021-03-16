@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using Bali.IO;
 
 namespace Bali.Attributes.Writers
@@ -13,15 +12,15 @@ namespace Bali.Attributes.Writers
         public string Name => throw new NotSupportedException();
 
         /// <inheritdoc />
-        public void WriteName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
+        public void WriteName(JvmAttribute attribute, IBigEndianWriter writer) => writer.WriteU2(attribute.NameIndex);
 
         /// <inheritdoc />
-        public void WriteBody(Stream stream, JvmAttribute attribute)
+        public void WriteBody(JvmAttribute attribute, IBigEndianWriter writer)
         {
             if (attribute.Data is null)
                 throw new ArgumentException(nameof(attribute));
                 
-            stream.Write(attribute.Data, 0, attribute.Data.Length);
+            writer.Write(attribute.Data);
         }
     }
 }

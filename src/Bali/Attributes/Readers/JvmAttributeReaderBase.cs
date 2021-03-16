@@ -1,5 +1,5 @@
-﻿using System.IO;
-using Bali.Constants;
+﻿using Bali.Constants;
+using Bali.IO;
 
 namespace Bali.Attributes.Readers
 {
@@ -32,13 +32,13 @@ namespace Bali.Attributes.Readers
         {
             get;
         }
-        
+
         /// <summary>
-        /// Reads a <see cref="JvmAttribute"/> from the <paramref name="stream"/>.
+        /// Reads a <see cref="JvmAttribute"/> from the <paramref name="reader"/>.
         /// </summary>
-        /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
+        /// <param name="reader"></param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> to a <see cref="Utf8Constant"/> holding the name.</param>
         /// <returns>The parsed <see cref="JvmAttribute"/>.</returns>
-        public abstract JvmAttribute Read(Stream stream, ushort nameIndex);
+        public abstract JvmAttribute Read(IBigEndianReader reader, ushort nameIndex);
     }
 }
