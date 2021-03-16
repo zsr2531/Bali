@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using Bali.Emit;
 using Bali.IO;
 
@@ -38,15 +37,15 @@ namespace Bali.Attributes.Readers
         public override string Name => "Code";
 
         /// <inheritdoc />
-        public override JvmAttribute Read(Stream stream, ushort nameIndex)
+        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex)
         {
-            _ = stream.ReadU4();
-            ushort maxStack = stream.ReadU2();
-            ushort maxLocals = stream.ReadU2();
-            var instructions = ReadInstructions(stream);
-            var exceptionHandlers = ReadExceptionHandlers(stream);
+            _ = reader.ReadU4();
+            ushort maxStack = reader.ReadU2();
+            ushort maxLocals = reader.ReadU2();
+            var instructions = ReadInstructions(reader);
+            var exceptionHandlers = ReadExceptionHandlers(reader);
 
-            ushort attributeCount = stream.ReadU2();
+            ushort attributeCount = reader.ReadU2();
             var attributes = new List<JvmAttribute>(attributeCount);
 
             for (int i = 0; i < attributeCount; i++)
@@ -55,24 +54,24 @@ namespace Bali.Attributes.Readers
             return new CodeAttribute(nameIndex, maxStack, maxLocals, instructions, exceptionHandlers, attributes);
         }
 
-        private IList<JvmInstruction> ReadInstructions(Stream stream)
+        private IList<JvmInstruction> ReadInstructions(IBigEndianReader reader)
         {
-            uint codeLength = stream.ReadU4();
-            return _disassembler.Disassemble(stream, codeLength);
+            uint codeLength = reader.ReadU4();
+            return _disassembler.Disassemble(reader, codeLength);
         }
 
-        private static IList<JvmExceptionHandler> ReadExceptionHandlers(Stream stream)
+        private static IList<JvmExceptionHandler> ReadExceptionHandlers(IBigEndianReader reader)
         {
-            ushort count = stream.ReadU2();
+            ushort count = reader.ReadU2();
             var result = new List<JvmExceptionHandler>(count);
 
             for (uint i = 0; i < count; i++)
             {
                 ushort
-                    tryStart = stream.ReadU2(),
-                    tryEnd = stream.ReadU2(),
-                    handlerStart = stream.ReadU2(),
-                    catchType = stream.ReadU2();
+                    tryStart = reader.ReadU2(),
+                    tryEnd = reader.ReadU2(),
+                    handlerStart = reader.ReadU2(),
+                    catchType = reader.ReadU2();
                 
                 result.Add(new JvmExceptionHandler(tryStart, tryEnd, handlerStart, catchType));
             }

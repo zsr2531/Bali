@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Bali.IO;
+﻿using Bali.IO;
 
 namespace Bali.Attributes.Writers
 {
@@ -34,12 +33,12 @@ namespace Bali.Attributes.Writers
         }
 
         /// <inheritdoc />
-        public void WriteName(Stream stream, JvmAttribute attribute) => stream.WriteU2(attribute.NameIndex);
+        public void WriteName(JvmAttribute attribute, IBigEndianWriter writer) => writer.WriteU2(attribute.NameIndex);
 
         /// <inheritdoc />
-        public void WriteBody(Stream stream, JvmAttribute attribute) => WriteBody(stream, (T) attribute);
+        public void WriteBody(JvmAttribute attribute, IBigEndianWriter writer) => WriteBody((T) attribute, (IBigEndianSegmentWriter) writer);
 
-        /// <inheritdoc cref="JvmAttributeWriterBase{T}.WriteBody(Stream,JvmAttribute)" />
-        protected abstract void WriteBody(Stream stream, T attribute);
+        /// <inheritdoc cref="WriteBody(T, IBigEndianWriter)" />
+        protected abstract void WriteBody(T attribute, IBigEndianWriter writer);
     }
 }

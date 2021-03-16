@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using Bali.IO;
 
 namespace Bali.Attributes.Writers
 {
@@ -21,7 +21,7 @@ namespace Bali.Attributes.Writers
         /// Writes the <paramref name="attribute"/>.
         /// </summary>
         /// <param name="attribute">The <see cref="JvmAttribute"/> to write.</param>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        void WriteAttribute(JvmAttribute attribute, Stream stream);
+        /// <param name="writer"></param>
+        void WriteAttribute(JvmAttribute attribute, IBigEndianWriter writer);
     }
 }

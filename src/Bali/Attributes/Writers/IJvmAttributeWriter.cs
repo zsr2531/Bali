@@ -1,9 +1,9 @@
-﻿using System.IO;
+﻿using Bali.IO;
 
 namespace Bali.Attributes.Writers
 {
     /// <summary>
-    /// Provides a contract for a builder that can serialize a specific type of <see cref="JvmAttribute"/>.
+    /// Provides a contract for a writer that can serialize a specific type of <see cref="JvmAttribute"/>.
     /// </summary>
     public interface IJvmAttributeWriter
     {
@@ -14,19 +14,19 @@ namespace Bali.Attributes.Writers
         {
             get;
         }
-        
+
         /// <summary>
-        /// Writes the name index to the output <paramref name="stream"/>.
+        /// Writes the name index to the output <paramref name="writer"/>.
         /// </summary>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        /// <param name="attribute">The <see cref="JvmAttribute"/> to write the name index of to the output <paramref name="stream"/>.</param>
-        void WriteName(Stream stream, JvmAttribute attribute);
-        
+        /// <param name="attribute">The <see cref="JvmAttribute"/> to write the name index of to the output <paramref name="writer"/>.</param>
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write data to.</param>
+        void WriteName(JvmAttribute attribute, IBigEndianWriter writer);
+
         /// <summary>
-        /// Writes the contents of the <see cref="JvmAttribute"/> to the output <paramref name="stream"/>.
+        /// Writes the contents of the <see cref="JvmAttribute"/> to the output <paramref name="writer"/>.
         /// </summary>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        /// <param name="attribute">The <see cref="JvmAttribute"/> to write the contents of to the output <paramref name="stream"/>.</param>
-        void WriteBody(Stream stream, JvmAttribute attribute);
+        /// <param name="attribute">The <see cref="JvmAttribute"/> to write the contents of to the output <paramref name="writer"/>.</param>
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write data to.</param>
+        void WriteBody(JvmAttribute attribute, IBigEndianWriter writer);
     }
 }

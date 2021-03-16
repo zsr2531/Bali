@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Bali.Emit;
+﻿using Bali.Emit;
 using Bali.IO;
 
 namespace Bali.Attributes.Writers
@@ -35,37 +34,34 @@ namespace Bali.Attributes.Writers
         public override string Name => "Code";
 
         /// <inheritdoc />
-        protected override void WriteBody(Stream stream, CodeAttribute attribute)
+        protected override void WriteBody(CodeAttribute attribute, IBigEndianWriter writer)
         {
-            stream.WriteU2(attribute.MaxStack);
-            stream.WriteU2(attribute.MaxLocals);
+            writer.WriteU2(attribute.MaxStack);
+            writer.WriteU2(attribute.MaxLocals);
             
-            WriteBytecode(stream, attribute);
-            WriteExceptionHandlers(stream, attribute);
+            WriteBytecode(writer, attribute);
+            WriteExceptionHandlers(writer, attribute);
             
-            stream.WriteU2((ushort) attribute.Attributes.Count);
+            writer.WriteU2((ushort) attribute.Attributes.Count);
             foreach (var nestedAttribute in attribute.Attributes)
-                Director.WriteAttribute(nestedAttribute, stream);
+                Director.WriteAttribute(nestedAttribute, writer);
         }
 
-        private void WriteBytecode(Stream stream, CodeAttribute attribute)
+        private void WriteBytecode(IBigEndianWriter writer, CodeAttribute attribute)
         {
-            using var ms = new MemoryStream();
-            _assembler.Assemble(attribute.Instructions, ms);
-
-            stream.WriteU4((uint) ms.Length);
-            ms.WriteTo(stream);
+            using var segment = writer.WithU4Length();
+            _assembler.Assemble(attribute.Instructions, segment);
         }
 
-        private static void WriteExceptionHandlers(Stream stream, CodeAttribute attribute)
+        private static void WriteExceptionHandlers(IBigEndianWriter writer, CodeAttribute attribute)
         {
-            stream.WriteU2((ushort) attribute.ExceptionHandlers.Count);
+            writer.WriteU2((ushort) attribute.ExceptionHandlers.Count);
             foreach (var exceptionHandler in attribute.ExceptionHandlers)
             {
-                stream.WriteU2(exceptionHandler.TryStart);
-                stream.WriteU2(exceptionHandler.TryEnd);
-                stream.WriteU2(exceptionHandler.HandlerStart);
-                stream.WriteU2(exceptionHandler.CatchType);
+                writer.WriteU2(exceptionHandler.TryStart);
+                writer.WriteU2(exceptionHandler.TryEnd);
+                writer.WriteU2(exceptionHandler.HandlerStart);
+                writer.WriteU2(exceptionHandler.CatchType);
             }
         }
     }
