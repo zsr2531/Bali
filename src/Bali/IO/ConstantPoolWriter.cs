@@ -1,36 +1,31 @@
-﻿using System;
-using System.IO;
+﻿using System.Diagnostics;
 using Bali.Constants;
 
 namespace Bali.IO
 {
-    public readonly struct ConstantPoolWriter
+    internal readonly ref struct ConstantPoolWriter
     {
-        private readonly ConstantPool? _pool;
-        private readonly Stream? _stream;
+        private readonly ConstantPool _pool;
+        private readonly IBigEndianWriter _writer;
 
-        public ConstantPoolWriter(ConstantPool pool, Stream stream)
+        internal ConstantPoolWriter(ConstantPool pool, IBigEndianWriter writer)
         {
             _pool = pool;
-            _stream = stream;
+            _writer = writer;
         }
 
-        public void WriteConstantPool()
+        internal void WriteConstantPool()
         {
-            if (_pool is null)
-                throw new ArgumentException("pool");
-            if (_stream is null)
-                throw new ArgumentException("stream");
-
-            _stream.WriteU2((ushort) (_pool.Count + 1));
+            _writer.WriteU2((ushort) (_pool.Count + 1));
 
             for (int i = 1; i < _pool.Count + 1; i++)
             {
                 var current = _pool[i];
+                // TODO: Fix nasty bug, `i` isn't incremented in Release mode!
                 if (current is LongConstant or DoubleConstant)
-                    i++;
-                
-                ConstantBuilder.BuildConstant(current, _stream);
+                    Debug.Assert(current == _pool[++i], "Long and double constants should take up 2 slots.");
+
+                ConstantWriter.BuildConstant(current, _writer);
             }
         }
     }
