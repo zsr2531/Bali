@@ -42,7 +42,7 @@ namespace Bali.SourceGenerators.Readers
 
             var method = _builder.AddMethod($"Read{type.Name}List", Accessibility.Private)
                 .WithReturnType($"IList<{type.Name}>")
-                .AddParameter("Stream", "stream")
+                .AddParameter("IBigEndianReader", "reader")
                 .MakeStaticMethod();
 
             var processor = new TypeProcessor(_builder, type, "var element = ");
@@ -50,7 +50,7 @@ namespace Bali.SourceGenerators.Readers
 
             method.WithBody(w =>
             {
-                w.AppendLine("ushort count = stream.ReadU2();");
+                w.AppendLine("ushort count = reader.ReadU2();");
                 w.AppendLine($"var list = new List<{type.Name}>(count);");
 
                 using (w.Block("for (int i = 0; i < count; i++)"))
@@ -62,7 +62,7 @@ namespace Bali.SourceGenerators.Readers
                 w.AppendLine("return list;");
             });
 
-            return $"{_access}{method.Name}(stream);";
+            return $"{_access}{method.Name}(reader);";
         }
 
         private string ProcessUserDataStructure()
@@ -72,7 +72,7 @@ namespace Bali.SourceGenerators.Readers
 
             var method = _builder.AddMethod($"Read{_type.Name}", Accessibility.Private)
                 .WithReturnType(_type.Name)
-                .AddParameter("Stream", "stream")
+                .AddParameter("IBigEndianReader", "reader")
                 .MakeStaticMethod();
 
             var steps = new List<string>();
@@ -93,7 +93,7 @@ namespace Bali.SourceGenerators.Readers
                 w.AppendLine($"return new {_type.Name}({string.Join(", ", properties.Select(p => p.Name))});");
             });
 
-            return $"{_access}{method.Name}(stream);";
+            return $"{_access}{method.Name}(reader);";
         }
 
         private string ProcessSpecialType(ITypeSymbol symbol)
@@ -115,7 +115,7 @@ namespace Bali.SourceGenerators.Readers
 
             return method.Length > 20
                 ? method
-                : $"{_access}stream.{method}();";
+                : $"{_access}reader.{method}();";
         }
 
         private string CheckExistingMethod(Func<string, bool> predicate)
@@ -127,11 +127,11 @@ namespace Bali.SourceGenerators.Readers
                     return false;
 
                 var first = parameters.First();
-                return first.Type == "Stream" && predicate(m.ReturnType);
+                return first.Type == "IBigEndianReader" && predicate(m.ReturnType);
             });
 
             return existing is not null
-                ? $"{_access}{existing.Name}(stream);"
+                ? $"{_access}{existing.Name}(reader);"
                 : null;
         }
     }
