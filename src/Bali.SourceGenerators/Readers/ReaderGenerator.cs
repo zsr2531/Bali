@@ -111,7 +111,7 @@ namespace Bali.SourceGenerators.Readers
 
             builder.WithBody(w =>
             {
-                w.AppendLine("_ = stream.ReadU4();");
+                w.AppendLine("_ = reader.ReadU4();");
                 foreach (string step in steps)
                     w.AppendLine(step);
 
@@ -153,7 +153,7 @@ namespace Bali.SourceGenerators.Readers
                         .Override()
                         .WithReturnType("JvmAttribute")
                         .WithInheritDoc()
-                        .AddParameter("Stream", "stream")
+                        .AddParameter("IBigEndianReader", "reader")
                         .AddParameter("ushort", "nameIndex");
         }
     }

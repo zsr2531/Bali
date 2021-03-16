@@ -41,7 +41,7 @@ namespace Bali.SourceGenerators.Writers
                 return existing;
 
             var method = _builder.AddMethod($"Write{type.Name}List", Accessibility.Private)
-                .AddParameter("Stream", "stream")
+                .AddParameter("IBigEndianWriter", "writer")
                 .AddParameter($"IList<{type.Name}>", "list")
                 .MakeStaticMethod();
 
@@ -50,7 +50,7 @@ namespace Bali.SourceGenerators.Writers
 
             method.WithBody(w =>
             {
-                w.AppendLine("stream.WriteU2((ushort) list.Count);");
+                w.AppendLine("writer.WriteU2((ushort) list.Count);");
 
                 using (w.Block("foreach (var element in list)"))
                 {
@@ -58,7 +58,7 @@ namespace Bali.SourceGenerators.Writers
                 }
             });
 
-            return $"{method.Name}(stream, {_access});";
+            return $"{method.Name}(writer, {_access});";
         }
 
         private string ProcessUserDataStructure()
@@ -67,7 +67,7 @@ namespace Bali.SourceGenerators.Writers
                 return existing;
 
             var method = _builder.AddMethod($"Write{_type.Name}", Accessibility.Private)
-                .AddParameter("Stream", "stream")
+                .AddParameter("IBigEndianWriter", "writer")
                 .AddParameter(_type, "data")
                 .MakeStaticMethod();
 
@@ -86,7 +86,7 @@ namespace Bali.SourceGenerators.Writers
                     w.AppendLine(step);
             });
 
-            return $"{method.Name}(stream, {_access});";
+            return $"{method.Name}(writer, {_access});";
         }
 
         private string ProcessSpecialType(ITypeSymbol symbol)
@@ -108,7 +108,7 @@ namespace Bali.SourceGenerators.Writers
 
             return method.Length > 20
                 ? method
-                : $"stream.{method}({_access});";
+                : $"writer.{method}({_access});";
         }
 
         private string CheckExistingMethod(Func<string, bool> predicate)
@@ -122,11 +122,11 @@ namespace Bali.SourceGenerators.Writers
                 var first = parameters.First();
                 var second = parameters.Skip(1).First();
 
-                return first.Type == "Stream" && predicate(second.Name);
+                return first.Type == "IBigEndianWriter" && predicate(second.Name);
             });
 
             return existing is not null
-                ? $"{existing.Name}(stream, {_access});"
+                ? $"{existing.Name}(writer, {_access});"
                 : null;
         }
     }

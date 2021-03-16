@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
@@ -147,8 +148,8 @@ namespace Bali.SourceGenerators.Writers
                     .AddMethod("WriteBody", Accessibility.Protected)
                         .Override()
                         .WithInheritDoc()
-                        .AddParameter("Stream", "stream")
-                        .AddParameter(attributeName, "attribute");
+                        .AddParameter(attributeName, "attribute")
+                        .AddParameter("IBigEndianWriter", "writer");
         }
     }
 }
