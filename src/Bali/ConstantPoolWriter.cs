@@ -22,9 +22,11 @@ namespace Bali
             for (int i = 1; i < _pool.Count + 1; i++)
             {
                 var current = _pool[i];
-                // TODO: Fix nasty bug, `i` isn't incremented in Release mode!
                 if (current is LongConstant or DoubleConstant)
-                    Debug.Assert(current == _pool[++i], "Long and double constants should take up 2 slots.");
+                {
+                    i++;
+                    Debug.Assert(current == _pool[i], "Long and double constants should take up 2 slots.");
+                }
 
                 ConstantWriter.BuildConstant(current, _writer);
             }
