@@ -67,6 +67,7 @@ namespace Bali.Emit
                     writer.WriteI4(CastOperand<int>(operand));
                     break;
 
+                // TODO: Implement jump table serialization.
                 case JvmOperandType.KeyJumpTable:
                 case JvmOperandType.IndexJumpTable:
                     throw new NotImplementedException();
