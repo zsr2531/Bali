@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
+using Bali.IO;
 
 namespace Bali.Emit
 {
@@ -9,10 +9,10 @@ namespace Bali.Emit
     public interface IJvmBytecodeAssembler
     {
         /// <summary>
-        /// Assembles the given <paramref name="instructions"/> to the output <paramref name="stream"/>.
+        /// Assembles the given <paramref name="instructions"/> and writes the result to the <paramref name="writer"/>.
         /// </summary>
         /// <param name="instructions">The list of <see cref="JvmInstruction"/>s to assemble.</param>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        void Assemble(IList<JvmInstruction> instructions, Stream stream);
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write the assembled <see cref="JvmInstruction"/>s to.</param>
+        void Assemble(IList<JvmInstruction> instructions, IBigEndianWriter writer);
     }
 }
