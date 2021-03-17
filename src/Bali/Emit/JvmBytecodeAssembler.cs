@@ -22,13 +22,13 @@ namespace Bali.Emit
         protected JvmBytecodeAssembler() { }
 
         /// <inheritdoc />
-        public void Assemble(IList<JvmInstruction> instructions, Stream stream)
+        public void Assemble(IList<JvmInstruction> instructions, IBigEndianWriter writer)
         {
-            bool isWide = false, needsAlignment = stream.Position % 4 == 0;
+            bool isWide = false, needsAlignment = writer.Position % 4 == 0;
 
             foreach (var instruction in instructions)
             {
-                stream.WriteU1((byte) instruction.OpCode.Code);
+                writer.WriteU1((byte) instruction.OpCode.Code);
                 
                 if (instruction.OpCode == JvmOpCodes.Wide)
                 {
@@ -37,9 +37,9 @@ namespace Bali.Emit
                 }
 
                 if (isWide)
-                    WriteWideOperand(instruction, stream);
+                    WriteWideOperand(instruction, writer);
                 else
-                    WriteOperand(instruction, stream, needsAlignment);
+                    WriteOperand(instruction, writer, needsAlignment);
                 
                 isWide = false;
             }
@@ -49,12 +49,12 @@ namespace Bali.Emit
         /// Serializes the operand of a given <see cref="JvmInstruction"/>.
         /// </summary>
         /// <param name="instruction">The <see cref="JvmInstruction"/> to write the <see cref="JvmInstruction.Operand"/> of.</param>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write data to.</param>
         /// <param name="needsAlignment">Whether some operands need to be 4-byte aligned.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// When the <paramref name="instruction"/>'s <see cref="JvmOpCode"/> has an <see cref="JvmOperandType.Undefined"/> operand type.
         /// </exception>
-        protected static void WriteOperand(JvmInstruction instruction, Stream stream, bool needsAlignment)
+        protected static void WriteOperand(JvmInstruction instruction, IBigEndianWriter writer, bool needsAlignment)
         {
             var operand = instruction.Operand;
             
@@ -64,7 +64,7 @@ namespace Bali.Emit
                     break;
 
                 case JvmOperandType.WideBranchOffset:
-                    stream.WriteI4(CastOperand<int>(operand));
+                    writer.WriteI4(CastOperand<int>(operand));
                     break;
 
                 case JvmOperandType.KeyJumpTable:
@@ -72,50 +72,50 @@ namespace Bali.Emit
                     throw new NotImplementedException();
 
                 case JvmOperandType.LocalIndex:
-                    stream.WriteU1(CastOperand<byte>(operand));
+                    writer.WriteU1(CastOperand<byte>(operand));
                     break;
 
                 case JvmOperandType.LocalIndexWithSignedByte:
                     var real = CastOperand<LocalIndexWithSignedByte>(operand);
-                    stream.WriteU1(real.LocalIndex);
-                    stream.WriteI1(real.SignedByte);
+                    writer.WriteU1(real.LocalIndex);
+                    writer.WriteI1(real.SignedByte);
                     break;
 
                 case JvmOperandType.ConstantPoolIndex:
-                    stream.WriteU1(CastOperand<byte>(operand));
+                    writer.WriteU1(CastOperand<byte>(operand));
                     break;
 
                 case JvmOperandType.WideConstantPoolIndex:
-                    stream.WriteU2(CastOperand<ushort>(operand));
+                    writer.WriteU2(CastOperand<ushort>(operand));
                     break;
 
                 case JvmOperandType.WideConstantPoolIndexWithArrayDimensions:
                     var op = CastOperand<WideConstantPoolIndexWithArrayDimensions>(operand);
-                    stream.WriteU2(op.WideConstantPoolIndex);
-                    stream.WriteU1(op.ArrayDimensions);
+                    writer.WriteU2(op.WideConstantPoolIndex);
+                    writer.WriteU1(op.ArrayDimensions);
                     break;
                 
                 case JvmOperandType.WideConstantPoolIndexWithTwoBytes:
                     var op1 = CastOperand<WideConstantPoolIndexWithTwoBytes>(operand);
-                    stream.WriteU2(op1.WideConstantPoolIndex);
-                    stream.WriteU1(op1.ByteOne);
-                    stream.WriteU1(op1.ByteTwo);
+                    writer.WriteU2(op1.WideConstantPoolIndex);
+                    writer.WriteU1(op1.ByteOne);
+                    writer.WriteU1(op1.ByteTwo);
                     break;
 
                 case JvmOperandType.ArrayType:
-                    stream.WriteU1((byte) CastOperand<JvmPrimitiveArrayType>(operand));
+                    writer.WriteU1((byte) CastOperand<JvmPrimitiveArrayType>(operand));
                     break;
 
                 case JvmOperandType.BranchOffset:
-                    stream.WriteI2(CastOperand<short>(operand));
+                    writer.WriteI2(CastOperand<short>(operand));
                     break;
                 
                 case JvmOperandType.InlineByte:
-                    stream.WriteI1(CastOperand<sbyte>(operand));
+                    writer.WriteI1(CastOperand<sbyte>(operand));
                     break;
 
                 case JvmOperandType.InlineShort:
-                    stream.WriteI2(CastOperand<short>(operand));
+                    writer.WriteI2(CastOperand<short>(operand));
                     break;
 
                 default:
@@ -127,15 +127,15 @@ namespace Bali.Emit
         /// Serializes the wide version of the operand of a given <see cref="JvmInstruction"/>.
         /// </summary>
         /// <param name="instruction">The <see cref="JvmInstruction"/> to write the <see cref="JvmInstruction.Operand"/> of.</param>
-        /// <param name="stream">The output <see cref="Stream"/> to write data to.</param>
-        protected static void WriteWideOperand(JvmInstruction instruction, Stream stream)
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write data to.</param>
+        protected static void WriteWideOperand(JvmInstruction instruction, IBigEndianWriter writer)
         {
             if (instruction.OpCode != JvmOpCodes.Iinc)
-                stream.WriteU2(CastOperand<ushort>(instruction.Operand));
+                writer.WriteU2(CastOperand<ushort>(instruction.Operand));
 
             var operand = CastOperand<WideLocalIndexWithSignedShort>(instruction.Operand);
-            stream.WriteU2(operand.LocalIndex);
-            stream.WriteI2(operand.SignedShort);
+            writer.WriteU2(operand.LocalIndex);
+            writer.WriteI2(operand.SignedShort);
         }
 
         private static T CastOperand<T>(object? operand)

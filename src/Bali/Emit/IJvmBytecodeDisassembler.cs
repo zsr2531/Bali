@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using Bali.IO;
 
 namespace Bali.Emit
 {
@@ -9,11 +9,11 @@ namespace Bali.Emit
     public interface IJvmBytecodeDisassembler
     {
         /// <summary>
-        /// Disassembles JVM bytecode from the given <paramref name="stream"/>.
+        /// Disassembles JVM bytecode from the given <paramref name="reader"/>.
         /// </summary>
-        /// <param name="stream">The <see cref="Stream"/> to read data from.</param>
+        /// <param name="reader">The <see cref="IBigEndianReader"/> to read data from.</param>
         /// <param name="count">The number of bytes to consume.</param>
         /// <returns>The list of parsed JVM instructions.</returns>
-        IList<JvmInstruction> Disassemble(Stream stream, uint count);
+        IList<JvmInstruction> Disassemble(IBigEndianReader reader, uint count);
     }
 }
