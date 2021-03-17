@@ -1,4 +1,6 @@
-namespace Bali.IO
+using Bali.IO;
+
+namespace Bali
 {
     /// <summary>
     /// Represents the first 3 values found in a <i>.class</i> file; the magic value, the minor- and the major version.

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Bali.Attributes;
 using Bali.Attributes.Readers;
+using Bali.IO;
 
-namespace Bali.IO
+namespace Bali
 {
     /// <summary>
     /// Reads the interface indices, fields, methods and attributes from a given input <see cref="IBigEndianReader"/>.

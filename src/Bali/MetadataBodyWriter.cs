@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Bali.Attributes;
 using Bali.Attributes.Writers;
+using Bali.IO;
 
-namespace Bali.IO
+namespace Bali
 {
     internal readonly ref struct MetadataBodyWriter
     {

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Bali.Attributes;
 using Bali.Attributes.Writers;
+using Bali.IO;
 
-namespace Bali.IO
+namespace Bali
 {
     /// <summary>
     /// A simple data structure holding the interface indices, the field, methods and attributes of a <see cref="ClassFile"/>.

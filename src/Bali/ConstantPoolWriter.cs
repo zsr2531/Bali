@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
 using Bali.Constants;
+using Bali.IO;
 
-namespace Bali.IO
+namespace Bali
 {
     internal readonly ref struct ConstantPoolWriter
     {

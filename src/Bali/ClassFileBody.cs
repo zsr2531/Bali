@@ -1,4 +1,6 @@
-namespace Bali.IO
+using Bali.IO;
+
+namespace Bali
 {
     /// <summary>
     /// A simple data structure holding the <see cref="ClassAccessFlags"/>, the <c>this</c> and <c>super</c> class indices.
