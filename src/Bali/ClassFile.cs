@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Bali.Attributes;
-using Bali.Attributes.Writers;
 using Bali.Constants;
 using Bali.IO;
 
@@ -112,64 +111,42 @@ namespace Bali
             private set;
         } = new List<JvmAttribute>();
 
+        /// <summary>
+        /// Writes the <see cref="ClassFile"/> to the specified <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">The path to write the <see cref="ClassFile"/> to.</param>
         public void Write(string path)
         {
-            using var ms = new MemoryStream();
-            Write(ms);
-            File.WriteAllBytes(path, ms.ToArray());
+            using var destination = new FileDataDestination(path);
+            Write(destination);
         }
 
+        /// <summary>
+        /// Writes the <see cref="ClassFile"/> to a byte array.
+        /// </summary>
+        /// <returns>The bytes of the <see cref="ClassFile"/>.</returns>
         public byte[] Write()
         {
-            using var ms = new MemoryStream();
-            Write(ms);
+            var destination = new ByteArrayDataDestination();
+            Write(destination);
 
-            return ms.ToArray();
+            return destination.Buffer;
         }
 
-        public void Write(Stream stream)
+        /// <summary>
+        /// Writes the <see cref="ClassFile"/> to the specified output <see cref="Stream"/>.
+        /// </summary>
+        /// <param name="stream">The output <see cref="Stream"/>.</param>
+        public void Write(Stream stream) => Write(new StreamDataDestination(stream));
+
+        private void Write(IDataDestination destination)
         {
-            stream.WriteU4(Magic);
-            stream.WriteU2(MinorVersion);
-            stream.WriteU2(MajorVersion);
-
-            var constantPoolWriter = new ConstantPoolWriter(Constants, stream);
-            constantPoolWriter.WriteConstantPool();
+            var writer = new BigEndianWriter(destination);
             
-            stream.WriteU2((ushort) AccessFlags);
-            stream.WriteU2(ThisClassIndex);
-            stream.WriteU2(SuperClassIndex);
-            
-            stream.WriteU2((ushort) Interfaces.Count);
-            foreach (ushort index in Interfaces)
-                stream.WriteU2(index);
-
-            var attributeDirector = new JvmAttributeDirector(Constants);
-            stream.WriteU2((ushort) Fields.Count);
-            foreach (var field in Fields)
-            {
-                stream.WriteU2((ushort) field.AccessFlags);
-                stream.WriteU2(field.NameIndex);
-                stream.WriteU2(field.DescriptorIndex);
-                stream.WriteU2((ushort) field.Attributes.Count);
-                foreach (var attribute in field.Attributes)
-                    attributeDirector.WriteAttribute(attribute, stream);
-            }
-            
-            stream.WriteU2((ushort) Methods.Count);
-            foreach (var method in Methods)
-            {
-                stream.WriteU2((ushort) method.AccessFlags);
-                stream.WriteU2(method.NameIndex);
-                stream.WriteU2(method.DescriptorIndex);
-                stream.WriteU2((ushort) method.Attributes.Count);
-                foreach (var attribute in method.Attributes)
-                    attributeDirector.WriteAttribute(attribute, stream);
-            }
-            
-            stream.WriteU2((ushort) Attributes.Count);
-            foreach (var attribute in Attributes)
-                attributeDirector.WriteAttribute(attribute, stream);
+            ClassFileHeader.IntoWriter(this, writer);
+            ConstantPool.IntoWriter(this, writer);
+            ClassFileBody.IntoWriter(this, writer);
+            MetadataBody.IntoWriter(this, writer);
         }
 
         /// <summary>
@@ -177,34 +154,30 @@ namespace Bali
         /// </summary>
         /// <param name="path">The file's path to read.</param>
         /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
-        public static ClassFile FromFile(string path)
-        {
-            using var stream = File.OpenRead(path);
-            return FromStream(stream);
-        }
+        public static ClassFile FromFile(string path) => Read(new FileDataSource(path));
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from an array of <paramref name="bytes"/>.
         /// </summary>
         /// <param name="bytes">The raw bytes.</param>
         /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
-        public static ClassFile FromBytes(byte[] bytes)
-        {
-            using var stream = new MemoryStream(bytes);
-            return FromStream(stream);
-        }
+        public static ClassFile FromBytes(byte[] bytes) => Read(new ByteArrayDataSource(bytes));
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from the given input <paramref name="stream"/>.
         /// </summary>
         /// <param name="stream">The input <see cref="Stream"/> to read data from.</param>
         /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
-        public static ClassFile FromStream(Stream stream)
+        public static ClassFile FromStream(Stream stream) => Read(new StreamDataSource(stream));
+
+        private static ClassFile Read(IDataSource source)
         {
-            var header = new ClassFileHeaderReader(stream).ReadHeader();
-            var constantPool = new ConstantPoolReader(stream, (ushort) (stream.ReadU2() - 1)).ReadConstantPool();
-            var body = new ClassFileBodyReader(stream).ReadBody();
-            var metadata = new MetadataBodyReader(stream, constantPool).ReadMetadataBody();
+            var reader = new BigEndianReader(source);
+            
+            var header = ClassFileHeader.FromReader(reader);
+            var constantPool = ConstantPool.FromReader(reader);
+            var body = ClassFileBody.FromReader(reader);
+            var metadata = MetadataBody.FromReader(reader, constantPool);
             
             return new ClassFile
             {
