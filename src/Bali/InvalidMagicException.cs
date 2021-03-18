@@ -11,6 +11,8 @@ namespace Bali
         /// Creates a new <see cref="InvalidMagicException"/>.
         /// </summary>
         public InvalidMagicException()
-            : base("The magic value wasn't valid.") { }
+            : base("The magic value wasn't valid.")
+        {
+        }
     }
 }
