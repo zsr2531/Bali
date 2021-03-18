@@ -7,30 +7,18 @@ using Bali.IO;
 
 namespace Bali
 {
-    /// <summary>
-    /// Reads the interface indices, fields, methods and attributes from a given input <see cref="IBigEndianReader"/>.
-    /// </summary>
-    public readonly ref struct MetadataBodyReader
+    internal readonly ref struct MetadataBodyReader
     {
         private readonly IBigEndianReader _reader;
         private readonly IJvmAttributeReaderFacade _facade;
 
-        /// <summary>
-        /// Creates a new <see cref="MetadataBodyReader"/>.
-        /// </summary>
-        /// <param name="reader">The input <see cref="IBigEndianReader"/> to read data from.</param>
-        /// <param name="constantPool">The <see cref="ConstantPool"/> to resolve constant pool indices with.</param>
-        public MetadataBodyReader(IBigEndianReader reader, ConstantPool constantPool)
+        internal MetadataBodyReader(IBigEndianReader reader, ConstantPool constantPool)
         {
             _reader = reader;
             _facade = new JvmAttributeReaderFacade(reader, constantPool);
         }
 
-        /// <summary>
-        /// Parses the <see cref="MetadataBody"/> from the input <see cref="IBigEndianReader"/>.
-        /// </summary>
-        /// <returns>The parsed <see cref="MetadataBody"/>.</returns>
-        public MetadataBody ReadMetadataBody()
+        internal MetadataBody ReadMetadataBody()
         {
             ushort interfacesCount = _reader.ReadU2();
             var interfaces = new List<ushort>(interfacesCount);
