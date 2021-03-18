@@ -34,7 +34,7 @@ namespace Bali.Attributes
     /// <summary>
     /// Represents the line number at a given offset.
     /// </summary>
-    public struct LineNumberInfo
+    public sealed class LineNumberInfo
     {
         /// <summary>
         /// Creates a new <see cref="LineNumberInfo"/>.

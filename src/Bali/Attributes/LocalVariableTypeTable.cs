@@ -35,7 +35,7 @@ namespace Bali.Attributes
     /// Indicates a range of code array offsets within which a local variable has a value.
     /// It also indicates the index into the local variable array of the current frame at which that local variable can be found.
     /// </summary>
-    public struct LocalVariableTypeInfo
+    public sealed class LocalVariableTypeInfo
     {
         /// <summary>
         /// Creates a new <see cref="LocalVariableTypeInfo"/>.

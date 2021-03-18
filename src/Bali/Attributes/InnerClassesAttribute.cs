@@ -34,7 +34,7 @@ namespace Bali.Attributes
     /// <summary>
     /// Represents information about an inner class and its containing class.
     /// </summary>
-    public struct InnerClassInfo
+    public sealed class InnerClassInfo
     {
         /// <summary>
         /// Creates a new <see cref="InnerClassInfo"/>.

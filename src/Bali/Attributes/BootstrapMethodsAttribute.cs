@@ -35,7 +35,7 @@ namespace Bali.Attributes
     /// <summary>
     /// A simple data structure to hold a bootstrap method and its arguments.
     /// </summary>
-    public struct BootstrapInfo
+    public sealed class BootstrapInfo
     {
         /// <summary>
         /// Creates a new <see cref="BootstrapInfo"/>.
