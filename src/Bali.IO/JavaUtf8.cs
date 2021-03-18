@@ -8,7 +8,7 @@ namespace Bali.IO
     public sealed class JavaUtf8 : Encoding
     {
         /// <summary>
-        /// Provides a public singleton instance of this class.
+        /// Provides a public singleton instance of the <see cref="JavaUtf8"/> class.
         /// </summary>
         public static readonly JavaUtf8 Instance = new();
 
