@@ -6,8 +6,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which provides information about local variables based in the program counter position.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class LocalVariableTypeTable : JvmAttribute
     {
         /// <summary>
@@ -35,7 +35,7 @@ namespace Bali.Attributes
     /// Indicates a range of code array offsets within which a local variable has a value.
     /// It also indicates the index into the local variable array of the current frame at which that local variable can be found.
     /// </summary>
-    public struct LocalVariableTypeInfo
+    public sealed class LocalVariableTypeInfo
     {
         /// <summary>
         /// Creates a new <see cref="LocalVariableTypeInfo"/>.

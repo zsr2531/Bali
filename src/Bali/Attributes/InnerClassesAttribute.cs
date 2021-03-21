@@ -6,8 +6,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes nested classes of a given class.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class InnerClassesAttribute : JvmAttribute
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace Bali.Attributes
     /// <summary>
     /// Represents information about an inner class and its containing class.
     /// </summary>
-    public struct InnerClassInfo
+    public sealed class InnerClassInfo
     {
         /// <summary>
         /// Creates a new <see cref="InnerClassInfo"/>.

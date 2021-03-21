@@ -7,8 +7,8 @@ namespace Bali.Attributes
     /// or member whose generic signature in the Java programming language would include
     /// references to type variables or parameterized types.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class SignatureAttribute : JvmAttribute
     {
         /// <summary>

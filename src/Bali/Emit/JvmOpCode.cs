@@ -46,7 +46,7 @@ namespace Bali.Emit
         public JvmStackBehavior StackBehavior => (JvmStackBehavior) ((_raw & StackBehaviorMask) >> 24);
 
         /// <inheritdoc />
-        public bool Equals(JvmOpCode other) => GetHashCode() == other.GetHashCode();
+        public bool Equals(JvmOpCode other) => Code == other.Code;
 
         /// <inheritdoc />
         public override bool Equals(object? obj) => obj is JvmOpCode other && Equals(other);

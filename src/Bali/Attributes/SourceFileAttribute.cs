@@ -5,8 +5,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes the source file from which a given <see cref="ClassFile"/> was compiled from.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class SourceFileAttribute : JvmAttribute
     {
         /// <summary>

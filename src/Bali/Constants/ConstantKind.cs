@@ -21,7 +21,7 @@ namespace Bali.Constants
         Methodref = 10,
         
         /// <summary>
-        /// Indicates that the constant is a <see cref="InterfaceMethodrefConstant"/>.
+        /// Indicates that the constant is an <see cref="InterfaceMethodrefConstant"/>.
         /// </summary>
         InterfaceMethodref = 11,
         
@@ -31,7 +31,7 @@ namespace Bali.Constants
         String = 8,
         
         /// <summary>
-        /// Indicates that the constant is a <see cref="IntegerConstant"/>.
+        /// Indicates that the constant is an <see cref="IntegerConstant"/>.
         /// </summary>
         Integer = 3,
         
@@ -71,7 +71,7 @@ namespace Bali.Constants
         MethodType = 16,
         
         /// <summary>
-        /// Indicates that the constant is a <see cref="InvokeDynamicConstant"/>.
+        /// Indicates that the constant is an <see cref="InvokeDynamicConstant"/>.
         /// </summary>
         InvokeDynamic = 18
     }

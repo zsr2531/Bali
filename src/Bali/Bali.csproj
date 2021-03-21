@@ -43,6 +43,7 @@
 
     <ItemGroup>
         <ProjectReference Include="../Bali.SourceGenerators/Bali.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\Bali.IO\Bali.IO.csproj" />
     </ItemGroup>
 
 </Project>

@@ -7,8 +7,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes bootstrap method specifiers referenced by <see cref="JvmOpCodes.Invokedynamic"/> instructions.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class BootstrapMethodsAttribute : JvmAttribute
     {
         /// <summary>
@@ -35,7 +35,7 @@ namespace Bali.Attributes
     /// <summary>
     /// A simple data structure to hold a bootstrap method and its arguments.
     /// </summary>
-    public struct BootstrapInfo
+    public sealed class BootstrapInfo
     {
         /// <summary>
         /// Creates a new <see cref="BootstrapInfo"/>.

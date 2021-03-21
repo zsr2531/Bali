@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bali.Constants;
+using Bali.IO;
 
 namespace Bali
 {
@@ -62,7 +63,7 @@ namespace Bali
         /// </summary>
         /// <param name="index">The <b><i>one</i></b>-based index to insert the <paramref name="item"/> into.</param>
         /// <param name="item">The <see cref="Constant"/> to insert at the specified <paramref name="index"/>.</param>
-        public void Insert(int index, Constant item) => _constants.Insert(index + 1, item);
+        public void Insert(int index, Constant item) => _constants.Insert(index - 1, item);
 
         /// <inheritdoc />
         public bool Remove(Constant item) => _constants.Remove(item);
@@ -71,7 +72,7 @@ namespace Bali
         /// Removes the constant at the specified <paramref name="index"/>.
         /// </summary>
         /// <param name="index">The <b><i>one</i></b>-based index to remove the constant from.</param>
-        public void RemoveAt(int index) => _constants.RemoveAt(index + 1);
+        public void RemoveAt(int index) => _constants.RemoveAt(index - 1);
 
         /// <summary>
         /// Copies the constants into the specified <paramref name="array"/>.
@@ -80,7 +81,7 @@ namespace Bali
         /// <param name="arrayIndex">The <b><i>zero</i></b>-based index into the <paramref name="array"/> to copy elements to.</param>
         public void CopyTo(Constant[] array, int arrayIndex)
         {
-            for (int i = 1; i < Count; i++)
+            for (int i = 1; i <= Count; i++)
             {
                 array[arrayIndex + i - 1] = this[i];
             }
@@ -90,5 +91,27 @@ namespace Bali
         public IEnumerator<Constant> GetEnumerator() => _constants.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// Writes the <see cref="ConstantPool"/> to the <paramref name="writer"/>.
+        /// </summary>
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write the <see cref="ConstantPool"/> to.</param>
+        public void Write(IBigEndianWriter writer) => new ConstantPoolWriter(this, writer).WriteConstantPool();
+
+        /// <summary>
+        /// Reads a <see cref="ConstantPool"/> from the <paramref name="reader"/>.
+        /// </summary>
+        /// <param name="reader">The <see cref="IBigEndianReader"/> to read data from.</param>
+        /// <returns>The read <see cref="ConstantPool"/>.</returns>
+        public static ConstantPool FromReader(IBigEndianReader reader) =>
+            new ConstantPoolReader(reader, (ushort) (reader.ReadU2() - 1)).ReadConstantPool();
+
+        /// <summary>
+        /// Writes the <see cref="ConstantPool"/> of a <see cref="ClassFile"/> to the <paramref name="writer"/>.
+        /// </summary>
+        /// <param name="classFile">The <see cref="ClassFile"/> to write the <see cref="ConstantPool"/> of.</param>
+        /// <param name="writer">The <see cref="IBigEndianWriter"/> to write the <see cref="ConstantPool"/> to.</param>
+        public static void IntoWriter(ClassFile classFile, IBigEndianWriter writer) =>
+            classFile.Constants.Write(writer);
     }
 }

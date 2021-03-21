@@ -6,8 +6,8 @@ namespace Bali.Attributes
     /// <summary>
     /// An attribute which describes which checked exceptions a method may throw.
     /// </summary>
-    [AutoFactory]
-    [AutoBuilder]
+    [AutoReader]
+    [AutoWriter]
     public sealed class ExceptionsAttribute : JvmAttribute
     {
         /// <summary>
