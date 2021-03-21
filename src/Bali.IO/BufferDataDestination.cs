@@ -1,21 +1,24 @@
 using System;
+using System.Buffers;
 
 namespace Bali.IO
 {
     /// <summary>
-    /// Provides an implementation for the <see cref="IDataDestination"/> contract which can write data to a <see cref="byte"/>[].
+    /// Provides an implementation for the <see cref="IDataDestination"/> contract which can write data to a <see cref="byte"/> buffer.
     /// </summary>
-    public sealed class ByteArrayDataDestination : IDataDestination
+    public sealed class BufferDataDestination : IDataDestination
     {
-        private byte[] _buffer = new byte[512];
+        private static readonly ArrayPool<byte> Pool = ArrayPool<byte>.Create();
+
+        private byte[] _buffer = Pool.Rent(512);
         
         /// <summary>
         /// Gets the underlying buffer.
         /// </summary>
-        public byte[] Buffer => _buffer;
+        public ReadOnlySpan<byte> Buffer => _buffer.AsSpan().Slice(0, Position);
 
         /// <inheritdoc />
-        public long Position
+        public int Position
         {
             get;
             private set;
@@ -33,6 +36,7 @@ namespace Bali.IO
         /// <inheritdoc />
         public void Dispose()
         {
+            Pool.Return(_buffer, true);
         }
     }
 }

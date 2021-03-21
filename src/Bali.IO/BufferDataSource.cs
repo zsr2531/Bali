@@ -3,23 +3,23 @@ using System;
 namespace Bali.IO
 {
     /// <summary>
-    /// Provides an implementation for the <see cref="IDataSource"/> contract which can read data from a <see cref="byte"/>[].
+    /// Provides an implementation for the <see cref="IDataSource"/> contract which can read data from a <see cref="byte"/> buffer.
     /// </summary>
-    public sealed class ByteArrayDataSource : IDataSource
+    public sealed class BufferDataSource : IDataSource
     {
-        private readonly byte[] _data;
+        private readonly ReadOnlyMemory<byte> _data;
 
         /// <summary>
-        /// Creates a new <see cref="ByteArrayDataSource"/>.
+        /// Creates a new <see cref="BufferDataSource"/>.
         /// </summary>
         /// <param name="data">The <see cref="byte"/>[] to read data from.</param>
-        public ByteArrayDataSource(byte[] data)
+        public BufferDataSource(ReadOnlyMemory<byte> data)
         {
             _data = data;
         }
 
         /// <inheritdoc />
-        public long Position
+        public int Position
         {
             get;
             private set;
@@ -31,7 +31,7 @@ namespace Bali.IO
             if (Position >= _data.Length)
                 throw new InvalidOperationException("End of input.");
 
-            return _data[Position++];
+            return _data.Span[Position++];
         }
 
         /// <inheritdoc />
