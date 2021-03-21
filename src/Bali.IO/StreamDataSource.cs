@@ -23,7 +23,7 @@ namespace Bali.IO
         }
 
         /// <inheritdoc />
-        public long Position => _stream.Position;
+        public int Position => (int) _stream.Position;
 
         /// <inheritdoc />
         public byte Read()

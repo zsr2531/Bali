@@ -10,7 +10,7 @@ namespace Bali.IO
         /// <summary>
         /// The current position in the data stream.
         /// </summary>
-        long Position
+        int Position
         {
             get;
         }

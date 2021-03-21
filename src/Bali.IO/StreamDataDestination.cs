@@ -22,7 +22,7 @@ namespace Bali.IO
         }
 
         /// <inheritdoc />
-        public long Position => Stream.Position;
+        public int Position => (int) Stream.Position;
 
         /// <inheritdoc />
         public void Write(byte value) => Stream.WriteByte(value);
