@@ -5,7 +5,8 @@
         {
           "src": "../",
           "files": [
-            "src/Bali/Bali.csproj"
+            "src/Bali/Bali.csproj",
+            "src/Bali.IO/Bali.IO.csproj"
           ]
         }
       ],
