@@ -179,16 +179,16 @@ namespace Bali.IO.Tests
         }
         
         [Theory]
-        [InlineData(1196991996296.93)]
-        [InlineData(1049686036178.47)]
-        [InlineData(-90234300638.9919)]
-        [InlineData(-488720259010.802)]
-        [InlineData(-1487411587475.53)]
-        [InlineData(-241508474059.413)]
-        [InlineData(-1771580036850.69)]
-        [InlineData(752595169442.755)]
-        [InlineData(-1646805489926.81)]
-        [InlineData(-224630279698.552)]
+        [InlineData(84710709202775.1)]
+        [InlineData(104695440355243)]
+        [InlineData(74958749927937.1)]
+        [InlineData(9057214043220)]
+        [InlineData(75951549636223.5)]
+        [InlineData(45865421471555.9)]
+        [InlineData(165048857169645)]
+        [InlineData(-91802590675783.8)]
+        [InlineData(50721886225228)]
+        [InlineData(-106390317464153)]
         public void ReadR8(double value)
         {
             var source = CreateMockDataSource(value);
