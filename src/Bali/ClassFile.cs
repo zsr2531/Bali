@@ -127,10 +127,10 @@ namespace Bali
         /// <returns>The bytes of the <see cref="ClassFile"/>.</returns>
         public byte[] Write()
         {
-            var destination = new ByteArrayDataDestination();
+            var destination = new BufferDataDestination();
             Write(destination);
 
-            return destination.Buffer;
+            return destination.Buffer.ToArray();
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Bali
         /// </summary>
         /// <param name="bytes">The raw bytes.</param>
         /// <returns>The read and parsed <see cref="ClassFile"/>.</returns>
-        public static ClassFile FromBytes(byte[] bytes) => Read(new ByteArrayDataSource(bytes));
+        public static ClassFile FromBytes(byte[] bytes) => Read(new BufferDataSource(bytes));
 
         /// <summary>
         /// Reads and parses a <see cref="ClassFile"/> from the given input <paramref name="stream"/>.
