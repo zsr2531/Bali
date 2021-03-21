@@ -58,9 +58,6 @@
     "noLangKeyword": false,
     "keepFileLink": false,
     "cleanupCacheHistory": false,
-    "disableGitFeatures": false,
-    "globalMetadata": {
-        "_appTitle": "Bali"
-    }
+    "disableGitFeatures": false
   }
 }
