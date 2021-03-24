@@ -4,6 +4,16 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>default</LangVersion>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1-alpha</PackageVersion>
+        <Title>Bali.IO</Title>
+        <Authors>zsr2531</Authors>
+        <Description>A fast and lightweight .Net library for reading and writing .class files.</Description>
+        <Copyright>zsr2531</Copyright>
+        <PackageProjectUrl>https://github.com/zsr2531/Bali</PackageProjectUrl>
+        <RepositoryType>https://github.com/zsr2531/Bali.git</RepositoryType>
+        <PackageTags>git</PackageTags>
+        <PackageReleaseNotes>alpha</PackageReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
