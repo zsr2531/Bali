@@ -23,6 +23,12 @@ namespace Bali.IO
         public long Position => _data.Position;
 
         /// <inheritdoc />
+        public IBigEndianSegmentReader WithU2Length(ushort length) => new BigEndianSegmentReader(this, length);
+
+        /// <inheritdoc />
+        public IBigEndianSegmentReader WithU4Length(uint length) => new BigEndianSegmentReader(this, length);
+
+        /// <inheritdoc />
         public void Read(Span<byte> span) => _data.Read(span);
 
         /// <inheritdoc />

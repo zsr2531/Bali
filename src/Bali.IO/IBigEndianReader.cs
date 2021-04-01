@@ -16,6 +16,18 @@ namespace Bali.IO
         }
 
         /// <summary>
+        /// Creates an <see cref="IBigEndianSegmentReader"/> with the length determined by the <paramref name="length"/>.
+        /// </summary>
+        /// <returns>The <see cref="IBigEndianSegmentReader"/>.</returns>
+        IBigEndianSegmentReader WithU2Length(ushort length);
+
+        /// <summary>
+        /// Creates an <see cref="IBigEndianSegmentReader"/> with the length determined by the <paramref name="length"/>.
+        /// </summary>
+        /// <returns>The <see cref="IBigEndianSegmentReader"/>.</returns>
+        IBigEndianSegmentReader WithU4Length(uint length);
+
+        /// <summary>
         /// Reads <see cref="byte"/>s into the provided <paramref name="span"/>.
         /// </summary>
         /// <param name="span">The <see cref="Span{T}"/> to hold the read bytes.</param>
