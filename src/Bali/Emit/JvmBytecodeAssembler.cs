@@ -67,21 +67,35 @@ namespace Bali.Emit
                     writer.WriteI4(CastOperand<int>(operand));
                     break;
 
-                // TODO: Implement jump table serialization.
                 case JvmOperandType.KeyJumpTable:
+                    var keyJumpTable = CastOperand<KeyJumpTable>(operand);
+                    AlignOn4ByteBoundary(writer, needsAlignment);
+                    writer.WriteI4(keyJumpTable.Default);
+                    writer.WriteI4(keyJumpTable.Matches.Count);
+                    foreach (var pair in keyJumpTable.Matches)
+                    {
+                        writer.WriteI4(pair.Key);
+                        writer.WriteI4(pair.Value);
+                    }
+                    break;
+                
                 case JvmOperandType.IndexJumpTable:
-                    throw new NotImplementedException();
-
-                case JvmOperandType.LocalIndex:
-                    writer.WriteU1(CastOperand<byte>(operand));
+                    var indexJumpTable = CastOperand<IndexJumpTable>(operand);
+                    AlignOn4ByteBoundary(writer, needsAlignment);
+                    writer.WriteI4(indexJumpTable.Default);
+                    writer.WriteI4(indexJumpTable.Low);
+                    writer.WriteI4(indexJumpTable.High);
+                    foreach (int offset in indexJumpTable.Offsets)
+                        writer.WriteI4(offset);
                     break;
 
                 case JvmOperandType.LocalIndexWithSignedByte:
-                    var real = CastOperand<LocalIndexWithSignedByte>(operand);
-                    writer.WriteU1(real.LocalIndex);
-                    writer.WriteI1(real.SignedByte);
+                    var localIndexWithSignedByte = CastOperand<LocalIndexWithSignedByte>(operand);
+                    writer.WriteU1(localIndexWithSignedByte.LocalIndex);
+                    writer.WriteI1(localIndexWithSignedByte.SignedByte);
                     break;
 
+                case JvmOperandType.LocalIndex:
                 case JvmOperandType.ConstantPoolIndex:
                     writer.WriteU1(CastOperand<byte>(operand));
                     break;
@@ -91,31 +105,28 @@ namespace Bali.Emit
                     break;
 
                 case JvmOperandType.WideConstantPoolIndexWithArrayDimensions:
-                    var op = CastOperand<WideConstantPoolIndexWithArrayDimensions>(operand);
-                    writer.WriteU2(op.WideConstantPoolIndex);
-                    writer.WriteU1(op.ArrayDimensions);
+                    var wideConstantPoolIndexWithArrayDimensions = CastOperand<WideConstantPoolIndexWithArrayDimensions>(operand);
+                    writer.WriteU2(wideConstantPoolIndexWithArrayDimensions.WideConstantPoolIndex);
+                    writer.WriteU1(wideConstantPoolIndexWithArrayDimensions.ArrayDimensions);
                     break;
                 
                 case JvmOperandType.WideConstantPoolIndexWithTwoBytes:
-                    var op1 = CastOperand<WideConstantPoolIndexWithTwoBytes>(operand);
-                    writer.WriteU2(op1.WideConstantPoolIndex);
-                    writer.WriteU1(op1.ByteOne);
-                    writer.WriteU1(op1.ByteTwo);
+                    var wideConstantPoolIndexWithTwoBytes = CastOperand<WideConstantPoolIndexWithTwoBytes>(operand);
+                    writer.WriteU2(wideConstantPoolIndexWithTwoBytes.WideConstantPoolIndex);
+                    writer.WriteU1(wideConstantPoolIndexWithTwoBytes.ByteOne);
+                    writer.WriteU1(wideConstantPoolIndexWithTwoBytes.ByteTwo);
                     break;
 
                 case JvmOperandType.ArrayType:
                     writer.WriteU1((byte) CastOperand<JvmPrimitiveArrayType>(operand));
                     break;
 
-                case JvmOperandType.BranchOffset:
-                    writer.WriteI2(CastOperand<short>(operand));
-                    break;
-                
                 case JvmOperandType.InlineByte:
                     writer.WriteI1(CastOperand<sbyte>(operand));
                     break;
 
                 case JvmOperandType.InlineShort:
+                case JvmOperandType.BranchOffset:
                     writer.WriteI2(CastOperand<short>(operand));
                     break;
 
@@ -147,6 +158,16 @@ namespace Bali.Emit
             string operandTypeName = operand?.GetType().Name ?? "null";
             string message = $"Operand type expected to be {typeof(T).Name} but instead is {operandTypeName}";
             throw new AssemblyException(message);
+        }
+
+        private static void AlignOn4ByteBoundary(IBigEndianWriter writer, bool needsAlignment)
+        {
+            if (!needsAlignment)
+                return;
+
+            long padding = writer.Position % 4;
+            for (int i = 0; i < padding; i++)
+                writer.WriteU1(0);
         }
     }
 }
