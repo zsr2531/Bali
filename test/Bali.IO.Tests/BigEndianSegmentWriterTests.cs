@@ -7,16 +7,16 @@ namespace Bali.IO.Tests
     public class BigEndianSegmentWriterTests
     {
         [Theory]
-        [InlineData(177)]
-        [InlineData(158)]
-        [InlineData(195)]
-        [InlineData(131)]
-        [InlineData(199)]
-        [InlineData(174)]
-        [InlineData(161)]
-        [InlineData(142)]
-        [InlineData(113)]
-        [InlineData(91)]
+        [InlineData(388)]
+        [InlineData(110)]
+        [InlineData(286)]
+        [InlineData(166)]
+        [InlineData(369)]
+        [InlineData(147)]
+        [InlineData(188)]
+        [InlineData(137)]
+        [InlineData(307)]
+        [InlineData(486)]
         public void U2Length(ushort bytes)
         {
             using var destination = new BufferDataDestination();
@@ -31,16 +31,16 @@ namespace Bali.IO.Tests
         }
 
         [Theory]
-        [InlineData(711)]
-        [InlineData(512)]
-        [InlineData(636)]
-        [InlineData(860)]
-        [InlineData(562)]
-        [InlineData(830)]
-        [InlineData(618)]
-        [InlineData(712)]
-        [InlineData(857)]
-        [InlineData(878)]
+        [InlineData(3149)]
+        [InlineData(2595)]
+        [InlineData(2610)]
+        [InlineData(2148)]
+        [InlineData(4442)]
+        [InlineData(3516)]
+        [InlineData(2645)]
+        [InlineData(3321)]
+        [InlineData(2950)]
+        [InlineData(1087)]
         public void U4Length(uint bytes)
         {
             using var destination = new BufferDataDestination();
