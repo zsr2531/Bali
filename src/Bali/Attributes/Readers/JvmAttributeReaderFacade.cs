@@ -57,7 +57,9 @@ namespace Bali.Attributes.Readers
             ushort nameIndex = _reader.ReadU2();
             string name = GetName(nameIndex);
 
-            return this[name].Read(_reader, nameIndex);
+            uint length = _reader.ReadU4();
+            using var segment = _reader.WithU4Length(length);
+            return this[name].Read(segment, nameIndex, length);
         }
 
         private string GetName(ushort nameIndex)

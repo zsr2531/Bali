@@ -37,9 +37,8 @@ namespace Bali.Attributes.Readers
         public override string Name => "Code";
 
         /// <inheritdoc />
-        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex)
+        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex, uint length)
         {
-            _ = reader.ReadU4();
             ushort maxStack = reader.ReadU2();
             ushort maxLocals = reader.ReadU2();
             var instructions = ReadInstructions(reader);

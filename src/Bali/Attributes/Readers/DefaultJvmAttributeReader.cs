@@ -16,12 +16,11 @@ namespace Bali.Attributes.Readers
         public override string Name => throw new NotSupportedException();
 
         /// <inheritdoc />
-        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex) =>
-            new(nameIndex, ReadRawData(reader));
+        public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex, uint length) =>
+            new(nameIndex, ReadRawData(reader, length));
 
-        private static byte[] ReadRawData(IBigEndianReader reader)
+        private static byte[] ReadRawData(IBigEndianReader reader, uint length)
         {
-            uint length = reader.ReadU4();
             if (length == 0)
                 return Array.Empty<byte>();
 

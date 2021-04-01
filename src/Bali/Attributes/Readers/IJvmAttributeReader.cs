@@ -21,7 +21,8 @@ namespace Bali.Attributes.Readers
         /// </summary>
         /// <param name="reader">The <see cref="IBigEndianReader"/> to read data from.</param>
         /// <param name="nameIndex">The index into the <see cref="ConstantPool"/> to a <see cref="Utf8Constant"/> holding the name.</param>
+        /// <param name="length">The length of the attribute's body.</param>
         /// <returns>The parsed <see cref="JvmAttribute"/>.</returns>
-        JvmAttribute Read(IBigEndianReader reader, ushort nameIndex);
+        JvmAttribute Read(IBigEndianReader reader, ushort nameIndex, uint length);
     }
 }
