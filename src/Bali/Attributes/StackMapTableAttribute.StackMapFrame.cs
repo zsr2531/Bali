@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Bali.Attributes
 {
-    public abstract class StackMapFrameBase
+    public abstract class StackMapFrame
     {
-        private protected StackMapFrameBase(byte tag)
+        private protected StackMapFrame(byte tag)
         {
             Tag = tag;
         }
@@ -21,7 +21,7 @@ namespace Bali.Attributes
         }
     }
     
-    public sealed class SameFrame : StackMapFrameBase
+    public sealed class SameFrame : StackMapFrame
     {
         public SameFrame(byte tag)
             : base(tag)
@@ -34,9 +34,9 @@ namespace Bali.Attributes
         public override ushort OffsetDelta => Tag;
     }
     
-    public sealed class SameLocals1StackItemFrame : StackMapFrameBase
+    public sealed class SameLocals1StackItemFrame : StackMapFrame
     {
-        public SameLocals1StackItemFrame(byte tag, VerificationInfoBase stackTop)
+        public SameLocals1StackItemFrame(byte tag, VerificationInfo stackTop)
             : base(tag)
         {
             if (tag < 64 || tag > 127)
@@ -48,15 +48,15 @@ namespace Bali.Attributes
         /// <inheritdoc />
         public override ushort OffsetDelta => (ushort) (Tag - 64);
         
-        public VerificationInfoBase StackTop
+        public VerificationInfo StackTop
         {
             get;
         }
     }
     
-    public sealed class SameLocals1StackItemFrameExtended : StackMapFrameBase
+    public sealed class SameLocals1StackItemFrameExtended : StackMapFrame
     {
-        internal SameLocals1StackItemFrameExtended(byte tag, ushort offsetDelta, VerificationInfoBase stackTop)
+        internal SameLocals1StackItemFrameExtended(byte tag, ushort offsetDelta, VerificationInfo stackTop)
             : base(tag)
         {
             if (tag != 247)
@@ -72,13 +72,13 @@ namespace Bali.Attributes
             get;
         }
         
-        public VerificationInfoBase StackTop
+        public VerificationInfo StackTop
         {
             get;
         }
     }
     
-    public sealed class ChopFrame : StackMapFrameBase
+    public sealed class ChopFrame : StackMapFrame
     {
         public ChopFrame(byte tag, ushort offsetDelta)
             : base(tag)
@@ -98,7 +98,7 @@ namespace Bali.Attributes
         }
     }
     
-    public sealed class SameFrameExtended : StackMapFrameBase
+    public sealed class SameFrameExtended : StackMapFrame
     {
         public SameFrameExtended(byte tag, ushort offsetDelta)
             : base(tag)
@@ -116,9 +116,9 @@ namespace Bali.Attributes
         }
     }
     
-    public sealed class AppendFrame : StackMapFrameBase
+    public sealed class AppendFrame : StackMapFrame
     {
-        public AppendFrame(byte tag, ushort offsetDelta, IList<VerificationInfoBase> newLocals)
+        public AppendFrame(byte tag, ushort offsetDelta, IList<VerificationInfo> newLocals)
             : base(tag)
         {
             if (tag < 252 || tag > 254)
@@ -134,19 +134,19 @@ namespace Bali.Attributes
             get;
         }
         
-        public IList<VerificationInfoBase> NewLocals
+        public IList<VerificationInfo> NewLocals
         {
             get;
         }
     }
     
-    public sealed class FullFrame : StackMapFrameBase
+    public sealed class FullFrame : StackMapFrame
     {
         public FullFrame(
             byte tag,
             ushort offsetDelta,
-            IList<VerificationInfoBase> locals,
-            IList<VerificationInfoBase> stack)
+            IList<VerificationInfo> locals,
+            IList<VerificationInfo> stack)
             : base(tag)
         {
             if (tag != 255)
@@ -162,12 +162,12 @@ namespace Bali.Attributes
             get;
         }
         
-        public IList<VerificationInfoBase> Locals
+        public IList<VerificationInfo> Locals
         {
             get;
         }
         
-        public IList<VerificationInfoBase> Stack
+        public IList<VerificationInfo> Stack
         {
             get;
         }

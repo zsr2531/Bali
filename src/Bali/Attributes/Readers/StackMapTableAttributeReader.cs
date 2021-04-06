@@ -25,7 +25,7 @@ namespace Bali.Attributes.Readers
         public override JvmAttribute Read(IBigEndianReader reader, ushort nameIndex, uint length)
         {
             ushort items = reader.ReadU2();
-            var frames = new List<StackMapFrameBase>(items);
+            var frames = new List<StackMapFrame>(items);
 
             for (int i = 0; i < items; i++)
             {
@@ -50,7 +50,7 @@ namespace Bali.Attributes.Readers
         {
             ushort offsetDelta = reader.ReadU2();
             int items = tag - 251;
-            var locals = new List<VerificationInfoBase>(items);
+            var locals = new List<VerificationInfo>(items);
             for (int i = 0; i < items; i++)
                 locals.Add(ReadVerificationInfo(reader));
 
@@ -62,13 +62,13 @@ namespace Bali.Attributes.Readers
             ushort offsetDelta = reader.ReadU2();
             
             ushort numOfLocals = reader.ReadU2();
-            var locals = new List<VerificationInfoBase>(numOfLocals);
+            var locals = new List<VerificationInfo>(numOfLocals);
             
             for (int i = 0; i < numOfLocals; i++)
                 locals.Add(ReadVerificationInfo(reader));
             
             ushort numOfStackItems = reader.ReadU2();
-            var stack = new List<VerificationInfoBase>(numOfStackItems);
+            var stack = new List<VerificationInfo>(numOfStackItems);
             
             for (int i = 0; i < numOfStackItems; i++)
                 stack.Add(ReadVerificationInfo(reader));
@@ -76,7 +76,7 @@ namespace Bali.Attributes.Readers
             return new FullFrame(tag, offsetDelta, locals, stack);
         }
 
-        private static VerificationInfoBase ReadVerificationInfo(IBigEndianReader reader)
+        private static VerificationInfo ReadVerificationInfo(IBigEndianReader reader)
         {
             var tag = (VerificationInfoTag) reader.ReadU1();
             return tag switch

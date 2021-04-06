@@ -4,13 +4,13 @@ namespace Bali.Attributes
 {
     public sealed class StackMapTableAttribute : JvmAttribute
     {
-        public StackMapTableAttribute(ushort nameIndex, IList<StackMapFrameBase> entries)
+        public StackMapTableAttribute(ushort nameIndex, IList<StackMapFrame> entries)
             : base(nameIndex)
         {
             Entries = entries;
         }
         
-        public IList<StackMapFrameBase> Entries
+        public IList<StackMapFrame> Entries
         {
             get;
             set;
