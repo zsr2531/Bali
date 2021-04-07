@@ -73,6 +73,9 @@ namespace Bali.Attributes
         }
     }
 
+    /// <summary>
+    /// Indicates that the verification type is <c>top</c>.
+    /// </summary>
     public sealed class TopVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -84,6 +87,9 @@ namespace Bali.Attributes
         }
     }
 
+    /// <summary>
+    /// Indicates that the verification type is <c>int</c>.
+    /// </summary>
     public sealed class IntegerVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -95,6 +101,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is <c>float</c>.
+    /// </summary>
     public sealed class FloatVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -106,6 +115,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is <c>long</c>.
+    /// </summary>
     public sealed class LongVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -117,6 +129,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is <c>double</c>.
+    /// </summary>
     public sealed class DoubleVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -128,6 +143,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is <c>null</c>.
+    /// </summary>
     public sealed class NullVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -139,6 +157,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is <c>uninitializedThis</c>.
+    /// </summary>
     public sealed class UninitializedThisVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -150,6 +171,10 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is represented by a <see cref="ClassConstant"/> that can be resolved
+    /// via the <see cref="ConstantPoolIndex"/>.
+    /// </summary>
     public sealed class ObjectVariableInfo : VerificationInfo
     {
         /// <summary>
@@ -171,6 +196,9 @@ namespace Bali.Attributes
         }
     }
     
+    /// <summary>
+    /// Indicates that the verification type is an uninitialized object (these are created by the <see cref="JvmOpCodes.New"/> instruction).
+    /// </summary>
     public sealed class UninitializedVariableInfo : VerificationInfo
     {
         /// <summary>
