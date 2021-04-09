@@ -26,7 +26,6 @@ namespace Bali.Emit
         {
             var instructions = new List<JvmInstruction>();
             bool isWide = false;
-            bool needsAlignment = reader.Position % 4 == 0;
             long start = reader.Position;
             
             while (reader.Position - start < count)
@@ -45,7 +44,7 @@ namespace Bali.Emit
 
                 var operand = isWide
                     ? ReadWideOperand(reader, opCode)
-                    : ReadOperand(current, reader, opCode.OperandType, needsAlignment);
+                    : ReadOperand(current, reader, opCode.OperandType);
                 
                 instructions.Add(new JvmInstruction(current, opCode, operand));
                 isWide = false;
@@ -60,17 +59,16 @@ namespace Bali.Emit
         /// <param name="offset">The offset.</param>
         /// <param name="reader">The <see cref="IBigEndianReader"/> to read from.</param>
         /// <param name="type">The <see cref="JvmOperandType"/> to read.</param>
-        /// <param name="needsAlignment">Whether some operands need to be 4-byte aligned.</param>
         /// <returns>The deserialized operand.</returns>
-        protected static object? ReadOperand(int offset, IBigEndianReader reader, JvmOperandType type, bool needsAlignment)
+        protected static object? ReadOperand(int offset, IBigEndianReader reader, JvmOperandType type)
         {
             return type switch
             {
                 JvmOperandType.None => null,
                 JvmOperandType.BranchOffset => reader.ReadI2(),
                 JvmOperandType.WideBranchOffset => reader.ReadI4(),
-                JvmOperandType.KeyJumpTable => ReadLookupSwitchOperand(offset, reader, needsAlignment),
-                JvmOperandType.IndexJumpTable => ReadTableSwitchOperand(offset, reader, needsAlignment),
+                JvmOperandType.KeyJumpTable => ReadLookupSwitchOperand(offset, reader),
+                JvmOperandType.IndexJumpTable => ReadTableSwitchOperand(offset, reader),
                 JvmOperandType.LocalIndex => reader.ReadU1(),
                 JvmOperandType.LocalIndexWithSignedByte => new LocalIndexWithSignedByte(reader.ReadU1(), reader.ReadI1()),
                 JvmOperandType.ConstantPoolIndex => reader.ReadU1(),
@@ -100,9 +98,9 @@ namespace Bali.Emit
             return new WideLocalIndexWithSignedShort(index, constant);
         }
 
-        private static object ReadLookupSwitchOperand(int offset, IBigEndianReader reader, bool needsAlignment)
+        private static object ReadLookupSwitchOperand(int offset, IBigEndianReader reader)
         {
-            AlignOn4ByteBoundary(offset, reader, needsAlignment);
+            AlignOn4ByteBoundary(offset, reader);
             int @default = reader.ReadI4();
             int count = reader.ReadI4();
             var buffer = new Dictionary<int, int>(count);
@@ -113,9 +111,9 @@ namespace Bali.Emit
             return new KeyJumpTable(@default, buffer);
         }
 
-        private static object ReadTableSwitchOperand(int offset, IBigEndianReader reader, bool needsAlignment)
+        private static object ReadTableSwitchOperand(int offset, IBigEndianReader reader)
         {
-            AlignOn4ByteBoundary(offset, reader, needsAlignment);
+            AlignOn4ByteBoundary(offset, reader);
             int @default = reader.ReadI4();
             int low = reader.ReadI4();
             int high = reader.ReadI4();
@@ -127,11 +125,8 @@ namespace Bali.Emit
             return new IndexJumpTable(@default, low, high, buffer);
         }
 
-        private static void AlignOn4ByteBoundary(int offset, IBigEndianReader reader, bool needsAlignment)
+        private static void AlignOn4ByteBoundary(int offset, IBigEndianReader reader)
         {
-            if (!needsAlignment)
-                return;
-            
             int padding = offset % 4;
             for (int i = 0; i < padding; i++)
                 reader.ReadU1();

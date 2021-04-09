@@ -24,7 +24,7 @@ namespace Bali.Emit
         /// <inheritdoc />
         public void Assemble(IList<JvmInstruction> instructions, IBigEndianWriter writer)
         {
-            bool isWide = false, needsAlignment = writer.Position % 4 == 0;
+            bool isWide = false;
 
             foreach (var instruction in instructions)
             {
@@ -39,7 +39,7 @@ namespace Bali.Emit
                 if (isWide)
                     WriteWideOperand(instruction, writer);
                 else
-                    WriteOperand(instruction, writer, needsAlignment);
+                    WriteOperand(instruction, writer);
                 
                 isWide = false;
             }
@@ -50,11 +50,10 @@ namespace Bali.Emit
         /// </summary>
         /// <param name="instruction">The <see cref="JvmInstruction"/> to write the <see cref="JvmInstruction.Operand"/> of.</param>
         /// <param name="writer">The <see cref="IBigEndianWriter"/> to write data to.</param>
-        /// <param name="needsAlignment">Whether some operands need to be 4-byte aligned.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// When the <paramref name="instruction"/>'s <see cref="JvmOpCode"/> has an <see cref="JvmOperandType.Undefined"/> operand type.
         /// </exception>
-        protected static void WriteOperand(JvmInstruction instruction, IBigEndianWriter writer, bool needsAlignment)
+        protected static void WriteOperand(JvmInstruction instruction, IBigEndianWriter writer)
         {
             var operand = instruction.Operand;
             
@@ -69,7 +68,7 @@ namespace Bali.Emit
 
                 case JvmOperandType.KeyJumpTable:
                     var keyJumpTable = CastOperand<KeyJumpTable>(operand);
-                    AlignOn4ByteBoundary(writer, needsAlignment);
+                    AlignOn4ByteBoundary(writer);
                     writer.WriteI4(keyJumpTable.Default);
                     writer.WriteI4(keyJumpTable.Matches.Count);
                     foreach (var pair in keyJumpTable.Matches)
@@ -81,7 +80,7 @@ namespace Bali.Emit
                 
                 case JvmOperandType.IndexJumpTable:
                     var indexJumpTable = CastOperand<IndexJumpTable>(operand);
-                    AlignOn4ByteBoundary(writer, needsAlignment);
+                    AlignOn4ByteBoundary(writer);
                     writer.WriteI4(indexJumpTable.Default);
                     writer.WriteI4(indexJumpTable.Low);
                     writer.WriteI4(indexJumpTable.High);
@@ -160,11 +159,8 @@ namespace Bali.Emit
             throw new AssemblyException(message);
         }
 
-        private static void AlignOn4ByteBoundary(IBigEndianWriter writer, bool needsAlignment)
+        private static void AlignOn4ByteBoundary(IBigEndianWriter writer)
         {
-            if (!needsAlignment)
-                return;
-
             long padding = writer.Position % 4;
             for (int i = 0; i < padding; i++)
                 writer.WriteU1(0);
