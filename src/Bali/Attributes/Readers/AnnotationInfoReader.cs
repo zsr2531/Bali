@@ -24,7 +24,7 @@ namespace Bali.Attributes.Readers
             return new(typeIndex, pairs);
         }
 
-        private ElementValue ReadElementValue()
+        internal ElementValue ReadElementValue()
         {
             var tag = (ElementValueTag) _reader.ReadU1();
             return tag switch

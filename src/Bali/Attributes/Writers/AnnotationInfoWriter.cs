@@ -24,7 +24,7 @@ namespace Bali.Attributes.Writers
             }
         }
 
-        private void WriteElementValue(ElementValue value)
+        internal void WriteElementValue(ElementValue value)
         {
             _writer.WriteU1((byte) value.Tag);
             
