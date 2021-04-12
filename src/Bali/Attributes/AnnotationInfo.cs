@@ -44,7 +44,7 @@ namespace Bali.Attributes
 
     public abstract class ElementValue
     {
-        protected ElementValue(ElementValueTag tag)
+        private protected ElementValue(ElementValueTag tag)
         {
             Tag = tag;
         }
@@ -60,10 +60,11 @@ namespace Bali.Attributes
         public ConstValue(ElementValueTag tag, ushort constValueIndex)
             : base(tag)
         {
-            if (tag is not ElementValueTag.Byte or ElementValueTag.Char or ElementValueTag.Double
-                or ElementValueTag.Float or ElementValueTag.Integer or ElementValueTag.Long
-                or ElementValueTag.Short or ElementValueTag.Boolean or ElementValueTag.String)
+            if (tag is not ElementValueTag.Byte and not ElementValueTag.Char and not ElementValueTag.Double
+                and not ElementValueTag.Float and not ElementValueTag.Integer and not ElementValueTag.Long
+                and not ElementValueTag.Short and not ElementValueTag.Boolean and not ElementValueTag.String)
                 throw new ArgumentOutOfRangeException(nameof(tag));
+            
             ConstValueIndex = constValueIndex;
         }
         
