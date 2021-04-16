@@ -25,6 +25,7 @@ namespace Bali.Attributes.Writers
         {
             var stackMapFrameWriter = new StackMapFrameWriter(writer);
             
+            writer.WriteU2((ushort) attribute.Entries.Count);
             foreach (var frame in attribute.Entries)
                 stackMapFrameWriter.WriteFrame(frame);
         }
