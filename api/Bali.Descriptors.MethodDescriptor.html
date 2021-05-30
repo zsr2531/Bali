@@ -1,0 +1,534 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct MethodDescriptor
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct MethodDescriptor
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.Descriptors.MethodDescriptor">
+  
+  
+  <h1 id="Bali_Descriptors_MethodDescriptor" data-uid="Bali.Descriptors.MethodDescriptor" class="text-break">Struct MethodDescriptor
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a Java method descriptor.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a>&gt;</div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.Descriptors.html">Bali.Descriptors</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_Descriptors_MethodDescriptor_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct MethodDescriptor : IEquatable&lt;MethodDescriptor&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor__ctor_Bali_Descriptors_FieldDescriptor_IList_Bali_Descriptors_FieldDescriptor__.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.%23ctor(Bali.Descriptors.FieldDescriptor%2CIList%7BBali.Descriptors.FieldDescriptor%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L17">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor__ctor_" data-uid="Bali.Descriptors.MethodDescriptor.#ctor*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor__ctor_Bali_Descriptors_FieldDescriptor_IList_Bali_Descriptors_FieldDescriptor__" data-uid="Bali.Descriptors.MethodDescriptor.#ctor(Bali.Descriptors.FieldDescriptor,IList{Bali.Descriptors.FieldDescriptor})">MethodDescriptor(FieldDescriptor, IList&lt;FieldDescriptor&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MethodDescriptor(FieldDescriptor returnType, IList&lt;FieldDescriptor&gt; parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.FieldDescriptor.html">FieldDescriptor</a></td>
+        <td><span class="parametername">returnType</span></td>
+        <td><p>The method's return type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Descriptors.FieldDescriptor.html">FieldDescriptor</a>&gt;</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The method's parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_Parameters.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.Parameters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L34">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_Parameters_" data-uid="Bali.Descriptors.MethodDescriptor.Parameters*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_Parameters" data-uid="Bali.Descriptors.MethodDescriptor.Parameters">Parameters</h4>
+  <div class="markdown level1 summary"><p>The parameters of the method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;FieldDescriptor&gt; Parameters { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Descriptors.FieldDescriptor.html">FieldDescriptor</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_ReturnType.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.ReturnType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L26">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_ReturnType_" data-uid="Bali.Descriptors.MethodDescriptor.ReturnType*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_ReturnType" data-uid="Bali.Descriptors.MethodDescriptor.ReturnType">ReturnType</h4>
+  <div class="markdown level1 summary"><p>The return type of the method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FieldDescriptor ReturnType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.FieldDescriptor.html">FieldDescriptor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_Equals_Bali_Descriptors_MethodDescriptor_.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.Equals(Bali.Descriptors.MethodDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L40">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_Equals_" data-uid="Bali.Descriptors.MethodDescriptor.Equals*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_Equals_Bali_Descriptors_MethodDescriptor_" data-uid="Bali.Descriptors.MethodDescriptor.Equals(Bali.Descriptors.MethodDescriptor)">Equals(MethodDescriptor)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(MethodDescriptor other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_Equals_System_Nullable_System_Object__.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.Equals(System.Nullable%7BSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L44">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_Equals_" data-uid="Bali.Descriptors.MethodDescriptor.Equals*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_Equals_System_Nullable_System_Object__" data-uid="Bali.Descriptors.MethodDescriptor.Equals(System.Nullable{System.Object})">Equals(Nullable&lt;Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_GetHashCode.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L47">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_GetHashCode_" data-uid="Bali.Descriptors.MethodDescriptor.GetHashCode*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_GetHashCode" data-uid="Bali.Descriptors.MethodDescriptor.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_ToString.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L50">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_ToString_" data-uid="Bali.Descriptors.MethodDescriptor.ToString*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_ToString" data-uid="Bali.Descriptors.MethodDescriptor.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_op_Equality_Bali_Descriptors_MethodDescriptor_Bali_Descriptors_MethodDescriptor_.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.op_Equality(Bali.Descriptors.MethodDescriptor%2CBali.Descriptors.MethodDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L58">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_op_Equality_" data-uid="Bali.Descriptors.MethodDescriptor.op_Equality*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_op_Equality_Bali_Descriptors_MethodDescriptor_Bali_Descriptors_MethodDescriptor_" data-uid="Bali.Descriptors.MethodDescriptor.op_Equality(Bali.Descriptors.MethodDescriptor,Bali.Descriptors.MethodDescriptor)">Equality(MethodDescriptor, MethodDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Determines whether <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(MethodDescriptor left, MethodDescriptor right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The left side of the comparison.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The right side of the comparison.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor_op_Inequality_Bali_Descriptors_MethodDescriptor_Bali_Descriptors_MethodDescriptor_.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor.op_Inequality(Bali.Descriptors.MethodDescriptor%2CBali.Descriptors.MethodDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L66">View Source</a>
+  </span>
+  <a id="Bali_Descriptors_MethodDescriptor_op_Inequality_" data-uid="Bali.Descriptors.MethodDescriptor.op_Inequality*"></a>
+  <h4 id="Bali_Descriptors_MethodDescriptor_op_Inequality_Bali_Descriptors_MethodDescriptor_Bali_Descriptors_MethodDescriptor_" data-uid="Bali.Descriptors.MethodDescriptor.op_Inequality(Bali.Descriptors.MethodDescriptor,Bali.Descriptors.MethodDescriptor)">Inequality(MethodDescriptor, MethodDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Determines whether <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(MethodDescriptor left, MethodDescriptor right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The left side of the comparison.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.Descriptors.MethodDescriptor.html">MethodDescriptor</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The right side of the comparison.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are not equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Descriptors_MethodDescriptor.md&amp;value=---%0Auid%3A%20Bali.Descriptors.MethodDescriptor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Descriptors/MethodDescriptor.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

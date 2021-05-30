@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct ClassFileHeader
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct ClassFileHeader
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.ClassFileHeader">
+  
+  
+  <h1 id="Bali_ClassFileHeader" data-uid="Bali.ClassFileHeader" class="text-break">Struct ClassFileHeader
+  </h1>
+  <div class="markdown level0 summary"><p>Represents the first 3 values found in a <em>.class</em> file; the magic value, the minor- and the major version.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.html">Bali</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_ClassFileHeader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct ClassFileHeader</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader__ctor_Bali_ClassFile_.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.%23ctor(Bali.ClassFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L43">View Source</a>
+  </span>
+  <a id="Bali_ClassFileHeader__ctor_" data-uid="Bali.ClassFileHeader.#ctor*"></a>
+  <h4 id="Bali_ClassFileHeader__ctor_Bali_ClassFile_" data-uid="Bali.ClassFileHeader.#ctor(Bali.ClassFile)">ClassFileHeader(ClassFile)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a> from the specified <code data-dev-comment-type="paramref" class="paramref">classFile</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClassFileHeader(ClassFile classFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><span class="parametername">classFile</span></td>
+        <td><p>The <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to construct the header of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader__ctor_System_UInt32_System_UInt16_System_UInt16_.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.%23ctor(System.UInt32%2CSystem.UInt16%2CSystem.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L32">View Source</a>
+  </span>
+  <a id="Bali_ClassFileHeader__ctor_" data-uid="Bali.ClassFileHeader.#ctor*"></a>
+  <h4 id="Bali_ClassFileHeader__ctor_System_UInt32_System_UInt16_System_UInt16_" data-uid="Bali.ClassFileHeader.#ctor(System.UInt32,System.UInt16,System.UInt16)">ClassFileHeader(UInt32, UInt16, UInt16)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClassFileHeader(uint magic, ushort minor, ushort major)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">magic</span></td>
+        <td><p>The magic value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">minor</span></td>
+        <td><p>The minor version.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">major</span></td>
+        <td><p>The major version.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_Magic.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.Magic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L14">View Source</a>
+  </span>
+  <h4 id="Bali_ClassFileHeader_Magic" data-uid="Bali.ClassFileHeader.Magic">Magic</h4>
+  <div class="markdown level1 summary"><p>The magic value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly uint Magic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Bali_ClassFileHeader_Magic_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This should always be <strong>0xCAFEBABE</strong>.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_Major.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.Major%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L24">View Source</a>
+  </span>
+  <h4 id="Bali_ClassFileHeader_Major" data-uid="Bali.ClassFileHeader.Major">Major</h4>
+  <div class="markdown level1 summary"><p>The major version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ushort Major</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_Minor.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.Minor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L19">View Source</a>
+  </span>
+  <h4 id="Bali_ClassFileHeader_Minor" data-uid="Bali.ClassFileHeader.Minor">Minor</h4>
+  <div class="markdown level1 summary"><p>The minor version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ushort Minor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_FromReader_Bali_IO_IBigEndianReader_.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.FromReader(Bali.IO.IBigEndianReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L64">View Source</a>
+  </span>
+  <a id="Bali_ClassFileHeader_FromReader_" data-uid="Bali.ClassFileHeader.FromReader*"></a>
+  <h4 id="Bali_ClassFileHeader_FromReader_Bali_IO_IBigEndianReader_" data-uid="Bali.ClassFileHeader.FromReader(Bali.IO.IBigEndianReader)">FromReader(IBigEndianReader)</h4>
+  <div class="markdown level1 summary"><p>Reads the <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a> of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> from the <code data-dev-comment-type="paramref" class="paramref">reader</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ClassFileHeader FromReader(IBigEndianReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianReader.html">IBigEndianReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianReader.html">IBigEndianReader</a> to read data from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a></td>
+        <td><p>The read <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_IntoWriter_Bali_ClassFile_Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.IntoWriter(Bali.ClassFile%2CBali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L72">View Source</a>
+  </span>
+  <a id="Bali_ClassFileHeader_IntoWriter_" data-uid="Bali.ClassFileHeader.IntoWriter*"></a>
+  <h4 id="Bali_ClassFileHeader_IntoWriter_Bali_ClassFile_Bali_IO_IBigEndianWriter_" data-uid="Bali.ClassFileHeader.IntoWriter(Bali.ClassFile,Bali.IO.IBigEndianWriter)">IntoWriter(ClassFile, IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a> of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to the <code data-dev-comment-type="paramref" class="paramref">writer</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void IntoWriter(ClassFile classFile, IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><span class="parametername">classFile</span></td>
+        <td><p>The <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to write the header of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader_Write_Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader.Write(Bali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L52">View Source</a>
+  </span>
+  <a id="Bali_ClassFileHeader_Write_" data-uid="Bali.ClassFileHeader.Write*"></a>
+  <h4 id="Bali_ClassFileHeader_Write_Bali_IO_IBigEndianWriter_" data-uid="Bali.ClassFileHeader.Write(Bali.IO.IBigEndianWriter)">Write(IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a> to the <code data-dev-comment-type="paramref" class="paramref">writer</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write the <a class="xref" href="Bali.ClassFileHeader.html">ClassFileHeader</a> to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFileHeader.md&amp;value=---%0Auid%3A%20Bali.ClassFileHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFileHeader.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

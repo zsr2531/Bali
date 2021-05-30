@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class JvmBytecodeAssembler
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class JvmBytecodeAssembler
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.Emit.JvmBytecodeAssembler">
+  
+  
+  <h1 id="Bali_Emit_JvmBytecodeAssembler" data-uid="Bali.Emit.JvmBytecodeAssembler" class="text-break">Class JvmBytecodeAssembler
+  </h1>
+  <div class="markdown level0 summary"><p>Provides a basic implementation of the <a class="xref" href="Bali.Emit.IJvmBytecodeAssembler.html">IJvmBytecodeAssembler</a> contract.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">JvmBytecodeAssembler</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Bali.Emit.IJvmBytecodeAssembler.html">IJvmBytecodeAssembler</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.Emit.html">Bali.Emit</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_Emit_JvmBytecodeAssembler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class JvmBytecodeAssembler : object, IJvmBytecodeAssembler</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler__ctor.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L22">View Source</a>
+  </span>
+  <a id="Bali_Emit_JvmBytecodeAssembler__ctor_" data-uid="Bali.Emit.JvmBytecodeAssembler.#ctor*"></a>
+  <h4 id="Bali_Emit_JvmBytecodeAssembler__ctor" data-uid="Bali.Emit.JvmBytecodeAssembler.#ctor">JvmBytecodeAssembler()</h4>
+  <div class="markdown level1 summary"><p>Default parameterless constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected JvmBytecodeAssembler()</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler_Instance.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler.Instance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L17">View Source</a>
+  </span>
+  <h4 id="Bali_Emit_JvmBytecodeAssembler_Instance" data-uid="Bali.Emit.JvmBytecodeAssembler.Instance">Instance</h4>
+  <div class="markdown level1 summary"><p>Provides a singleton <a class="xref" href="Bali.Emit.JvmBytecodeAssembler.html">JvmBytecodeAssembler</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly JvmBytecodeAssembler Instance</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Emit.JvmBytecodeAssembler.html">JvmBytecodeAssembler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler_Assemble_IList_Bali_Emit_JvmInstruction__Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler.Assemble(IList%7BBali.Emit.JvmInstruction%7D%2CBali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L25">View Source</a>
+  </span>
+  <a id="Bali_Emit_JvmBytecodeAssembler_Assemble_" data-uid="Bali.Emit.JvmBytecodeAssembler.Assemble*"></a>
+  <h4 id="Bali_Emit_JvmBytecodeAssembler_Assemble_IList_Bali_Emit_JvmInstruction__Bali_IO_IBigEndianWriter_" data-uid="Bali.Emit.JvmBytecodeAssembler.Assemble(IList{Bali.Emit.JvmInstruction},Bali.IO.IBigEndianWriter)">Assemble(IList&lt;JvmInstruction&gt;, IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Assembles the given <code data-dev-comment-type="paramref" class="paramref">instructions</code> and writes the result to the <code data-dev-comment-type="paramref" class="paramref">writer</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Assemble(IList&lt;JvmInstruction&gt; instructions, IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a>&gt;</td>
+        <td><span class="parametername">instructions</span></td>
+        <td><p>The list of <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a>s to assemble.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write the assembled <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a>s to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler_WriteOperand_Bali_Emit_JvmInstruction_Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler.WriteOperand(Bali.Emit.JvmInstruction%2CBali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L56">View Source</a>
+  </span>
+  <a id="Bali_Emit_JvmBytecodeAssembler_WriteOperand_" data-uid="Bali.Emit.JvmBytecodeAssembler.WriteOperand*"></a>
+  <h4 id="Bali_Emit_JvmBytecodeAssembler_WriteOperand_Bali_Emit_JvmInstruction_Bali_IO_IBigEndianWriter_" data-uid="Bali.Emit.JvmBytecodeAssembler.WriteOperand(Bali.Emit.JvmInstruction,Bali.IO.IBigEndianWriter)">WriteOperand(JvmInstruction, IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Serializes the operand of a given <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void WriteOperand(JvmInstruction instruction, IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a></td>
+        <td><span class="parametername">instruction</span></td>
+        <td><p>The <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a> to write the <a class="xref" href="Bali.Emit.JvmInstruction.html#Bali_Emit_JvmInstruction_Operand">Operand</a> of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write data to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler_WriteWideOperand_Bali_Emit_JvmInstruction_Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler.WriteWideOperand(Bali.Emit.JvmInstruction%2CBali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L142">View Source</a>
+  </span>
+  <a id="Bali_Emit_JvmBytecodeAssembler_WriteWideOperand_" data-uid="Bali.Emit.JvmBytecodeAssembler.WriteWideOperand*"></a>
+  <h4 id="Bali_Emit_JvmBytecodeAssembler_WriteWideOperand_Bali_Emit_JvmInstruction_Bali_IO_IBigEndianWriter_" data-uid="Bali.Emit.JvmBytecodeAssembler.WriteWideOperand(Bali.Emit.JvmInstruction,Bali.IO.IBigEndianWriter)">WriteWideOperand(JvmInstruction, IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Serializes the wide version of the operand of a given <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void WriteWideOperand(JvmInstruction instruction, IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a></td>
+        <td><span class="parametername">instruction</span></td>
+        <td><p>The <a class="xref" href="Bali.Emit.JvmInstruction.html">JvmInstruction</a> to write the <a class="xref" href="Bali.Emit.JvmInstruction.html#Bali_Emit_JvmInstruction_Operand">Operand</a> of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write data to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Bali.Emit.IJvmBytecodeAssembler.html">IJvmBytecodeAssembler</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmBytecodeAssembler.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmBytecodeAssembler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmBytecodeAssembler.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

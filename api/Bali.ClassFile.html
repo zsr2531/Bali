@@ -1,0 +1,753 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ClassFile
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ClassFile
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.ClassFile">
+  
+  
+  <h1 id="Bali_ClassFile" data-uid="Bali.ClassFile" class="text-break">Class ClassFile
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a single <code>class</code> or <code>interface</code>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ClassFile</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.html">Bali</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_ClassFile_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ClassFile : object</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_AccessFlags.md&amp;value=---%0Auid%3A%20Bali.ClassFile.AccessFlags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L54">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_AccessFlags_" data-uid="Bali.ClassFile.AccessFlags*"></a>
+  <h4 id="Bali_ClassFile_AccessFlags" data-uid="Bali.ClassFile.AccessFlags">AccessFlags</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the <a class="xref" href="Bali.ClassFile.html#Bali_ClassFile_AccessFlags">AccessFlags</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClassAccessFlags AccessFlags { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassAccessFlags.html">ClassAccessFlags</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Attributes.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Attributes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L108">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Attributes_" data-uid="Bali.ClassFile.Attributes*"></a>
+  <h4 id="Bali_ClassFile_Attributes" data-uid="Bali.ClassFile.Attributes">Attributes</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the attributes of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;JvmAttribute&gt; Attributes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Attributes.JvmAttribute.html">JvmAttribute</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Constants.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Constants%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L45">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Constants_" data-uid="Bali.ClassFile.Constants*"></a>
+  <h4 id="Bali_ClassFile_Constants" data-uid="Bali.ClassFile.Constants">Constants</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstantPool Constants { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ConstantPool.html">ConstantPool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Fields.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Fields%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L90">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Fields_" data-uid="Bali.ClassFile.Fields*"></a>
+  <h4 id="Bali_ClassFile_Fields" data-uid="Bali.ClassFile.Fields">Fields</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the fields of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;JvmFieldInfo&gt; Fields { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmFieldInfo.html">JvmFieldInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Interfaces.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Interfaces%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L81">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Interfaces_" data-uid="Bali.ClassFile.Interfaces*"></a>
+  <h4 id="Bali_ClassFile_Interfaces" data-uid="Bali.ClassFile.Interfaces">Interfaces</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the indices into the <a class="xref" href="Bali.ClassFile.html#Bali_ClassFile_Constants">Constants</a> representing direct superinterfaces of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;ushort&gt; Interfaces { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Magic.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Magic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L18">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Magic_" data-uid="Bali.ClassFile.Magic*"></a>
+  <h4 id="Bali_ClassFile_Magic" data-uid="Bali.ClassFile.Magic">Magic</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the magic value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Magic { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Bali_ClassFile_Magic_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This should always have the value <strong>0xCAFEBABE</strong>.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_MajorVersion.md&amp;value=---%0Auid%3A%20Bali.ClassFile.MajorVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L36">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_MajorVersion_" data-uid="Bali.ClassFile.MajorVersion*"></a>
+  <h4 id="Bali_ClassFile_MajorVersion" data-uid="Bali.ClassFile.MajorVersion">MajorVersion</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the major version of this <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort MajorVersion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Methods.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Methods%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L99">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Methods_" data-uid="Bali.ClassFile.Methods*"></a>
+  <h4 id="Bali_ClassFile_Methods" data-uid="Bali.ClassFile.Methods">Methods</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the methods of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;JvmMethodInfo&gt; Methods { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmMethodInfo.html">JvmMethodInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_MinorVersion.md&amp;value=---%0Auid%3A%20Bali.ClassFile.MinorVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L27">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_MinorVersion_" data-uid="Bali.ClassFile.MinorVersion*"></a>
+  <h4 id="Bali_ClassFile_MinorVersion" data-uid="Bali.ClassFile.MinorVersion">MinorVersion</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the minor version of this <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort MinorVersion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_SuperClassIndex.md&amp;value=---%0Auid%3A%20Bali.ClassFile.SuperClassIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L72">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_SuperClassIndex_" data-uid="Bali.ClassFile.SuperClassIndex*"></a>
+  <h4 id="Bali_ClassFile_SuperClassIndex" data-uid="Bali.ClassFile.SuperClassIndex">SuperClassIndex</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the index into the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> that describes the superclass.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort SuperClassIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_ThisClassIndex.md&amp;value=---%0Auid%3A%20Bali.ClassFile.ThisClassIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L63">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_ThisClassIndex_" data-uid="Bali.ClassFile.ThisClassIndex*"></a>
+  <h4 id="Bali_ClassFile_ThisClassIndex" data-uid="Bali.ClassFile.ThisClassIndex">ThisClassIndex</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the index into the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> that describes this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort ThisClassIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_FromBytes_System_Byte___.md&amp;value=---%0Auid%3A%20Bali.ClassFile.FromBytes(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L164">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_FromBytes_" data-uid="Bali.ClassFile.FromBytes*"></a>
+  <h4 id="Bali_ClassFile_FromBytes_System_Byte___" data-uid="Bali.ClassFile.FromBytes(System.Byte[])">FromBytes(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Reads and parses a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> from an array of <code data-dev-comment-type="paramref" class="paramref">bytes</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ClassFile FromBytes(byte[] bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>The raw bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><p>The read and parsed <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_FromFile_System_String_.md&amp;value=---%0Auid%3A%20Bali.ClassFile.FromFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L157">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_FromFile_" data-uid="Bali.ClassFile.FromFile*"></a>
+  <h4 id="Bali_ClassFile_FromFile_System_String_" data-uid="Bali.ClassFile.FromFile(System.String)">FromFile(String)</h4>
+  <div class="markdown level1 summary"><p>Reads and parses a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> from the given <code data-dev-comment-type="paramref" class="paramref">path</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ClassFile FromFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file's path to read.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><p>The read and parsed <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_FromStream_Stream_.md&amp;value=---%0Auid%3A%20Bali.ClassFile.FromStream(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L171">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_FromStream_" data-uid="Bali.ClassFile.FromStream*"></a>
+  <h4 id="Bali_ClassFile_FromStream_Stream_" data-uid="Bali.ClassFile.FromStream(Stream)">FromStream(Stream)</h4>
+  <div class="markdown level1 summary"><p>Reads and parses a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> from the given input <code data-dev-comment-type="paramref" class="paramref">stream</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ClassFile FromStream(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The input <see cref="!:Stream"></see> to read data from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><p>The read and parsed <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Write.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Write%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L128">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Write_" data-uid="Bali.ClassFile.Write*"></a>
+  <h4 id="Bali_ClassFile_Write" data-uid="Bali.ClassFile.Write">Write()</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to a byte array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] Write()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
+        <td><p>The bytes of the <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Write_Stream_.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Write(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L140">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Write_" data-uid="Bali.ClassFile.Write*"></a>
+  <h4 id="Bali_ClassFile_Write_Stream_" data-uid="Bali.ClassFile.Write(Stream)">Write(Stream)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to the specified output <see cref="!:Stream"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The output <see cref="!:Stream"></see>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile_Write_System_String_.md&amp;value=---%0Auid%3A%20Bali.ClassFile.Write(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L118">View Source</a>
+  </span>
+  <a id="Bali_ClassFile_Write_" data-uid="Bali.ClassFile.Write*"></a>
+  <h4 id="Bali_ClassFile_Write_System_String_" data-uid="Bali.ClassFile.Write(System.String)">Write(String)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to the specified <code data-dev-comment-type="paramref" class="paramref">path</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path to write the <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_ClassFile.md&amp;value=---%0Auid%3A%20Bali.ClassFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/ClassFile.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

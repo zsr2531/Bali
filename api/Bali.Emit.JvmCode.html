@@ -1,0 +1,1145 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enum JvmCode
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enum JvmCode
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.Emit.JvmCode">
+  
+  
+  <h1 id="Bali_Emit_JvmCode" data-uid="Bali.Emit.JvmCode" class="text-break">Enum JvmCode
+  </h1>
+  <div class="markdown level0 summary"><p>The raw opcode of a JVM instruction.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.Emit.html">Bali.Emit</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_Emit_JvmCode_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum JvmCode : byte</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aaload">Aaload</td>
+        <td><p>Loads a reference from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aastore">Aastore</td>
+        <td><p>Stores a reference into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aconst_Null">Aconst_Null</td>
+        <td><p>Pushes <code>null</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aload">Aload</td>
+        <td><p>Loads a reference from a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aload_0">Aload_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aload_1">Aload_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aload_2">Aload_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Aload_3">Aload_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Anewarray">Anewarray</td>
+        <td><p>Creates a new array of reference.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Areturn">Areturn</td>
+        <td><p>Returns a reference from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Arraylength">Arraylength</td>
+        <td><p>Gets the length of an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Astore">Astore</td>
+        <td><p>Stores a reference into a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Astore_0">Astore_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Astore_1">Astore_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Astore_2">Astore_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Astore_3">Astore_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Athrow">Athrow</td>
+        <td><p>Throws an exception or an error.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Baload">Baload</td>
+        <td><p>Loads a <code>byte</code>/<code>boolean</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Bastore">Bastore</td>
+        <td><p>Stores a <code>byte</code>/<code>boolean</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Bipush">Bipush</td>
+        <td><p>Pushes a <code>byte</code> onto the stack sign-extended to an <code>int</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Breakpoint">Breakpoint</td>
+        <td><p>Signals to the debugger that a breakpoint has been hit.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Caload">Caload</td>
+        <td><p>Loads a <code>char</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Castore">Castore</td>
+        <td><p>Stores a <code>char</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Checkcast">Checkcast</td>
+        <td><p>Checks whether the object is of given type.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_D2f">D2f</td>
+        <td><p>Converts a <code>double</code> to a <code>float</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_D2i">D2i</td>
+        <td><p>Converts a <code>double</code> to an <code>int</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_D2l">D2l</td>
+        <td><p>Converts a <code>double</code> to a <code>long</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dadd">Dadd</td>
+        <td><p>Adds two <code>double</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Daload">Daload</td>
+        <td><p>Loads a <code>double</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dastore">Dastore</td>
+        <td><p>Stores a <code>double</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dcmpg">Dcmpg</td>
+        <td><p>Compares two <code>double</code>s, and determines which one is greater.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dcmpl">Dcmpl</td>
+        <td><p>Compares two <code>double</code>s, and determines which one is lesser.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dconst_0">Dconst_0</td>
+        <td><p>Pushes the constant 0.0 as a <code>double</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dconst_1">Dconst_1</td>
+        <td><p>Pushes the constant 1.0 as a <code>double</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ddiv">Ddiv</td>
+        <td><p>Divides two <code>double</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dload">Dload</td>
+        <td><p>Loads a <code>double</code> from a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dload_0">Dload_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dload_1">Dload_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dload_2">Dload_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dload_3">Dload_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dmul">Dmul</td>
+        <td><p>Multiplies two <code>double</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dneg">Dneg</td>
+        <td><p>Negates a <code>double</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Drem">Drem</td>
+        <td><p>Divides two <code>double</code>s and gets the remainder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dreturn">Dreturn</td>
+        <td><p>Returns a <code>double</code> from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dstore">Dstore</td>
+        <td><p>Stores a <code>double</code> into a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dstore_0">Dstore_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dstore_1">Dstore_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dstore_2">Dstore_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dstore_3">Dstore_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dsub">Dsub</td>
+        <td><p>Subtracts two <code>double</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup">Dup</td>
+        <td><p>Duplicates the value at the top of the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup_X1">Dup_X1</td>
+        <td><p>Duplicates the value at the top of the stack and inserts it two values down.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup_X2">Dup_X2</td>
+        <td><p>Duplicates the value at the top of the stack and inserts it two or three values down.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup2">Dup2</td>
+        <td><p>Duplicates the top one or two values on the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup2_X1">Dup2_X1</td>
+        <td><p>Duplicates the top one or two values and inserts them two or three values down on the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Dup2_X2">Dup2_X2</td>
+        <td><p>Duplicates the top one or two values and inserts them two, three or four values down.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_F2d">F2d</td>
+        <td><p>Converts a <code>float</code> to a <code>double</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_F2i">F2i</td>
+        <td><p>Converts a <code>float</code> to an <code>int</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_F2l">F2l</td>
+        <td><p>Converts a <code>float</code> to a <code>long</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fadd">Fadd</td>
+        <td><p>Adds two <code>float</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Faload">Faload</td>
+        <td><p>Loads a <code>float</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fastore">Fastore</td>
+        <td><p>Stores a <code>float</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fcmpg">Fcmpg</td>
+        <td><p>Compares two <code>float</code>s, and determines which one is greater.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fcmpl">Fcmpl</td>
+        <td><p>Compares two <code>float</code>s, and determines which one is lesser.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fconst_0">Fconst_0</td>
+        <td><p>Pushes the constant 0.0 as a <code>float</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fconst_1">Fconst_1</td>
+        <td><p>Pushes the constant 1.0 as a <code>float</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fconst_2">Fconst_2</td>
+        <td><p>Pushes the constant 2.0 as a <code>float</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fdiv">Fdiv</td>
+        <td><p>Divides two <code>float</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fload">Fload</td>
+        <td><p>Loads a <code>float</code> from a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fload_0">Fload_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fload_1">Fload_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fload_2">Fload_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fload_3">Fload_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fmul">Fmul</td>
+        <td><p>Multiplies two <code>float</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fneg">Fneg</td>
+        <td><p>Negates a <code>float</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Frem">Frem</td>
+        <td><p>Divides two <code>float</code> and gets the remainder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Freturn">Freturn</td>
+        <td><p>Returns a <code>float</code> from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fstore">Fstore</td>
+        <td><p>Stores a <code>float</code> into a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fstore_0">Fstore_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fstore_1">Fstore_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fstore_2">Fstore_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fstore_3">Fstore_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Fsub">Fsub</td>
+        <td><p>Subtracts two <code>float</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Getfield">Getfield</td>
+        <td><p>Gets the value of a field.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Getstatic">Getstatic</td>
+        <td><p>Gets the value of a static field.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Goto">Goto</td>
+        <td><p>Unconditional jump.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Goto_w">Goto_w</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2b">I2b</td>
+        <td><p>Converts an <code>int</code> to a <code>byte</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2c">I2c</td>
+        <td><p>Converts an <code>int</code> to a <code>char</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2d">I2d</td>
+        <td><p>Converts an <code>int</code> to a <code>double</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2f">I2f</td>
+        <td><p>Converts an <code>int</code> to a <code>float</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2l">I2l</td>
+        <td><p>Converts an <code>int</code> to a <code>long</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_I2s">I2s</td>
+        <td><p>Converts an <code>int</code> to a <code>short</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iadd">Iadd</td>
+        <td><p>Adds two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iaload">Iaload</td>
+        <td><p>Loads an <code>int</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iand">Iand</td>
+        <td><p>Performs a bitwise AND on two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iastore">Iastore</td>
+        <td><p>Stores an <code>int</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_0">Iconst_0</td>
+        <td><p>Pushes the constant 0 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_1">Iconst_1</td>
+        <td><p>Pushes the constant 1 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_2">Iconst_2</td>
+        <td><p>Pushes the constant 2 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_3">Iconst_3</td>
+        <td><p>Pushes the constant 3 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_4">Iconst_4</td>
+        <td><p>Pushes the constant 4 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_5">Iconst_5</td>
+        <td><p>Pushes the constant 5 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iconst_M1">Iconst_M1</td>
+        <td><p>Pushes the constant -1 as an <code>int</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Idiv">Idiv</td>
+        <td><p>Divides two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Acmpeq">If_Acmpeq</td>
+        <td><p>Branches if reference comparison is equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Acmpne">If_Acmpne</td>
+        <td><p>Branches if reference comparison is not equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmpeq">If_Icmpeq</td>
+        <td><p>Branches if int comparison is equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmpge">If_Icmpge</td>
+        <td><p>Branches if int comparison is greater or equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmpgt">If_Icmpgt</td>
+        <td><p>Branches if int comparison is greater.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmple">If_Icmple</td>
+        <td><p>Branches if int comparison is less or equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmplt">If_Icmplt</td>
+        <td><p>Branches if int comparison is less.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_If_Icmpne">If_Icmpne</td>
+        <td><p>Branches if int comparison is not equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifeq">Ifeq</td>
+        <td><p>Branches if int comparison with 0 is equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifge">Ifge</td>
+        <td><p>Branches if int comparison with 0 is greater or equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifgt">Ifgt</td>
+        <td><p>Branches if int comparison with 0 is greater.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifle">Ifle</td>
+        <td><p>Branches if int comparison with 0 is less or equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iflt">Iflt</td>
+        <td><p>Branches if int comparison with 0 is less.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifne">Ifne</td>
+        <td><p>Branches if int comparison with 0 is not equal.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifnonnull">Ifnonnull</td>
+        <td><p>Branches if reference is not <code>null</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ifnull">Ifnull</td>
+        <td><p>Branches if reference is <code>null</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iinc">Iinc</td>
+        <td><p>Increments a local variable by a constant.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iload">Iload</td>
+        <td><p>Loads an <code>int</code> from a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iload_0">Iload_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iload_1">Iload_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iload_2">Iload_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iload_3">Iload_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Imdep1">Imdep1</td>
+        <td><p>Reserved opcode.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Imdep2">Imdep2</td>
+        <td><p>Reserved opcode.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Imul">Imul</td>
+        <td><p>Multiplies two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ineg">Ineg</td>
+        <td><p>Negates an <code>int</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Instanceof">Instanceof</td>
+        <td><p>Determines if the object is of given type.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Invokedynamic">Invokedynamic</td>
+        <td><p>Invokes a dynamic method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Invokeinterface">Invokeinterface</td>
+        <td><p>Invokes an interface method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Invokespecial">Invokespecial</td>
+        <td><p>Invokes an instance method; special handling for superclass, private, and instance initialization method invocations.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Invokestatic">Invokestatic</td>
+        <td><p>Invokes a <code>static</code> method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Invokevirtual">Invokevirtual</td>
+        <td><p>Invokes an instance method with dynamic dispatch based on the class.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ior">Ior</td>
+        <td><p>Performs a bitwise OR on two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Irem">Irem</td>
+        <td><p>Takes the remainder value of two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ireturn">Ireturn</td>
+        <td><p>Returns an <code>int</code> from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ishl">Ishl</td>
+        <td><p>Shifts an <code>int</code> left.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ishr">Ishr</td>
+        <td><p>Shifts an <code>int</code> right with sign extension.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Istore">Istore</td>
+        <td><p>Stores an <code>int</code> into a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Istore_0">Istore_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Istore_1">Istore_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Istore_2">Istore_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Istore_3">Istore_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Isub">Isub</td>
+        <td><p>Subtracts two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Iushr">Iushr</td>
+        <td><p>Shifts an <code>int</code> right with zero extension.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ixor">Ixor</td>
+        <td><p>Performs a bitwise XOR on two <code>int</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Jsr">Jsr</td>
+        <td><p>Jumps to a subroutine.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Jsr_W">Jsr_W</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_L2d">L2d</td>
+        <td><p>Converts a <code>long</code> to a <code>double</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_L2f">L2f</td>
+        <td><p>Converts a <code>long</code> to a <code>float</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_L2i">L2i</td>
+        <td><p>Converts a <code>long</code> to a <code>int</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ladd">Ladd</td>
+        <td><p>Adds two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Laload">Laload</td>
+        <td><p>Loads a <code>long</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Land">Land</td>
+        <td><p>Performs a bitwise AND on two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lastore">Lastore</td>
+        <td><p>Stores a <code>long</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lcmp">Lcmp</td>
+        <td><p>Compares two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lconst_0">Lconst_0</td>
+        <td><p>Pushes the constant 0 as <code>long</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lconst_1">Lconst_1</td>
+        <td><p>Pushes the constant 1 as <code>long</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ldc">Ldc</td>
+        <td><p>Pushes a constant from the constant pool onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ldc_W">Ldc_W</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ldc2_W">Ldc2_W</td>
+        <td><p>Pushes a <code>long</code> or a <code>double</code> from the constant pool onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ldiv">Ldiv</td>
+        <td><p>Divides two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lload">Lload</td>
+        <td><p>Loads a <code>long</code> from a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lload_0">Lload_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lload_1">Lload_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lload_2">Lload_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lload_3">Lload_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lmul">Lmul</td>
+        <td><p>Multiplies two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lneg">Lneg</td>
+        <td><p>Negates a <code>long</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lookupswitch">Lookupswitch</td>
+        <td><p>Jumps to the target address based on the key from the jump table.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lor">Lor</td>
+        <td><p>Performs a bitwise OR on two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lrem">Lrem</td>
+        <td><p>Takes the remainder of two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lreturn">Lreturn</td>
+        <td><p>Returns a <code>long</code> from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lshl">Lshl</td>
+        <td><p>Shifts a <code>long</code> left.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lshr">Lshr</td>
+        <td><p>Shifts a <code>long</code> right with sign extension.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lstore">Lstore</td>
+        <td><p>Stores a <code>long</code> into a local variable.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lstore_0">Lstore_0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lstore_1">Lstore_1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lstore_2">Lstore_2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lstore_3">Lstore_3</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lsub">Lsub</td>
+        <td><p>Subtracts two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lushr">Lushr</td>
+        <td><p>Shifts a <code>long</code> right with zero extension.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Lxor">Lxor</td>
+        <td><p>Performs a bitwise XOR on two <code>long</code>s.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Monitorenter">Monitorenter</td>
+        <td><p>Enters the monitor for the object.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Monitorexit">Monitorexit</td>
+        <td><p>Exits the monitor for the object.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Multinewarray">Multinewarray</td>
+        <td><p>Creates a new multi-dimensional array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_New">New</td>
+        <td><p>Creates a new object.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Newarray">Newarray</td>
+        <td><p>Creates a new one-dimensional array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Nop">Nop</td>
+        <td><p>Do nothing.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Pop">Pop</td>
+        <td><p>Pops the top value off the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Pop2">Pop2</td>
+        <td><p>Pops the top one or two values off the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Putfield">Putfield</td>
+        <td><p>Sets a field's value to the object.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Putstatic">Putstatic</td>
+        <td><p>Sets a static field's value to the object.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Ret">Ret</td>
+        <td><p>Returns from subroutine.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Return">Return</td>
+        <td><p>Returns <code>void</code> from a method.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Saload">Saload</td>
+        <td><p>Loads a <code>short</code> from an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Sastore">Sastore</td>
+        <td><p>Stores a <code>short</code> into an array.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Sipush">Sipush</td>
+        <td><p>Pushes a <code>short</code> onto the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Swap">Swap</td>
+        <td><p>Swaps the top two values on the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Tableswitch">Tableswitch</td>
+        <td><p>Jumps to the target address based on the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Bali_Emit_JvmCode_Wide">Wide</td>
+        <td><p>Prefix opcode used to grant additional bytes to the following opcodes:</p>
+<ul><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Iload">Iload</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Fload">Fload</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Aload">Aload</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Lload">Lload</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Dload">Dload</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Istore">Istore</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Fstore">Fstore</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Astore">Astore</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Lstore">Lstore</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Dstore">Dstore</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Ret">Ret</a></li><li><a class="xref" href="Bali.Emit.JvmCode.html#Bali_Emit_JvmCode_Iinc">Iinc</a></li></ul>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_Emit_JvmCode.md&amp;value=---%0Auid%3A%20Bali.Emit.JvmCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/Emit/JvmCode.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

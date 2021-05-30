@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Bali.Attributes
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Bali.Attributes
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.Attributes">
+  
+  <h1 id="Bali_Attributes" data-uid="Bali.Attributes" class="text-break">Namespace Bali.Attributes
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="Bali.Attributes.AppendFrame.html">AppendFrame</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one, except new locals are added to the stack frame.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.BootstrapInfo.html">BootstrapInfo</a></h4>
+      <section><p>A simple data structure to hold a bootstrap method and its arguments.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.BootstrapMethodsAttribute.html">BootstrapMethodsAttribute</a></h4>
+      <section><p>An attribute which describes bootstrap method specifiers referenced by <a class="xref" href="Bali.Emit.JvmOpCodes.html#Bali_Emit_JvmOpCodes_Invokedynamic">Invokedynamic</a> instructions.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.ChopFrame.html">ChopFrame</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one with the last <em>k</em> locals dropped.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.CodeAttribute.html">CodeAttribute</a></h4>
+      <section><p>An attribute which describes a method's body.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.ConstantValueAttribute.html">ConstantValueAttribute</a></h4>
+      <section><p>An attribute which describes a constant value.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.DeprecatedAttribute.html">DeprecatedAttribute</a></h4>
+      <section><p>An attribute which indicates that the given member is deprecated.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.DoubleVariableInfo.html">DoubleVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>double</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.EnclosingMethodAttribute.html">EnclosingMethodAttribute</a></h4>
+      <section><p>An attribute which describes a local/anonymous class defined in a method in the source code.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.ExceptionsAttribute.html">ExceptionsAttribute</a></h4>
+      <section><p>An attribute which describes which checked exceptions a method may throw.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.FloatVariableInfo.html">FloatVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>float</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.FullFrame.html">FullFrame</a></h4>
+      <section><p>Indicates that the stack frame is completely redefined compared to the previous one.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.InnerClassesAttribute.html">InnerClassesAttribute</a></h4>
+      <section><p>An attribute which describes nested classes of a given class.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.InnerClassInfo.html">InnerClassInfo</a></h4>
+      <section><p>Represents information about an inner class and its containing class.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.IntegerVariableInfo.html">IntegerVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>int</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.JvmAttribute.html">JvmAttribute</a></h4>
+      <section><p>Represents a raw attribute extracted from the class file.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LineNumberInfo.html">LineNumberInfo</a></h4>
+      <section><p>Represents the line number at a given offset.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LineNumberTableAttribute.html">LineNumberTableAttribute</a></h4>
+      <section><p>An attribute which provides information about line numbers based on the program counter position.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LocalVariableInfo.html">LocalVariableInfo</a></h4>
+      <section><p>Indicates a range of code array offsets within which a local variable has a value.
+It also indicates the index into the local variable array of the current frame at which that local variable can be found.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LocalVariableTableAttribute.html">LocalVariableTableAttribute</a></h4>
+      <section><p>An attribute which provides information about local variables based in the program counter position.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LocalVariableTypeInfo.html">LocalVariableTypeInfo</a></h4>
+      <section><p>Indicates a range of code array offsets within which a local variable has a value.
+It also indicates the index into the local variable array of the current frame at which that local variable can be found.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LocalVariableTypeTable.html">LocalVariableTypeTable</a></h4>
+      <section><p>An attribute which provides information about local variables based in the program counter position.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.LongVariableInfo.html">LongVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>long</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.NullVariableInfo.html">NullVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>null</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.ObjectVariableInfo.html">ObjectVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is represented by a <a class="xref" href="Bali.Constants.ClassConstant.html">ClassConstant</a> that can be resolved
+via the <a class="xref" href="Bali.Attributes.ObjectVariableInfo.html#Bali_Attributes_ObjectVariableInfo_ConstantPoolIndex">ConstantPoolIndex</a>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SameFrame.html">SameFrame</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SameFrameExtended.html">SameFrameExtended</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one, but it has an explicit offset for a bigger &quot;range&quot;.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SameLocals1StackItemFrame.html">SameLocals1StackItemFrame</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one, except the top stack item.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SameLocals1StackItemFrameExtended.html">SameLocals1StackItemFrameExtended</a></h4>
+      <section><p>Indicates that the frame is the same as the previous one, except the top stack item but it has an explicit
+offset for a bigger &quot;range&quot;.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SignatureAttribute.html">SignatureAttribute</a></h4>
+      <section><p>An attribute which records generic signature information for any class, interface, constructor
+or member whose generic signature in the Java programming language would include
+references to type variables or parameterized types.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SourceDebugExtensionAttribute.html">SourceDebugExtensionAttribute</a></h4>
+      <section><p>An attribute which provides extended debugging information.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SourceFileAttribute.html">SourceFileAttribute</a></h4>
+      <section><p>An attribute which describes the source file from which a given <a class="xref" href="Bali.ClassFile.html">ClassFile</a> was compiled from.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.StackMapFrame.html">StackMapFrame</a></h4>
+      <section><p>Provides a contract for stack map frames.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.StackMapTableAttribute.html">StackMapTableAttribute</a></h4>
+      <section><p>An attribute which provides rich type information about the bytecode which is used for verification.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.SyntheticAttribute.html">SyntheticAttribute</a></h4>
+      <section><p>An attribute which indicates that the member is generated by the compiler.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.TopVariableInfo.html">TopVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>top</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.UninitializedThisVariableInfo.html">UninitializedThisVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is <code>uninitializedThis</code>.</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.UninitializedVariableInfo.html">UninitializedVariableInfo</a></h4>
+      <section><p>Indicates that the verification type is an uninitialized object (these are created by the <a class="xref" href="Bali.Emit.JvmOpCodes.html#Bali_Emit_JvmOpCodes_New">New</a> instruction).</p>
+</section>
+      <h4><a class="xref" href="Bali.Attributes.VerificationInfo.html">VerificationInfo</a></h4>
+      <section><p>Provides a contract for verification types.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="Bali.Attributes.VerificationInfoTag.html">VerificationInfoTag</a></h4>
+      <section><p>An enumeration of all types of <a class="xref" href="Bali.Attributes.VerificationInfo.html">VerificationInfo</a>s.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>

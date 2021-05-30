@@ -1,0 +1,498 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct MetadataBody
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct MetadataBody
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <script>
+  function fixxyBoi() {
+  $(function() {
+      $('table').each(function(a, tbl) {
+          var currentTableRows = $(tbl).find('tbody tr').length;
+          $(tbl).find('th').each(function(i) {
+              var remove = 0;
+              var currentTable = $(this).parents('table');
+  
+              var tds = currentTable.find('tr td:nth-child(' + (i + 1) + ')');
+              tds.each(function(j) { if ($(this).text().trim() === '') remove++; });
+  
+              if (remove == currentTableRows) {
+                  $(this).hide();
+                  tds.hide();
+              }
+          });
+      });
+  });
+  }
+  </script>
+  <body onload="fixxyBoi()">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bali.MetadataBody">
+  
+  
+  <h1 id="Bali_MetadataBody" data-uid="Bali.MetadataBody" class="text-break">Struct MetadataBody
+  </h1>
+  <div class="markdown level0 summary"><p>A simple data structure holding the interface indices, the field, methods and attributes of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bali.html">Bali</a></h6>
+  <h6><strong>Assembly</strong>: Bali.dll</h6>
+  <h5 id="Bali_MetadataBody_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct MetadataBody</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody__ctor_Bali_ClassFile_.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.%23ctor(Bali.ClassFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L56">View Source</a>
+  </span>
+  <a id="Bali_MetadataBody__ctor_" data-uid="Bali.MetadataBody.#ctor*"></a>
+  <h4 id="Bali_MetadataBody__ctor_Bali_ClassFile_" data-uid="Bali.MetadataBody.#ctor(Bali.ClassFile)">MetadataBody(ClassFile)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a> from the specified <code data-dev-comment-type="paramref" class="paramref">classFile</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetadataBody(ClassFile classFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><span class="parametername">classFile</span></td>
+        <td><p>The <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to construct the metadata body of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody__ctor_IList_System_UInt16__IList_Bali_JvmFieldInfo__IList_Bali_JvmMethodInfo__IList_Bali_Attributes_JvmAttribute__.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.%23ctor(IList%7BSystem.UInt16%7D%2CIList%7BBali.JvmFieldInfo%7D%2CIList%7BBali.JvmMethodInfo%7D%2CIList%7BBali.Attributes.JvmAttribute%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L40">View Source</a>
+  </span>
+  <a id="Bali_MetadataBody__ctor_" data-uid="Bali.MetadataBody.#ctor*"></a>
+  <h4 id="Bali_MetadataBody__ctor_IList_System_UInt16__IList_Bali_JvmFieldInfo__IList_Bali_JvmMethodInfo__IList_Bali_Attributes_JvmAttribute__" data-uid="Bali.MetadataBody.#ctor(IList{System.UInt16},IList{Bali.JvmFieldInfo},IList{Bali.JvmMethodInfo},IList{Bali.Attributes.JvmAttribute})">MetadataBody(IList&lt;UInt16&gt;, IList&lt;JvmFieldInfo&gt;, IList&lt;JvmMethodInfo&gt;, IList&lt;JvmAttribute&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetadataBody(IList&lt;ushort&gt; interfaces, IList&lt;JvmFieldInfo&gt; fields, IList&lt;JvmMethodInfo&gt; methods, IList&lt;JvmAttribute&gt; attributes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a>&gt;</td>
+        <td><span class="parametername">interfaces</span></td>
+        <td><p>The list of indices into the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> representing the direct superinterfaces of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmFieldInfo.html">JvmFieldInfo</a>&gt;</td>
+        <td><span class="parametername">fields</span></td>
+        <td><p>The list of fields of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmMethodInfo.html">JvmMethodInfo</a>&gt;</td>
+        <td><span class="parametername">methods</span></td>
+        <td><p>The list of methods of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Attributes.JvmAttribute.html">JvmAttribute</a>&gt;</td>
+        <td><span class="parametername">attributes</span></td>
+        <td><p>The list of attributes of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_Attributes.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.Attributes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L31">View Source</a>
+  </span>
+  <h4 id="Bali_MetadataBody_Attributes" data-uid="Bali.MetadataBody.Attributes">Attributes</h4>
+  <div class="markdown level1 summary"><p>The list of attributes of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IList&lt;JvmAttribute&gt; Attributes</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.Attributes.JvmAttribute.html">JvmAttribute</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_Fields.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.Fields%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L21">View Source</a>
+  </span>
+  <h4 id="Bali_MetadataBody_Fields" data-uid="Bali.MetadataBody.Fields">Fields</h4>
+  <div class="markdown level1 summary"><p>The list of fields of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IList&lt;JvmFieldInfo&gt; Fields</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmFieldInfo.html">JvmFieldInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_Interfaces.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.Interfaces%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L16">View Source</a>
+  </span>
+  <h4 id="Bali_MetadataBody_Interfaces" data-uid="Bali.MetadataBody.Interfaces">Interfaces</h4>
+  <div class="markdown level1 summary"><p>The list of indices into the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> representing the direct superinterfaces of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IList&lt;ushort&gt; Interfaces</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_Methods.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.Methods%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L26">View Source</a>
+  </span>
+  <h4 id="Bali_MetadataBody_Methods" data-uid="Bali.MetadataBody.Methods">Methods</h4>
+  <div class="markdown level1 summary"><p>The list of methods of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IList&lt;JvmMethodInfo&gt; Methods</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Bali.JvmMethodInfo.html">JvmMethodInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_FromReader_Bali_IO_IBigEndianReader_Bali_ConstantPool_.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.FromReader(Bali.IO.IBigEndianReader%2CBali.ConstantPool)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L75">View Source</a>
+  </span>
+  <a id="Bali_MetadataBody_FromReader_" data-uid="Bali.MetadataBody.FromReader*"></a>
+  <h4 id="Bali_MetadataBody_FromReader_Bali_IO_IBigEndianReader_Bali_ConstantPool_" data-uid="Bali.MetadataBody.FromReader(Bali.IO.IBigEndianReader,Bali.ConstantPool)">FromReader(IBigEndianReader, ConstantPool)</h4>
+  <div class="markdown level1 summary"><p>Reads the <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a> of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> from the <code data-dev-comment-type="paramref" class="paramref">reader</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MetadataBody FromReader(IBigEndianReader reader, ConstantPool constantPool)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianReader.html">IBigEndianReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianReader.html">IBigEndianReader</a> to read data from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.ConstantPool.html">ConstantPool</a></td>
+        <td><span class="parametername">constantPool</span></td>
+        <td><p>The <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> to resolve constants from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.MetadataBody.html">MetadataBody</a></td>
+        <td><p>The read <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_IntoWriter_Bali_ClassFile_Bali_IO_IBigEndianWriter_.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.IntoWriter(Bali.ClassFile%2CBali.IO.IBigEndianWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L83">View Source</a>
+  </span>
+  <a id="Bali_MetadataBody_IntoWriter_" data-uid="Bali.MetadataBody.IntoWriter*"></a>
+  <h4 id="Bali_MetadataBody_IntoWriter_Bali_ClassFile_Bali_IO_IBigEndianWriter_" data-uid="Bali.MetadataBody.IntoWriter(Bali.ClassFile,Bali.IO.IBigEndianWriter)">IntoWriter(ClassFile, IBigEndianWriter)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a> of a <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to the <code data-dev-comment-type="paramref" class="paramref">writer</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void IntoWriter(ClassFile classFile, IBigEndianWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.ClassFile.html">ClassFile</a></td>
+        <td><span class="parametername">classFile</span></td>
+        <td><p>The <a class="xref" href="Bali.ClassFile.html">ClassFile</a> to write the header of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write the <a class="xref" href="Bali.ConstantPool.html">ConstantPool</a> to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody_Write_Bali_IO_IBigEndianWriter_Bali_Attributes_Writers_IJvmAttributeDirector_.md&amp;value=---%0Auid%3A%20Bali.MetadataBody.Write(Bali.IO.IBigEndianWriter%2CBali.Attributes.Writers.IJvmAttributeDirector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L66">View Source</a>
+  </span>
+  <a id="Bali_MetadataBody_Write_" data-uid="Bali.MetadataBody.Write*"></a>
+  <h4 id="Bali_MetadataBody_Write_Bali_IO_IBigEndianWriter_Bali_Attributes_Writers_IJvmAttributeDirector_" data-uid="Bali.MetadataBody.Write(Bali.IO.IBigEndianWriter,Bali.Attributes.Writers.IJvmAttributeDirector)">Write(IBigEndianWriter, IJvmAttributeDirector)</h4>
+  <div class="markdown level1 summary"><p>Writes the <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a> to the <code data-dev-comment-type="paramref" class="paramref">writer</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(IBigEndianWriter writer, IJvmAttributeDirector director)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a></td>
+        <td><span class="parametername">writer</span></td>
+        <td><p>The <a class="xref" href="Bali.IO.IBigEndianWriter.html">IBigEndianWriter</a> to write the <a class="xref" href="Bali.MetadataBody.html">MetadataBody</a> to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Bali.Attributes.Writers.IJvmAttributeDirector.html">IJvmAttributeDirector</a></td>
+        <td><span class="parametername">director</span></td>
+        <td><p>The <a class="xref" href="Bali.Attributes.Writers.IJvmAttributeDirector.html">IJvmAttributeDirector</a> to write <a class="xref" href="Bali.Attributes.JvmAttribute.html">JvmAttribute</a>s with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/new/master/apiSpec/new?filename=Bali_MetadataBody.md&amp;value=---%0Auid%3A%20Bali.MetadataBody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/zsr2531/Bali/blob/master/src/Bali/MetadataBody.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</body></html>
