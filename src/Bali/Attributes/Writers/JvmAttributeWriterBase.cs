@@ -38,7 +38,7 @@ namespace Bali.Attributes.Writers
         /// <inheritdoc />
         public void WriteBody(JvmAttribute attribute, IBigEndianWriter writer) => WriteBody((T) attribute, (IBigEndianSegmentWriter) writer);
 
-        /// <inheritdoc cref="WriteBody(T, IBigEndianWriter)" />
+        /// <inheritdoc cref="WriteBody(JvmAttribute, IBigEndianWriter)" />
         protected abstract void WriteBody(T attribute, IBigEndianWriter writer);
     }
 }
