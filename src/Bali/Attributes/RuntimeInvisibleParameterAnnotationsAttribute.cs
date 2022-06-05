@@ -18,7 +18,7 @@ namespace Bali.Attributes
             var annotationReader = new AnnotationInfoReader(reader);
             for (int i = 0; i < ParameterAnnotations.Capacity; i++) {
                 var annotations = new List<AnnotationInfo>(reader.ReadU2());
-                for (int j = 0; i < annotations.Capacity; j++)
+                for (int j = 0; j < annotations.Capacity; j++)
                     annotations.Add(annotationReader.ReadAnnotationInfo());
             }"
         )]
