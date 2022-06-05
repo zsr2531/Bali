@@ -24,7 +24,10 @@ namespace Bali
                 var constant = ConstantReader.CreateConstant(_reader);
                 constants.Add(constant);
                 if (constant is LongConstant or DoubleConstant)
+                {
                     constants.Add(constant); // Longs and doubles take up 2 slots... urgh
+                    i++;
+                }
             }
 
             return new ConstantPool(constants);
