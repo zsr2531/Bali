@@ -85,7 +85,7 @@ namespace Bali.Attributes
         /// <summary>
         /// Indicates that the <see cref="ElementValue"/> is a <see cref="ConstValue"/> with type <c>long</c>.
         /// </summary>
-        Long = (byte) 'L',
+        Long = (byte) 'J',
 
         /// <summary>
         /// Indicates that the <see cref="ElementValue"/> is a <see cref="ConstValue"/> with type <c>short</c>.
